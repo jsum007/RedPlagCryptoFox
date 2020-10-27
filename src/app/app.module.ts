@@ -1,5 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { AuthService } from './auth.service';
+import { AuthGuard } from './auth.guard';
+import { AuthInterceptor } from './intercept.service';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -9,13 +12,13 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { UserComponent } from './user/user.component';
 import { RouterModule } from '@angular/router'
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { UserServiceService } from './user-service.service';
 import { JwtModule } from '@auth0/angular-jwt';
 // ...
 export function tokenGetter() {
-  return localStorage.getItem('access_token');
+  return localStorage.getItem('userToken');
 }
 
 
@@ -40,7 +43,12 @@ export function tokenGetter() {
 
       }
     })  ],
-  providers: [UserServiceService],
+  providers: [UserServiceService,
+    AuthService,
+    AuthGuard,
+    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor , multi: true}
+    ],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }

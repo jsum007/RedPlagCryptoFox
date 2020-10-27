@@ -27,4 +27,19 @@ export class UserComponent implements OnInit {
     this.router.navigate(['/login']);
   }
 
+  onFile(event: any) {
+    this.file = event.target.files[0];
+  }
+ uploadFile() {
+   const uploadData = new FormData();
+   uploadData.append('file', this.file, this.file.name);
+  this.userSer.uploadFile_service(uploadData).subscribe(
+    response => {
+      console.log(response)
+      alert('File'+ this.file.name + 'has been uploaded')
+    },
+    error => {console.log('error', error), alert('error')
+  }
+  );
+ }
 }

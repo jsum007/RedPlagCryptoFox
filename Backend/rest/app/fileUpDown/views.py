@@ -15,7 +15,7 @@ from django.http import HttpResponse
 
 class UploadView(APIView):
     serializer_class=FileSerializer
-    permission_classes = (AllowAny,)
+    permission_classes = (IsAuthenticated,)
 
     def post(self, request, *args, **kwargs):
         custom_data={}
