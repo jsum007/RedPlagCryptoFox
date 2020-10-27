@@ -18,6 +18,8 @@ user;
       email : '',
       password: ''
     };
+    localStorage.clear();
+
   }
 registerUser(){
   this.userSer.registerNewUser(this.user).subscribe(

@@ -18,6 +18,7 @@ export class LoginComponent implements OnInit {
       email : '',
       password: ''
     };
+    localStorage.clear();
   }
 loginUser(){
   this.userSer.loginNewUser(this.user).subscribe(

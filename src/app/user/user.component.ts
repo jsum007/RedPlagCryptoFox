@@ -23,8 +23,9 @@ export class UserComponent implements OnInit {
   }
 
   Logout() {
-    localStorage.removeItem('userToken');
-    this.router.navigate(['/login']);
+    alert(this.userSer.loggedIn);
+    this.userSer.LogoutUser();
+    alert(this.userSer.loggedIn);
   }
 
   onFile(event: any) {
