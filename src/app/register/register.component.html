@@ -1,0 +1,21 @@
+<form class="col s12 white">
+  <div class="row">
+
+    <div class="input-field col s6">
+      <input class="validate" type="text" name="Email" [(ngModel)]="user.email">
+      <label data-error="Invalid email!">Email</label>
+    </div>
+
+    <div class="input-field col s6">
+      <input class="validate" type="password" name="Password" [(ngModel)]="user.password" required minlength="8">
+      <label >Password</label>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="input-field col s6">
+      <button (click)="registerUser()">Register</button>
+    </div>
+  </div>
+</form>
