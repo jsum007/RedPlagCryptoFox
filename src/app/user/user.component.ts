@@ -14,6 +14,7 @@ export class UserComponent implements OnInit {
 
   constructor(private userSer: UserServiceService, private router : Router) { }
 
+  log = this.userSer.loggedIn;
   ngOnInit(){
     //this.userSer.getUserClaims().subscribe((data: any) => {
      // this.userClaims = data;
@@ -23,9 +24,9 @@ export class UserComponent implements OnInit {
   }
 
   Logout() {
-    alert(this.userSer.loggedIn);
+    //alert(this.userSer.loggedIn);
     this.userSer.LogoutUser();
-    alert(this.userSer.loggedIn);
+    //alert(this.userSer.loggedIn);
   }
 
   onFile(event: any) {

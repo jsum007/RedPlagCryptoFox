@@ -1,8 +1,18 @@
 <nav class='header-bar jumbotron'>
   <a class='name' [routerLink]="['']"><h1>RED PLAG</h1></a>
-      <ul>
-        <li><a [routerLink]="['/login']">Login</a></li>
-        <li><a  [routerLink]="['/register']">Register</a></li>
-      </ul>
+
+  <ng-container *ngIf="log == true; then second else first"></ng-container>
+  <ng-template #first>
+    <ul>
+      <li><a [routerLink]="['/login']">Login</a></li>
+      <li><a  [routerLink]="['/register']">Register</a></li>
+    </ul>
+  </ng-template>
+  <ng-template #second>
+    <ul>
+      <li><a (click)="Logout()">Logout</a></li>
+    </ul>
+  </ng-template>
+      
 </nav>
 
