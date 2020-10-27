@@ -2,6 +2,7 @@
 import uuid
 from django.db import models
 from django.contrib.auth.models import BaseUserManager, AbstractBaseUser, PermissionsMixin
+from django.contrib import admin
 
 
 class UserManager(BaseUserManager):
@@ -64,3 +65,5 @@ class User(AbstractBaseUser, PermissionsMixin):
         to set table name in database
         '''
         db_table = "login"
+
+admin.site.register(User)
