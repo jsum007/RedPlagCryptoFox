@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "RedPlagAngular"
+    }
+  },
+  "defaultProject": "RedPlagAngular",
+  "cli": {
+    "analytics": "4e594ba3-c09d-4b57-b618-3b97b0b4d670"
+  }
 }

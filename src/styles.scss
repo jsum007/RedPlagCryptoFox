@@ -1,4 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
+@import "variables";
+@import "~bootstrap/scss/bootstrap.scss";
 
 button.btn-submit{
   background-color: #38547b;
