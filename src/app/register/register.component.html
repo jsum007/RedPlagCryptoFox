@@ -1,1 +1,17 @@
-<p>register works!</p>
+<div>
+    USERNAME: 
+    <input [(ngModel)] = "input.username" placeholder="username">
+  </div>
+  
+  <div>
+    PASSWORD: 
+    <input [(ngModel)] = "input.password" type = "password" placeholder="password">
+  </div>
+  
+  <div>
+    EMAIL: 
+    <input [(ngModel)] = "input.email" placeholder="email address">
+  </div>
+  
+  <button (click)="onRegister()">REGISTER</button>
+  <!--<button (click)="onLogin()">LOGIN</button>-->

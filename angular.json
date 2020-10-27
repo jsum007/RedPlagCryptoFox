@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "RedPlagFrontend"
+    }
+  },
+  "defaultProject": "RedPlagFrontend",
+  "cli": {
+    "analytics": "faab56f4-218d-4193-8d82-4993531cbe4d"
+  }
 }

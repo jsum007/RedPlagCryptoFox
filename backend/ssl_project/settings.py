@@ -25,13 +25,12 @@ SECRET_KEY = '#+hb-aoh1x#h*$+36(ft&el14nee()4yhfhh50%1&6co)ijm+9'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
 
 INSTALLED_APPS = [
-    #'auth',
     'rest_framework',
     'corsheaders',
     'rest_framework.authtoken',
@@ -55,6 +54,7 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
 ]
 
+
 ROOT_URLCONF = 'ssl_project.urls'
 
 TEMPLATES = [
@@ -76,14 +76,6 @@ TEMPLATES = [
 CORS_ORIGIN_ALLOW_ALL = True
 
 CORS_ALLOW_CREDENTIALS = True
-
-REST_FRAMEWORK = {
-    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-    'PAGE_SIZE': 10,
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework.authentication.TokenAuthentication',
-    )
-}
 
 WSGI_APPLICATION = 'ssl_project.wsgi.application'
 
