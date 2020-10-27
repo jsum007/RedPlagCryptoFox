@@ -18,6 +18,10 @@ loginNewUser(userData) : Observable<any> {
 }
 
 
+uploadFile_service(userData) : Observable<any> {
+  return this.http.post('http://127.0.0.1:8000/files/upload/', userData);
+}
+
 //getUserClaims(){
   //return  this.http.get('http://127.0.0.1:8000/api/');
  //}
