@@ -71,9 +71,16 @@ The backend of the project was generated with Django and the APIs were generated
 
 ### Registration of new User
 
+JSON Web Tokens are an industry standard mechanism for generating a token which can be passed in the HTTP headers of each request, authenticating the user. Any new entry assks for an email address which must not be registered already and a password atleast 8 characters long. These after validation create a new user instance and redirect to the dashboard page.
+
+
 ### login and Authentication of existing user
 
+To implement an authentication system, we used the email address and password model, where after validating this pair, you get a token that works as a credential to give you access to your resources on that service. In our case, the authentication method selected was the JWT. JWT stands for JSON Web Token, and it is an encoded JSON object defined by the RFC 7519 to perform access information exchange between two ends. `djangorestframework-jwt` is an extension to Django REST Framework which provides an authentication layer using JSON Web Tokens and has been used in our project.
+
 ### File upload/download
+
+Django backend server has been used to allow each user to upload and store their files. On the frontend there's a file input field on dashboard which users can see after logging in.
 
 ## Further part to be implemented
 
