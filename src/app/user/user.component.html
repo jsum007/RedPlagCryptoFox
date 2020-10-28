@@ -1,3 +1,5 @@
+<app-header></app-header>
+
 <div class="card px-lg-5">
   <h1 class="card-header info-color white-text text-center py-4 px-lg-5">
     <strong>Choose Files To Compare</strong>
@@ -5,21 +7,21 @@
 <div class="card-body px-lg-5 pt-20">
 
   <form class="white" style="color: #757575;">
-  
+
     <div class="md-form px-lg-5 pt-20">
       <label for="fileup" class = "px-lg-5">
         File:
         <input type="file" id = "fileup" class = "form-control mb-4 px-lg-5" (change)="onFile($event)"/>
-      </label>      
+      </label>
     </div>
-  
-    <div class="px-lg-5">
+
+    <div class="px-lg-5 op">
       <button (click)="uploadFile()" class= "btn btn-link btn-block my-4"><h2>Upload</h2></button>
     </div>
   </form>
 </div>
 
-<div class="px-lg-5">
+<div class="px-lg-5 op">
   <button (click)="Logout()" class= "btn btn-link btn-block my-4"><h4>Logout</h4></button>
 </div>
 </div>

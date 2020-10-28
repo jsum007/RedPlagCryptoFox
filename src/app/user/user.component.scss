@@ -1,0 +1,21 @@
+button {
+  background-color: rgb(2, 170, 170);
+  color: #ffffff;
+  width: fit-content;
+  align-items : center;
+  align-content: center;
+  text-decoration: none;
+  padding-left: 100px;
+  padding-right: 100px;
+  &:hover { cursor: pointer;
+    background-color: #111;
+    color: #ffffff;
+    text-decoration: none;
+  }
+}
+.op {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
