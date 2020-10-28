@@ -16,6 +16,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { UserServiceService } from './user-service.service';
 import { JwtModule } from '@auth0/angular-jwt';
+import { ChangePassComponent } from './change-pass/change-pass.component';
 // ...
 export function tokenGetter() {
   return localStorage.getItem('userToken');
@@ -29,7 +30,8 @@ export function tokenGetter() {
     HeaderComponent,
     LoginComponent,
     RegisterComponent,
-    UserComponent
+    UserComponent,
+    ChangePassComponent
   ],
   imports: [
     BrowserModule,

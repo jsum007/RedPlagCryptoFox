@@ -5,6 +5,7 @@ from rest.app.user.views import UserLoginView
 from rest.app.user.views import HelloView
 from rest.app.user.views import ChangePasswordView
 
+
 urlpatterns = [
     url(r'^signup', UserRegistrationView.as_view()),
     url(r'^signin', UserLoginView.as_view()),

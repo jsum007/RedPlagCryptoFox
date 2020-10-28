@@ -1,6 +1,6 @@
 
 from rest_framework import status
-from rest_framework.generics import CreateAPIView, RetrieveAPIView, UpdateAPIView
+from rest_framework.generics import CreateAPIView, RetrieveAPIView , UpdateAPIView
 from rest_framework.views import APIView
 from rest.app.user.models import User
 
@@ -54,16 +54,10 @@ def my_view_id(request):
 
 class HelloView(APIView):
     permission_classes = (IsAuthenticated,)
-
-
-
-
-
     def get(self, request):
         print(my_view_id(request))
         content = {'message': 'Hello, World!'}
         return Response(content)
-
 
 
 class ChangePasswordView(UpdateAPIView):

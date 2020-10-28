@@ -1,33 +1,30 @@
 import { Component, OnInit } from '@angular/core';
 import { UserServiceService } from '../user-service.service';
 import { Router } from '@angular/router';
-
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss'],
-  providers: [UserServiceService]
-
+  selector: 'app-change-pass',
+  templateUrl: './change-pass.component.html',
+  styleUrls: ['./change-pass.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class ChangePassComponent implements OnInit {
   user;
   constructor(private userSer: UserServiceService, private router : Router) { }
 
   ngOnInit()  {
     this.user = {
-      email : '',
-      password: ''
+      old_password : '',
+      new_password: ''
     };
-    localStorage.clear();
   }
-loginUser(){
-  this.userSer.loginNewUser(this.user).subscribe(
+changePassword(){
+  this.userSer.changePass(this.user).subscribe(
     response => {
       console.log(response.token)
       localStorage.setItem('userToken',response.token);
-      this.router.navigate(['/user']);
+      this.userSer.LogoutUser();
+      this.router.navigate(['/login']);
 
-      alert('User '+ this.user.email + ' has been logged in')
+      alert('User Password has been Updated Successfully. Please Login Again! :)')
     },
     error => {console.log('error', error), alert('error')
   }

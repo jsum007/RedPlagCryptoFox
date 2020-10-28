@@ -8,6 +8,8 @@ import { Router } from '@angular/router';
 
 export class UserServiceService {
 
+
+
   constructor(private http: HttpClient,  private router : Router) {}
 
 registerNewUser(userData) : Observable<any> {
@@ -21,6 +23,12 @@ loginNewUser(userData) : Observable<any> {
 
 uploadFile_service(userData) : Observable<any> {
   return this.http.post('http://127.0.0.1:8000/files/upload/', userData);
+}
+
+
+changePass(userData) : Observable<any> {
+
+  return this.http.put('http://127.0.0.1:8000/api/change/', userData);
 }
 
 public get loggedIn(): boolean {

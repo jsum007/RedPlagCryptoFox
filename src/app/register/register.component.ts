@@ -25,7 +25,7 @@ user;
 registerUser(){
   this.userSer.registerNewUser(this.user).subscribe(
     response => {
-      alert('User'+ this.user.email + 'has been created');
+      alert('User '+ this.user.email + ' has been created');
       localStorage.setItem('userToken',response.token);
       this.router.navigate(['/user']);
     },
