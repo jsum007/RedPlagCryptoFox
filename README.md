@@ -4,6 +4,8 @@
 
 This projects aims at making a software for detecting plagiarism between C++ source code files. Here implemented is the website which will allow users to interact with the tool. Any user who opens the website land on the `Home Page` where they are given two options - `Login` for existing user and `Registration` for new user. After doing either, the user is taken to their `Dashboard` where they can select the files to upload for running through the plagiarism checker. There is also a `Logout` button to allow the user to logout and redirects to the `Home Page`. 
 
+#### Here's our [documentation](https://docs.google.com/document/d/11NyQamU9AtR0plAUP0oWx-LPotVjP6HmO8i4wlY4_Ms/edit?usp=sharing)
+
 <p slign="center">
 <img src="https://github.com/jsum007/RedPlagCryptoFox/blob/final/screenshots/home.png" width="700" height="350"/>  
 <img src="https://github.com/jsum007/RedPlagCryptoFox/blob/final/screenshots/login.png" width="700" height="350"/>   
