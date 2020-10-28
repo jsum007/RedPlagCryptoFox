@@ -29,7 +29,7 @@ public get loggedIn(): boolean {
 
 LogoutUser(){
   localStorage.removeItem('userToken');
-  this.router.navigate(['/login']);
+  this.router.navigate(['/home']);
 }
 
 //getUserClaims(){
