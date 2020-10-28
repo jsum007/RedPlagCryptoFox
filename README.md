@@ -91,4 +91,4 @@ Django backend server has been used to allow each user to upload and store their
 expnading vocabulary, splitting declaration of multiple variables in separate lines and injecting the body of function each time a function is called. 
 2. Incorporate exclusion - If there's some boilerplate code that is going to stay common across all files, they should be excluded from similarity calculation as that does not count as plagiarism.
 3. Allow upload and extraction of zip files to compare a large number of files at once
-4. Improve similarity estimation algorithm - explained in the Doc
+4. Improve similarity estimation algorithm - explained in the [documentation](https://docs.google.com/document/d/11NyQamU9AtR0plAUP0oWx-LPotVjP6HmO8i4wlY4_Ms/edit?usp=sharing)
