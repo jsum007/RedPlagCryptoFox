@@ -5,10 +5,10 @@
 This projects aims at making a software for detecting plagiarism between C++ source code files. Here implemented is the website which will allow users to interact with the tool. Any user who opens the website land on the `Home Page` where they are given two options - `Login` for existing user and `Registration` for new user. After doing either, the user is taken to their `Dashboard` where they can select the files to upload for running through the plagiarism checker. There is also a `Logout` button to allow the user to logout and redirects to the `Home Page`. 
 
 <p slign="center">
-<img src="https://github.com/jsum007/RedPlagCryptoFox/blob/final/screenshots/home.png" width="500" height="250"/>  
-<img src="https://github.com/jsum007/RedPlagCryptoFox/blob/final/screenshots/login.png" width="500" height="250"/>   
-<img src="https://github.com/jsum007/RedPlagCryptoFox/blob/final/screenshots/register.png" width="500" height="250"/>
-<img src="https://github.com/jsum007/RedPlagCryptoFox/blob/final/screenshots/dashboard.png" width="500" height="250"/>
+<img src="https://github.com/jsum007/RedPlagCryptoFox/blob/final/screenshots/home.png" width="700" height="350"/>  
+<img src="https://github.com/jsum007/RedPlagCryptoFox/blob/final/screenshots/login.png" width="700" height="350"/>   
+<img src="https://github.com/jsum007/RedPlagCryptoFox/blob/final/screenshots/register.png" width="700" height="350"/>
+<img src="https://github.com/jsum007/RedPlagCryptoFox/blob/final/screenshots/dashboard.png" width="700" height="350"/>
  </p>
 
 ## Currently implemented part of project 
