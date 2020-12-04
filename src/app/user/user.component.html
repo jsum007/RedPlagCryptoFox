@@ -2,7 +2,7 @@
 
 <div class="card px-lg-5">
   <h1 class="card-header info-color white-text text-center py-4 px-lg-5">
-    <strong>Choose Files To Compare</strong>
+    <h2>Upload Files On The Server</h2>
   </h1>
 <div class="card-body px-lg-5 pt-20">
 
@@ -16,14 +16,62 @@
     </div>
 
     <div class="px-lg-5 op">
-      <button (click)="uploadFile()" class= "btn btn-link btn-block my-4"><h2>Upload</h2></button>
+      <button (click)="uploadFile()" class= "btn btn-link btn-block my-4">Upload</button>
     </div>
   </form>
 </div>
 
-<div class="px-lg-5 op">
+
+
+
+
+
+<div class="card-body px-lg-5 pt-20">
+
+<h5> User Files On Server: </h5>
+
+<ul class="fileslist">
+  <li *ngFor="let file of list_of_files"
+    [class.selected]="file === selectedFile"
+    (click)="onSelect(file)">
+    {{file}}
+  </li>
+</ul>
+
+
+
+
+
+<form class="white" style="color: #757575;">
+
+   <!--<div class="md-form px-lg-5 pt-20">
+      <label for="pwd" class = "px-lg-5">File Name</label>
+      <input class="form-control mb-4 px-lg-5" type="text" name="fname" [(ngModel)]="files.filename" required id="com_fname" placeholder="Enter Filename To Compare">
+
+    </div>-->
+
+<h5> Please Select a ZIP/TAR.GZ File To Compare: </h5>
+
+    <div class="px-lg-5 op">
+      <button (click)="compareFiles()" [disabled]="!selectedFile" class= "btn btn-info btn-block my-4">Compare and Download Results</button>
+    </div>
+
+    <h5> You can Choose any File To Download:</h5>
+    <div class="px-lg-5 op">
+      <button (click)="downloadFiles()" [disabled]="!selectedFile" class= "btn btn-info btn-block my-4">Download File</button>
+    </div>
+  </form>
+
+
+  <div class="px-lg-5 op">
   <a [routerLink]="['/change_pass']"><h5>Change Password</h5></a>
 </div>
+
+
+
+</div>
+
+
 
 <!--<ul>
       <li><a [routerLink]="['/change_pass']">Change Password</a></li>
@@ -34,6 +82,8 @@
   <button (click)="Logout()" class= "btn btn-link btn-block my-4"><h4>Logout</h4></button>
 </div> -->
 </div>
+
+
 
 
 <!--<h3>Upload Files To Compare</h3>

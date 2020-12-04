@@ -15,14 +15,20 @@ class UserRegistrationView(CreateAPIView):
     serializer_class = UserRegistrationSerializer
     permission_classes = (AllowAny,)
 
+    serializer_class1 = UserLoginSerializer
+
     def post(self, request):
         serializer = self.serializer_class(data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.save()
+
+        serializer1 = self.serializer_class1(data=request.data)
+        serializer1.is_valid(raise_exception=True)
         response = {
             'success' : 'True',
             'status code' : status.HTTP_200_OK,
             'message': 'User registered  successfully',
+            'token' : serializer1.data['token'],
             }
         status_code = status.HTTP_200_OK
         return Response(response, status=status_code)

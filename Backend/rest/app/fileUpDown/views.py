@@ -10,6 +10,14 @@ from rest_framework.permissions import AllowAny, IsAuthenticated
 from .models import File
 from rest.app.fileUpDown.serializers import FileSerializer
 from django.http import HttpResponse
+from django.http import JsonResponse
+from django.conf import settings
+import mimetypes
+
+from os import listdir
+from os.path import isfile, join, basename, exists , isdir
+from rest.checker_core.Final_Checker import *
+
 # Create your views here.
 
 
@@ -26,6 +34,82 @@ class UploadView(APIView):
 
         if file_serializer.is_valid():
             file_serializer.save()
+            filename_temp=basename(file_serializer.data['file'])
+            #print(filename_temp)
+            dir_pathh='/'.join([settings.MEDIA_ROOT,str(custom_data['userid']), filename_temp])
+            #print(dir_pathh)
+            #dir_path_t2=basename()
+            #RunCheck(dir_pathh)
             return Response(file_serializer.data, status=status.HTTP_201_CREATED)
         else:
             return Response(file_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+
+
+
+class CompareNDownload(APIView):
+    permission_classes = (IsAuthenticated,)
+    def post(self, request):
+        #print(my_view_id(request))
+        useridd=request.user.id
+        filename=request.data.get('filename')
+        print(filename)
+        dir_path= '/'.join([settings.MEDIA_ROOT,str(useridd)])
+        file_path= join(dir_path, filename)
+        formats=(".tar", ".tar.gz", ".zip")
+
+
+        if exists(file_path) and file_path.endswith(formats):
+            out_stat , out_dir = RunCheck(file_path)
+            if out_stat=='success':
+                res_path=join(out_dir, listdir(out_dir)[0])
+                mime_type, _ = mimetypes.guess_type(res_path)
+                with open(res_path, 'rb') as fh:
+                    response = HttpResponse( fh , content_type=mime_type)
+                    response['Content-Disposition'] = "attachment; filename=%s" % basename(res_path)
+                    return response
+            else:
+                return Response(status=status.HTTP_400_BAD_REQUEST)
+
+
+        else:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+
+
+
+class DownloadFile(APIView):
+    permission_classes = (IsAuthenticated,)
+    def post(self, request):
+        useridd=request.user.id
+        filename=request.data.get('filename')
+        print(filename)
+        dir_path= '/'.join([settings.MEDIA_ROOT,str(useridd)])
+        file_path= join(dir_path, filename)
+        mime_type, _ = mimetypes.guess_type(file_path)
+
+        if exists(file_path):
+            with open(file_path, 'rb') as fh:
+                response = HttpResponse( fh , content_type=mime_type)
+                response['Content-Disposition'] = "attachment; filename=%s" % basename(file_path)
+                return response
+        else:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+
+
+
+
+class FilesOfUserView(APIView):
+    permission_classes = (IsAuthenticated,)
+    def get(self, request):
+        #print(my_view_id(request))
+        useridd=request.user.id
+
+        dir_path= '/'.join([settings.MEDIA_ROOT,str(useridd)])
+        if exists(dir_path) and isdir(dir_path):
+            filess = [f for f in listdir(dir_path) if isfile(join(dir_path, f))]
+        else:
+            filess=[]
+
+        #content = simplejson.dumps({"filesList" : filess})
+        return JsonResponse(filess, safe=False)

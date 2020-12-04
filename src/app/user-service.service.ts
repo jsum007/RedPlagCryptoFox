@@ -25,10 +25,30 @@ uploadFile_service(userData) : Observable<any> {
   return this.http.post('http://127.0.0.1:8000/files/upload/', userData);
 }
 
+compareFilesService(userData) : Observable<any> {
+  return this.http.post('http://127.0.0.1:8000/files/compare/', userData, {
+    observe: 'response', responseType:'blob'
+  });
+}
+
+downloadFilesService(userData) : Observable<any> {
+  return this.http.post('http://127.0.0.1:8000/files/download/', userData, {
+    observe: 'response', responseType:"blob"
+  });
+}
+
 
 changePass(userData) : Observable<any> {
 
   return this.http.put('http://127.0.0.1:8000/api/change/', userData);
+}
+
+
+
+
+listFilesService() : Observable<string[]> {
+
+  return this.http.get<string[]>('http://127.0.0.1:8000/files/lists/');
 }
 
 public get loggedIn(): boolean {

@@ -19,6 +19,8 @@ from datetime import timedelta
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+MEDIA_URL = '/userfiles/'
+MEDIA_ROOT = os.path.join(BASE_DIR, "userfiles")
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
@@ -32,6 +34,9 @@ DEBUG = True
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = True
 ALLOWED_HOSTS = ['*']
+
+CORS_EXPOSE_HEADERS =['content-type',
+'Content-Disposition']
 
 # Application definition
 
@@ -141,8 +146,6 @@ REST_FRAMEWORK = {
         'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
         )
 }
-MEDIA_URL = '/userfiles/'
-MEDIA_ROOT = os.path.join(BASE_DIR, "userfiles")
 
 # Jwt Authentication
 # https://github.com/jpadilla/django-rest-framework-jwt/blob/master/rest_framework_jwt/settings.py
