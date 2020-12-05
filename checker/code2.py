@@ -1,25 +1,32 @@
 import re
 import mysrc
 
+scope_depth = 0
+is_comment = False
+is_function = False
+is_class = False
+
 def basicCheck(token, tokens1, tokens2):
     varPtrn = re.compile(r"[a-zA-Z_][a-zA-Z0-9_]")  # variables
     headerPtrn = re.compile(r"\w[a-zA-Z]+[.]h")  # header files
     digitPtrn = re.compile(r'\d')
     floatPtrn = re.compile(r'\d+[.]\d+')
 
-    if token in mysrc.keywords():
+    if token in mysrc.delimiters():
+        description = mysrc.delimiters()[token]
+        if description == 'LCBRACE':
+            scope_depth += 1
+        elif description == 'RCBRACE':
+            scope_depth -= 1
+        else:
+            pass
+    elif token in mysrc.keywords():
         #print(token + " KEYWORD")
         tokens1.append(token)
     elif token in mysrc.operators().keys():
         #print(token + " ", mysrc.operators()[token])
         tokens1.append(token)
-    elif token in mysrc.delimiters():
-        description = mysrc.delimiters()[token]
-        if description == 'TAB' or description == 'NEWLINE':
-            #print(description)
-            pass
-        else:
-            pass
+    
     elif re.search(headerPtrn, token):
         #print(token + " HEADER")
         tokens2.append(token)
@@ -37,9 +44,13 @@ def basicCheck(token, tokens1, tokens2):
     return True
 
 def delimiterCorrection(line):
+    
+    #
+    print(line)
     tokens = line.split(" ")
     for delimiter in mysrc.delimiters().keys():
         for token in tokens:
+
             if token == delimiter:
                 pass
             elif delimiter in token:
@@ -86,14 +97,17 @@ def tokenize(path, tokens1, tokens2):
     try:
         f = open(path).read()
         lines = f.split("\n")
-        count = 0
+        #file_token[len(lines)]
+
         for line in lines:
-            count = count + 1
-            tokens = delimiterCorrection(line)
-            #print("\n#LINE ", count)
-            #print("Tokens: ", tokens)
-            for token in tokens:
-                basicCheck(token, tokens1, tokens2)
+            line = line.strip()
+            if line is not None and line is not '':
+                tokens = delimiterCorrection(line)
+                print(tokens)
+                #print("\n#LINE ", count)
+                #print("Tokens: ", tokens)
+                for token in tokens:
+                    basicCheck(token, tokens1, tokens2)
         #print(count)
         return True
     except FileNotFoundError:

@@ -2,7 +2,7 @@ import code2
 import numpy as np
 import mysrc
 
-t1a, t1b = code2.run('190050119_2.cpp')
+t1a, t1b = code2.run('sample1.cpp')
 
 t2a, t2b = code2.run('sample2.cpp')
 

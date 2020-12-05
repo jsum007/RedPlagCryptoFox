@@ -2,6 +2,13 @@
 using namespace std;  
 int main()  
 {  
+
+
+
+
+
+
+	
 	int i,f=1,number;    
 	cout<<"Enter a no.: ";    
 	cin>>number;    
