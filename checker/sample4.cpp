@@ -1,15 +1,97 @@
-#include <iostream>  
-using namespace std;  
-int main()  
-{  
-	int i,f=1,number;    
-	cout<<"Enter a no.: ";    
-	cin>>/*this is a comment*/number;    //input the number you want the factorial for
-	for(i=1;i<=number;i++/* a comment in the middle of the program */){    
-		f=f*i;    
-	}    
-	cout<<"factorial of " /*another comment in the middle of the program */<<number<<" is: "<<f<<endl;  /*this gives the output
-	this is a multi line comment*/return 0;  
+#include<iostream>
+using namespace std;
 
 
-} 
+int main(){
+
+int n;
+int k;
+cin>>n>>k;
+
+int bag[k];
+
+
+ 
+ for(int i=0; i<k ; i++){
+
+ 	cin>> bag[i];
+ 	
+ }
+
+ bool flag = true;
+	int q_init = n/k;
+
+	for (int i = 0; (i < k) && flag; i++)
+		if ((bag[i] < q_init) || (bag[i] > q_init+1)) flag = false;
+	if (flag) 
+	{
+		
+		return 0;
+	}
+
+
+
+while(true){
+
+for(int i=1; i<k; i++){
+
+	while(bag[i] !=0){
+
+		int temp= bag[i]/k;
+		int res= bag[i] % k;
+
+		bag[i] = temp;
+
+		for(int j=1; j<k; j++){
+			bag[(j+i)%k]+=temp;
+
+				
+		}
+
+		for(int j=0; j<res;j++){
+
+			bag[(j+i+1)%k]++;
+		}
+
+		
+ cout<<i<<" ";
+
+	}
+
+
+
+}
+
+int count=0;
+for(int km=1; km<k; km++){
+	count+=bag[km];
+}
+
+if(count==0) break;
+}
+
+
+
+int temp= bag[0]/k;
+int res= bag[0] % k;
+
+		bag[0] = temp;
+
+		for(int j=1; j<k; j++){
+			bag[(j)%k]+=temp;
+
+				
+		}
+
+		for(int j=0; j<res;j++){
+
+			bag[(j+1)%k]++;
+		}
+
+cout<<0<<endl;
+
+return 0;
+
+
+
+}

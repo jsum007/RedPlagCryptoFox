@@ -2,9 +2,9 @@ import code2
 import numpy as np
 import mysrc
 
-t1a, t1b = code2.run('sample4.cpp')
+t1a, t1b = code2.run('sample1.cpp')
 
-t2a, t2b = code2.run('sample2.cpp')
+t2a, t2b = code2.run('sample3.cpp')
 
 word_to_onehot = {}
 num_to_word = {}

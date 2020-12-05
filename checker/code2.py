@@ -37,7 +37,8 @@ def basicCheck(token, tokens1, tokens2):
 
     return True
 
-def delimiterCorrection(line,comment):
+def removeComments(line,comment):
+
     tokens = line.split(" ")
     # print('-----')
     # print(tokens)
@@ -81,9 +82,11 @@ def delimiterCorrection(line,comment):
         k = k+1
         if k >= len(tokens):
             break
+    return [comment,tokens]
 
+def delimiterCorrection(tokens):
+    
     # print(tokens)
-
     for delimiter in mysrc.delimiters().keys():
         for token in tokens:
             if token == delimiter:
@@ -111,7 +114,7 @@ def delimiterCorrection(line,comment):
 
     # print(tokens)
 
-    return [comment,tokens]
+    return tokens
 
 def isWhiteSpace(word):
     ptrn = [ " ", "\t", "\n"]
@@ -140,7 +143,8 @@ def tokenize(path, tokens1, tokens2):
         comment = False
         for line in lines:
             count = count + 1
-            comment,tokens = delimiterCorrection(line,comment)
+            comment,tokens = removeComments(line,comment)
+            tokens = delimiterCorrection(tokens)
             #print("\n#LINE ", count)
             #print("Tokens: ", tokens)
             for token in tokens:
