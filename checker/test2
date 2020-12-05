@@ -1,0 +1,7 @@
+normal text //followed by a comment /* and also some unallowed symbols
+/* this is a comment */ more normal text
+again normal text// this is another comment
+a comment/*inbetween*/the line 
+/*comment*/comt
+/*comment again*/
+/*one more comment*/

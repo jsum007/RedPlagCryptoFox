@@ -10,4 +10,6 @@ int main()
 	}    
 	cout<<"factorial of " <<number<<" is: "<<f<<endl;  
 	return 0;  
+
+
 } 

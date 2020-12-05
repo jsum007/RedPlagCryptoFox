@@ -1,6 +1,7 @@
 import re
 import mysrc
 
+global comment
 def basicCheck(token, tokens1, tokens2):
     varPtrn = re.compile(r"[a-zA-Z_][a-zA-Z0-9_]")  # variables
     headerPtrn = re.compile(r"\w[a-zA-Z]+[.]h")  # header files
@@ -36,8 +37,53 @@ def basicCheck(token, tokens1, tokens2):
 
     return True
 
-def delimiterCorrection(line):
+def delimiterCorrection(line,comment):
     tokens = line.split(" ")
+    # print('-----')
+    # print(tokens)
+    k = 0
+    ln = len(tokens)
+    for i in range(ln):
+        if k<0:
+            k = 0
+        if '//' in tokens[k]:
+            tokens[k] = tokens[k].split('//')[0]
+            tokens = tokens[:k+1]
+            if len(tokens[k]) == 0:
+                tokens.remove(tokens[k])
+            break
+        if comment:
+            if '*/' in tokens[k]:
+                tokens[k] = tokens[k].replace(tokens[k].split('*/')[0]+'*/','')
+                comment = False
+            else:
+                tokens.remove(tokens[k])
+            k = k-1
+        elif '/*' in tokens[k]:
+            comment = True
+            word1 = tokens[k].split('/*')[0]
+            tokens[k] = tokens[k].replace(tokens[k].split('/*')[0]+'/*','')
+            tokens.insert(k,word1)
+            if '*/' in tokens[k+1]:
+                comment = False
+                tokens[k+1] = tokens[k+1].replace(tokens[k+1].split('*/')[0]+'*/','')
+                if len(tokens[k+1]) == 0:
+                    tokens.remove(tokens[k+1])
+                else:
+                    k = k+1
+            else:
+                tokens.remove(tokens[k+1])
+        if len(tokens[k]) == 0:
+            tokens.remove(tokens[k])
+            k = k-1
+        if len(tokens) == 0:
+            tokens = ['']
+        k = k+1
+        if k >= len(tokens):
+            break
+
+    # print(tokens)
+
     for delimiter in mysrc.delimiters().keys():
         for token in tokens:
             if token == delimiter:
@@ -53,6 +99,7 @@ def delimiterCorrection(line):
                 tokens.append(token)
             else:
                 pass
+
     for token in tokens:
         if isWhiteSpace(token):
             tokens.remove(token)
@@ -61,7 +108,10 @@ def delimiterCorrection(line):
             token = token.split(' ')
             for d in token:
                 tokens.append(d)
-    return tokens
+
+    # print(tokens)
+
+    return [comment,tokens]
 
 def isWhiteSpace(word):
     ptrn = [ " ", "\t", "\n"]
@@ -87,9 +137,10 @@ def tokenize(path, tokens1, tokens2):
         f = open(path).read()
         lines = f.split("\n")
         count = 0
+        comment = False
         for line in lines:
             count = count + 1
-            tokens = delimiterCorrection(line)
+            comment,tokens = delimiterCorrection(line,comment)
             #print("\n#LINE ", count)
             #print("Tokens: ", tokens)
             for token in tokens:
@@ -97,7 +148,7 @@ def tokenize(path, tokens1, tokens2):
         #print(count)
         return True
     except FileNotFoundError:
-        print("\nInvald Path. Retry")
+        print("\nInvalid Path. Retry")
         run()
 
 def run(path):

@@ -1,0 +1,9 @@
+#include<iostream>
+using namespace std;
+
+int main(){
+	cout<<"does nothing";//prints nothing
+	return 0; //basic program that does nothing
+	/*comments again*/
+	
+}
