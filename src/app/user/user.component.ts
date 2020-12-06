@@ -114,8 +114,9 @@ export class UserComponent implements OnInit {
 
 
   onSelect(file : string){
-    this.selectedFile = file;
 
+    console.log(this.selectedFile)
+    this.selectedFile = file;
     this.files.filename = this.selectedFile;
 
     console.log(this.selectedFile)

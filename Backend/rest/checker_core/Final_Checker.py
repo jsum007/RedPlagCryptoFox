@@ -1,12 +1,16 @@
-from .basic_checker1 import compare
+from .fingerprint import plagCheck
 #from checker_core.code2 import *
 import os
 import pandas as pd
 import tarfile
 import zipfile
 import shutil
+import matplotlib.pyplot as plt
+import numpy as np
+
 
 def folder_compare(dir_path):
+	kval=20
 	cppfiles=[]
 	filenames=[]
 	sim_mat=[]
@@ -17,17 +21,42 @@ def folder_compare(dir_path):
 	for file1 in cppfiles:
 		temp=[]
 		for file2 in cppfiles:
-			temp.append(compare(file1,file2))
+			temp.append(plagCheck(file1,file2, kval))
 		sim_mat.append(temp)
 
-	df = pd.DataFrame(sim_mat, index= filenames, columns=filenames)
-	return df
+	return sim_mat, filenames
 
 #print(folder_compare('./samples'))
 
 
 def saveres(inpath, outpath):
 	folder_compare(inpath).to_csv(outpath)
+
+	matres, filenames=folder_compare(inpath)
+	extentt=np.arange(len(filenames)) + 0.5
+
+	df = pd.DataFrame(matres, index= filenames, columns=filenames)
+
+	df.to_csv(os.path.join(outpath, 'results.csv'))
+
+	'''corr = df.corr()
+	corr.style.background_gradient(cmap='coolwarm')'''
+
+
+
+	fig, ax = plt.subplots(1,1)
+
+	img = ax.imshow(matres,cmap='Reds', extent=[0, len(filenames), 0, len(filenames)])
+
+	ax.set_xticks(extentt)
+	ax.set_yticks(extentt)	
+
+	ax.set_xticklabels(filenames, rotation= 60)
+	ax.set_yticklabels(filenames[::-1])
+
+	fig.colorbar(img)
+	plt.tight_layout()
+	plt.savefig(os.path.join(outpath, 'results.png'))
 
 #saveres('./samples','./sample/results/results.csv')
 
@@ -67,7 +96,7 @@ def RunCheck(infile):
 			out_dir , files_dir = extract_files(infile)
 			res_dir= os.path.join(out_dir, 'results')
 			os.mkdir(res_dir)
-			saveres(files_dir, os.path.join(res_dir, 'results.csv'))
+			saveres(files_dir, res_dir)
 			return 'success' , res_dir
 		except:
 			return 'fail' , ''
