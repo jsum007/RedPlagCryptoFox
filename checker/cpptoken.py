@@ -35,6 +35,8 @@ def basicCheck(token, tokens1, tokens2):
             #print(token + ' INT')
             tokens2.append(token)
 
+    # print(tokens1)
+
     return True
 
 def removeComments(line,comment):
@@ -153,7 +155,7 @@ def tokenize(path, tokens1, tokens2):
         return True
     except FileNotFoundError:
         print("\nInvalid Path. Retry")
-        run()
+        # run()
 
 def run(path):
     #path = input("Enter Source Code's Path: ")

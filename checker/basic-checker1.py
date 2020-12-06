@@ -1,11 +1,25 @@
-import code2
+import pytoken
+import cpptoken
 import numpy as np
 import mysrc
+import sys
 
-t1a, t1b = code2.run('sample1.cpp')
+# file1 = sys.argv[1]
+# file2 = sys.argv[2]
+file1 = 'sample6.py'
+file2 = 'sample7.py'
+filetype = file1.split('.')[-1]
 
-t2a, t2b = code2.run('sample3.cpp')
+if filetype == 'cpp':
+	tokeniser = cpptoken
+elif filetype == 'py':
+	tokeniser = pytoken
+	
+t1a, t1b = tokeniser.run(file1)
+t2a, t2b = tokeniser.run(file2)
 
+print(t1a)
+print(t1b)
 word_to_onehot = {}
 num_to_word = {}
 
