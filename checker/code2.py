@@ -7,6 +7,7 @@ is_function = False
 is_class = False
 
 def basicCheck(token, tokens1, tokens2):
+    global scope_depth
     varPtrn = re.compile(r"[a-zA-Z_][a-zA-Z0-9_]")  # variables
     headerPtrn = re.compile(r"\w[a-zA-Z]+[.]h")  # header files
     digitPtrn = re.compile(r'\d')
@@ -16,8 +17,10 @@ def basicCheck(token, tokens1, tokens2):
         description = mysrc.delimiters()[token]
         if description == 'LCBRACE':
             scope_depth += 1
+            print(scope_depth)
         elif description == 'RCBRACE':
             scope_depth -= 1
+            print(scope_depth)
         else:
             pass
     elif token in mysrc.keywords():
@@ -45,8 +48,7 @@ def basicCheck(token, tokens1, tokens2):
 
 def delimiterCorrection(line):
     
-    #
-    print(line)
+    #print(line)
     tokens = line.split(" ")
     for delimiter in mysrc.delimiters().keys():
         for token in tokens:
@@ -97,6 +99,7 @@ def tokenize(path, tokens1, tokens2):
     try:
         f = open(path).read()
         lines = f.split("\n")
+        print(lines)
         #file_token[len(lines)]
 
         for line in lines:

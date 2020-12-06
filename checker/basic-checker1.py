@@ -1,10 +1,13 @@
-import code2
+import tokens12 as tk
 import numpy as np
 import mysrc
 
-t1a, t1b = code2.run('sample1.cpp')
+t1a, t1f = tk.run('sample1.cpp')
 
-t2a, t2b = code2.run('sample2.cpp')
+t2a, t2f = tk.run('sample2.cpp')
+
+print(t1a)
+print(t2a)
 
 word_to_onehot = {}
 num_to_word = {}
@@ -14,10 +17,24 @@ size_onehot = len(vocab_list)
 #print(vocab_list)
 
 for i in range(len(vocab_list)):
-	word_to_onehot[vocab_list[i]] = np.zeros((1, size_onehot))
+	word_to_onehot[vocab_list[i]] = np.zeros((1, size_onehot+3))
 	word_to_onehot[vocab_list[i]][0, i] = 1;
 
 	num_to_word[str(i)] = vocab_list[i]
+
+num_to_word[str(size_onehot)] = 'num'
+num_to_word[str(size_onehot+1)] = 'v'
+num_to_word[str(size_onehot+2)] = 'head'
+
+word_to_onehot['num'] = np.zeros((1, size_onehot+3))
+word_to_onehot[vocab_list[i]][0, size_onehot] = 1;
+word_to_onehot['v'] = np.zeros((1, size_onehot+3))
+word_to_onehot[vocab_list[i]][0, size_onehot+1] = 1;
+word_to_onehot['head'] = np.zeros((1, size_onehot+3))
+word_to_onehot[vocab_list[i]][0, size_onehot+2] = 1;
+
+size_onehot += 3;
+
 
 num_tokens = max(len(t1a), len(t2a))
 

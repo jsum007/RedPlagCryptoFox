@@ -1,11 +1,16 @@
 #include <iostream>  
 using namespace std;  
-int main()  
+void aa (int k) {
+	cout<<k<<endl;
+} 
+
+int main                    ()  
 {  
 
 
 
 
+	aa(7);
 
 
 	
@@ -15,6 +20,7 @@ int main()
 	for(i=1;i<=number;i++){    
 		f=f*i;    
 	}    
-	cout<<"factorial of " <<number<<" is: "<<f<<endl;  
+	cout<<"factorial of " <<number<<" is: "<<f<<endl; 
+	aa(666);
 	return 0;  
 } 

@@ -1,8 +1,8 @@
 def keywords():
     keywords = [
-    "break", "case", "catch", "word", "class", "const", "continue", "delete", "do", "else", "false", "for", "goto", "if", "#include", 
+    "break", "case", "catch", "word", "class", "const", "continue", "delete", "do", "else", "false", "for", "goto", "if", 
     "namespace", "not", "or", "private", "protected", "public", "return", "signed", "sizeof", "static", "struct", "switch", "true", "try", "unsigned", "void", "while",
-    "endl", "cout", "cin", "main"
+    "endl", "cout", "cin", 
     ]
     #print(len(keywords)) = 36
     return keywords
