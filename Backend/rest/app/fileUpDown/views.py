@@ -63,13 +63,21 @@ class CompareNDownload(APIView):
         if exists(file_path) and file_path.endswith(formats):
             out_stat , out_dir = RunCheck(file_path)
             if out_stat=='success':
-                res_path=join(out_dir, listdir(out_dir)[0])
+                res_path=join(out_dir, 'Results.zip')
+                zipf = zipfile.ZipFile(res_path, 'w', zipfile.ZIP_DEFLATED)
+                for root, dirs, files in os.walk(out_dir):
+                    for file in files:
+                        if file.endswith(('.csv', '.png')):
+                            zipf.write(os.path.join(root, file), file)
+                zipf.close()
+
                 mime_type, _ = mimetypes.guess_type(res_path)
                 with open(res_path, 'rb') as fh:
                     response = HttpResponse( fh , content_type=mime_type)
                     response['Content-Disposition'] = "attachment; filename=%s" % basename(res_path)
                     return response
             else:
+                print('HI')
                 return Response(status=status.HTTP_400_BAD_REQUEST)
 
 
@@ -83,7 +91,7 @@ class DownloadFile(APIView):
     def post(self, request):
         useridd=request.user.id
         filename=request.data.get('filename')
-        print(filename)
+        #print(filename)
         dir_path= '/'.join([settings.MEDIA_ROOT,str(useridd)])
         file_path= join(dir_path, filename)
         mime_type, _ = mimetypes.guess_type(file_path)
@@ -97,6 +105,25 @@ class DownloadFile(APIView):
             return Response(status=status.HTTP_400_BAD_REQUEST)
 
 
+class DownloadResultImage(APIView):
+    permission_classes = (IsAuthenticated,)
+    def get(self, request):
+        useridd=request.user.id
+        #filename=request.data.get('filename')
+        #print(filename)
+        dir_path= '/'.join([settings.MEDIA_ROOT,str(useridd), 'comparisons','results'])
+        file_path= join(dir_path, 'results.png' )
+        mime_type, _ = mimetypes.guess_type(file_path)
+        print(file_path)
+
+        if exists(file_path):
+            print('hiii')
+            with open(file_path, 'rb') as fh:
+                response = HttpResponse( fh , content_type=mime_type)
+                response['Content-Disposition'] = "attachment; filename=%s" % basename(file_path)
+                return response
+        else:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
 
 
 class FilesOfUserView(APIView):

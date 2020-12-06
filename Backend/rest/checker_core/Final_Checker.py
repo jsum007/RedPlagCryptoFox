@@ -10,14 +10,15 @@ import numpy as np
 
 
 def folder_compare(dir_path):
-	kval=20
+	kval=55
 	cppfiles=[]
 	filenames=[]
 	sim_mat=[]
-	for file in os.listdir(dir_path):
-		if file.endswith(".cpp"):
-			cppfiles.append(os.path.join(dir_path, file))
-			filenames.append(file)
+	for path, subdirs, files in os.walk(dir_path):
+		for file in files:
+			if file.endswith(".cpp"):
+				cppfiles.append(os.path.join(path, file))
+				filenames.append(file)
 	for file1 in cppfiles:
 		temp=[]
 		for file2 in cppfiles:
@@ -30,7 +31,7 @@ def folder_compare(dir_path):
 
 
 def saveres(inpath, outpath):
-	folder_compare(inpath).to_csv(outpath)
+	#folder_compare(inpath).to_csv(outpath)
 
 	matres, filenames=folder_compare(inpath)
 	extentt=np.arange(len(filenames)) + 0.5
@@ -69,7 +70,7 @@ def extract_files(infile):
 		filename= os.path.splitext(os.path.splitext(os.path.basename(infile))[0])[0]
 
 	dirname1= os.path.dirname(infile)
-	out_dir= os.path.join(dirname1, filename)
+	out_dir= os.path.join(dirname1, 'comparisons')
 
 	if os.path.exists(out_dir) and os.path.isdir(out_dir):
 		shutil.rmtree(out_dir, ignore_errors = False)

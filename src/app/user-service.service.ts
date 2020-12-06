@@ -38,6 +38,13 @@ downloadFilesService(userData) : Observable<any> {
 }
 
 
+downloadResImService() : Observable<any> {
+  return this.http.get('http://127.0.0.1:8000/files/resim/',  {
+    observe: 'response', responseType:"blob"
+  });
+}
+
+
 changePass(userData) : Observable<any> {
 
   return this.http.put('http://127.0.0.1:8000/api/change/', userData);

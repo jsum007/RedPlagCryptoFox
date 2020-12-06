@@ -12,6 +12,11 @@ export class UserComponent implements OnInit {
 
     files;
 
+    imageToShow: any;
+
+    isImageLoading : boolean;
+
+
    list_of_files : string[];
    selectedFile : string;
 
@@ -25,6 +30,7 @@ export class UserComponent implements OnInit {
     //this.list_of_files=[];
     this.listFiles();
     console.log(this.list_of_files);
+    this.isImageLoading=false;
     this.files = {
       filename : '' ,
         };
@@ -34,6 +40,19 @@ export class UserComponent implements OnInit {
     //});
 
   }
+
+  createImageFromBlob(image : Blob) {
+    let reader = new FileReader();
+    reader.addEventListener("load", () => {
+       this.imageToShow = reader.result;
+    }, false);
+
+    if (image) {
+       reader.readAsDataURL(image);
+    }
+ }
+
+
   downloadFile_func(data){
 
     console.log(data.headers.get('content-type'))
@@ -72,8 +91,11 @@ export class UserComponent implements OnInit {
         //console.log(response)
         //console.log()
         //console.log(response.headers.get('content-type'))
+        this.resImage();
         alert('Downloading The Results...')
         this.downloadFile_func(response)
+
+
 
 
       },
@@ -119,6 +141,8 @@ export class UserComponent implements OnInit {
     this.selectedFile = file;
     this.files.filename = this.selectedFile;
 
+    this.isImageLoading=false;
+
     console.log(this.selectedFile)
 
   }
@@ -147,4 +171,20 @@ export class UserComponent implements OnInit {
   }
   );
  }
+
+
+  resImage(){
+  this.userSer.downloadResImService().subscribe(
+    response => {
+      let blob = new Blob([response.body], {type: 'image/png'});
+      this.createImageFromBlob(blob);
+        this.isImageLoading = true;
+      }, error => {
+        this.isImageLoading = false;
+        console.log(error);
+      });
+}
+
+
+
 }
