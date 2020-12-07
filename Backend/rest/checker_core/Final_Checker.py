@@ -1,4 +1,4 @@
-from .fingerprint import plagCheck
+#from .fingerprint import plagCheck
 #from checker_core.code2 import *
 import os
 import pandas as pd
@@ -8,21 +8,49 @@ import shutil
 import matplotlib.pyplot as plt
 import numpy as np
 
+from winnowing import winnow
+import sys
+
+from .checker_cpp import tokenize_cpp
+from .checker_py import tokenize_py
+
+
+def plagCheck(fp1,fp2):
+
+	comfpr=list(set(fp1) & set(fp2))
+	ratio= len(comfpr)/min(len(fp2),len(fp1))
+
+	#print(fpr_wopos2)
+
+	return ratio
 
 def folder_compare(dir_path):
 	kval=55
 	cppfiles=[]
 	filenames=[]
 	sim_mat=[]
+	files_fpr=[]
 	for path, subdirs, files in os.walk(dir_path):
 		for file in files:
 			if file.endswith((".cpp", ".py")):
 				cppfiles.append(os.path.join(path, file))
 				filenames.append(file)
-	for file1 in cppfiles:
+
+	for file in cppfiles:
+		if file.endswith(".cpp"):
+			data1 = tokenize_cpp(file)
+		if file.endswith(".py"):
+			data1 = tokenize_py(file)
+
+		fpr_wpos=[]
+		for fprs in winnow(data1, kval):
+			fpr_wpos.append(fprs[1])
+		files_fpr.append(fpr_wpos)
+
+	for fpr1 in files_fpr:
 		temp=[]
-		for file2 in cppfiles:
-			temp.append(plagCheck(file1,file2, kval))
+		for fpr2 in files_fpr:
+			temp.append(plagCheck(fpr1,fpr2))
 		sim_mat.append(temp)
 
 	return sim_mat, filenames
