@@ -151,10 +151,6 @@ def tokenize_py(filename):
             func_tokens[str(tokens[i][1])] = func_adder(filename, str(tokens[i][1]), func_text, func_tokens, class_list)
             tokens1.extend(func_tokens[str(tokens[i][1])])
 
-
-        elif str(tokens[i][1]) in func_text.keys():
-            tokens1.extend(func_adder(filename, str(tokens[i][1]), func_text, func_tokens, class_list))
-
         elif tokens[i][0] == pygments.token.Text or tokens[i][0] in pygments.token.Comment or tokens[i][0] in pygments.token.Punctuation:
             pass   #whitespaces and comments ignored
         else:
@@ -166,10 +162,4 @@ def tokenize_py(filename):
             #count2 += len(tokens[i][1])
         #count1 += len(tokens[i][1])
 
-    print(''.join(tokens1))
-    print(class_list)
-
-    return result
-
-
-tokenize_py('samp2.py')
+    return ''.join(tokens1)

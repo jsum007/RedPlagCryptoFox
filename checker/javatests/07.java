@@ -7,16 +7,20 @@ import java.util.Map;
 import java.util.HashMap;
 import java.util.Scanner;
 import java.time.LocalTime;
+
 public class FetchAndProcessFromDisk implements FetchAndProcess {
     private Map<String, String> data;
+
     @Override
     public Map<String, String> exposeData() {
 	return data;
     }
+
     @Override
     public void fetch(List<String> paths) {
     	 data=new HashMap<String,String>();
     	 // using '/' as seperator of filenames
+
 	// Implement here
     	 for (int i = 0; i < paths.size(); i++) {
     	 	Scanner myObj = new Scanner(System.in)
