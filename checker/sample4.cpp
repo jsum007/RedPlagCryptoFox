@@ -42,4 +42,6 @@ int main()
   }    
   cout<<"Factorial of " <<number<<" is: "<<fact<<endl;  
   return 0;  
+
+  Point(5, 6);
 } 

@@ -8,7 +8,7 @@ import os, re
 
 #def func_lexer(filename, text)
 
-def func_adder(filename, name, func_text, func_tokens):
+def func_adder(filename, name, func_text, func_tokens, class_list):
     text = func_text[name]
     lexer = pygments.lexers.guess_lexer_for_filename(filename, text)
     tokens = lexer.get_tokens(text)
@@ -19,8 +19,26 @@ def func_adder(filename, name, func_text, func_tokens):
 
     for i in range(lenT):
         #print(tokens[i])
-        if tokens[i][0] == pygments.token.Name and not i == lenT - 1 and not tokens[i + 1][1] == '(':
-            tokens1.append('v')
+        if (tokens[i][0] == pygments.token.Name or tokens[i][0] in pygments.token.Name) and not i == lenT - 1 and not tokens[i + 1][1] == '(':
+            #result.append(('N', count1, count2))  #all variable names as 'N'
+            if tokens[i][0] == pygments.token.Name.Class:
+                class_list.append(str(tokens[i][1]))
+                tokens1.append('class')
+            elif str(tokens[i][1]) in class_list:
+                tokens1.append('obj')
+            elif tokens[i][0] in pygments.token.Name.Builtin or tokens[i][0] in pygments.token.Name.Function \
+                    or tokens[i][0] in pygments.token.Name.Attribute or tokens[i][0] in pygments.token.Name.Decorator \
+                    or tokens[i][0] in pygments.token.Name.Namespace:
+                tokens1.append(str(tokens[i][1]))
+                if tokens[i][0] in pygments.token.Name.Function:
+                    print(tokens[i][1])
+            else:
+                tokens1.append('v')
+            #count2 += 1
+
+        elif tokens[i][0] == pygments.token.Name.Class:
+            class_list.append(str(tokens[i][1]))
+            tokens1.append('class')
             
         elif tokens[i][0] in pygments.token.Literal.String:
             pass
@@ -29,13 +47,14 @@ def func_adder(filename, name, func_text, func_tokens):
 
         elif str(tokens[i][1]) in func_text.keys():
             if str(tokens[i][1]) != name:
-                func_tokens[str(tokens[i][1])] = func_adder(filename, str(tokens[i][1]), func_text, func_tokens)
+                func_tokens[str(tokens[i][1])] = func_adder(filename, str(tokens[i][1]), func_text, func_tokens, class_list)
                 tokens1.extend(func_tokens[str(tokens[i][1])])
             else:
                 pass
         elif tokens[i][0] == pygments.token.Text or tokens[i][0] in pygments.token.Comment or tokens[i][0] in pygments.token.Punctuation:
             pass   #whitespaces and comments ignored
-        else:  
+        else: 
+
             tokens1.append(str(tokens[i][1]))
             #tuples in result-(each element e.g 'def', its position in original code file, position in cleaned up code/text) 
     return tokens1
@@ -89,6 +108,7 @@ def tokenize(filename):
     lenT = len(tokens)
     tokens1 = []
     func_tokens = {}
+    class_list = []
 
     #print(tokens)
     #print('ggggggggggggggg')
@@ -98,18 +118,26 @@ def tokenize(filename):
 
     for i in range(lenT):
         #print(tokens[i])
-        if tokens[i][0] == pygments.token.Name and not i == lenT - 1 and not tokens[i + 1][1] == '(':
+        if (tokens[i][0] == pygments.token.Name or tokens[i][0] in pygments.token.Name) and not i == lenT - 1 and not tokens[i + 1][1] == '(':
             #result.append(('N', count1, count2))  #all variable names as 'N'
-            if tokens[i][0] in pygments.token.Name.Builtin:
+            if tokens[i][0] == pygments.token.Name.Class:
+                class_list.append(str(tokens[i][1]))
+                tokens1.append('class')
+            elif str(tokens[i][1]) in class_list:
+                tokens1.append('obj')
+            elif tokens[i][0] in pygments.token.Name.Builtin or tokens[i][0] in pygments.token.Name.Function \
+                    or tokens[i][0] in pygments.token.Name.Attribute or tokens[i][0] in pygments.token.Name.Decorator \
+                    or tokens[i][0] in pygments.token.Name.Namespace:
                 tokens1.append(str(tokens[i][1]))
-
-            elif tokens[i][0] in pygments.token.Name.Function:
-                #result.append(('F', count1, count2))   #user defined function names as 'F'
-                #count2 += 1
-                tokens1.append(str(tokens[i][1]))
+                if tokens[i][0] in pygments.token.Name.Function:
+                    print(tokens[i][1])
             else:
                 tokens1.append('v')
             #count2 += 1
+
+        elif tokens[i][0] == pygments.token.Name.Class:
+            class_list.append(str(tokens[i][1]))
+            tokens1.append('class')
 
         elif tokens[i][0] in pygments.token.Literal.String:
             pass
@@ -120,28 +148,28 @@ def tokenize(filename):
             tokens1.extend(func_tokens[str(tokens[i][1])])
 
         elif str(tokens[i][1]) in func_text.keys():
-            func_tokens[str(tokens[i][1])] = func_adder(filename, str(tokens[i][1]), func_text, func_tokens)
+            func_tokens[str(tokens[i][1])] = func_adder(filename, str(tokens[i][1]), func_text, func_tokens, class_list)
             tokens1.extend(func_tokens[str(tokens[i][1])])
 
 
         elif str(tokens[i][1]) in func_text.keys():
-            tokens1.extend(func_adder(filename, str(tokens[i][1]), func_text, func_tokens))
+            tokens1.extend(func_adder(filename, str(tokens[i][1]), func_text, func_tokens, class_list))
 
         elif tokens[i][0] == pygments.token.Text or tokens[i][0] in pygments.token.Comment or tokens[i][0] in pygments.token.Punctuation:
             pass   #whitespaces and comments ignored
         else:
             #result.append((tokens[i][1], count1, count2))  
+            #if str(tokens[i][1]) == 'Node':
+                #print(tokens[i][0] in pygments.token.Name)
             tokens1.append(str(tokens[i][1]))
             #tuples in result-(each element e.g 'def', its position in original code file, position in cleaned up code/text) 
             #count2 += len(tokens[i][1])
         #count1 += len(tokens[i][1])
 
-    print(''.join(tokens1))
+    print(' '.join(tokens1))
+    print(class_list)
 
     return result
 
-def toText(arr):
-    cleanText = ''.join(str(x[0]) for x in arr)
-    return cleanText
 
 tokenize('samp2.py')

@@ -34,7 +34,7 @@ def add_func(token, func_tokens):
 
 
 
-def basicCheck(token, tokens1, func_tokens):
+def basicCheck(token, tokens1, func_tokens, class_list):
     global scope_depth, is_function
     varPtrn = re.compile(r"[a-zA-Z_][a-zA-Z0-9_]")  # variables
     headerPtrn = re.compile(r"\w[a-zA-Z]+[.]h")  # header files
@@ -45,12 +45,12 @@ def basicCheck(token, tokens1, func_tokens):
         description = mysrc.delimiters()[token]
         if description == 'LCBRACE':
             scope_depth += 1
-            print(scope_depth)
+            #print(scope_depth)
         elif description == 'RCBRACE':
             scope_depth -= 1
             if is_function != -1 and scope_depth == 0:
                 is_function = -1
-            print(scope_depth)
+            #print(scope_depth)
         else:
             pass
     elif token in mysrc.keywords():
@@ -59,6 +59,14 @@ def basicCheck(token, tokens1, func_tokens):
             pass
         else:
             tokens1.append(token)
+
+    elif token in mysrc.identifiers():
+        #print(token + " KEYWORD")
+        if is_function != -1:
+            pass
+        else:
+            tokens1.append(token)
+
     elif token in mysrc.operators().keys():
         #print(token + " ", mysrc.operators()[token])
         if is_function != -1:
@@ -74,6 +82,20 @@ def basicCheck(token, tokens1, func_tokens):
         #print('jjjjjjjjjjjj', tokens1)
         tokens1.extend(add_func(token, func_tokens))
         #print(tokens1)
+
+    elif token in class_list:
+        tokens1.append('obj' )
+
+    elif token == 'head':
+        tokens1.append('he')
+        '''elif token == 'v':
+        tokens1.append('v')'''
+
+    elif token == 'num':
+        tokens1.append('no')
+
+    elif token == 'obj':
+        tokens1.append('obj')
 
     elif re.match(varPtrn, token) or "'" in token or '"' in token:
         #print(token + ' IDENTIFIER' )
@@ -95,7 +117,7 @@ def basicCheck(token, tokens1, func_tokens):
 
     return True
 
-def funcCheck(token, func_tokens, func_list):
+def funcCheck(token, func_tokens, func_list, class_list):
     global scope_depth, is_function
     varPtrn = re.compile(r"[a-zA-Z_][a-zA-Z0-9_]")  # variables
     headerPtrn = re.compile(r"\w[a-zA-Z]+[.]h")  # header files
@@ -106,12 +128,12 @@ def funcCheck(token, func_tokens, func_list):
         description = mysrc.delimiters()[token]
         if description == 'LCBRACE':
             scope_depth += 1
-            print(scope_depth)
+            #print(scope_depth)
         elif description == 'RCBRACE':
             scope_depth -= 1
             if is_function != -1 and scope_depth == 0:
                 is_function = -1
-            print(scope_depth)
+            #print(scope_depth)
         else:
             pass
     elif token in mysrc.keywords():
@@ -120,14 +142,25 @@ def funcCheck(token, func_tokens, func_list):
             func_tokens[is_function].append(token)
         else:
             pass
+    elif token in mysrc.identifiers():
+        #print(token + " KEYWORD")
+        if is_function != -1:
+            func_tokens[is_function].append(token)
+        else:
+            pass
+
     elif token in mysrc.operators().keys():
         #print(token + " ", mysrc.operators()[token])
         if is_function != -1:
             func_tokens[is_function].append(token)
         else:
             pass
-    elif token in func_list and token != is_function:
+    elif token in func_list and token != is_function and is_function!= -1:
+        #print(token, is_function)
         func_tokens[is_function].append(token)
+
+    elif token in class_list and is_function!= -1:
+        func_tokens[is_function].append('obj' )
 
     elif re.search(headerPtrn, token):
         #print(token + " HEADER")
@@ -212,10 +245,12 @@ def hasWhiteSpace(token):
                 pass
     return False
 
+
 def remove_func_bodies(class_all_list, func_all_list):
     func_start = []
     func_list = []
     func_tokens = []
+    class_tokens = {}
     f = open('work', 'r')
     txt = f.read()
     for func in func_all_list:
@@ -233,13 +268,46 @@ def remove_func_bodies(class_all_list, func_all_list):
             func_start.append(line_no)
             #print (res[0], 'jjj')
 
-    return (func_list, func_start)
+    class_list = []
+    for class_ in reversed(class_all_list):
+        #print(func.name)
+        pat = "\s*"+str(class_.name)+"+\s*\{"
+        #print(pat)        
+        res = re.findall(pat, txt)
+        if (len(res)>0):
+            #print(c.name)
+            class_tokens[class_.name] = []
+            for base in class_.bases:
+                class_tokens[class_.name].extend(base.related_class.name.split())
+            for derive in class_.derived:
+                class_tokens[class_.name].extend(derive.related_class.name.spilt())
+            for p in class_.constructors(allow_empty = True):
+                if p is None:
+                    break
+                for a in p.argument_types:
+                    class_tokens[class_.name].extend(str(a).split())
+                #class_tokens[class_.name].append(p.decl_string)
+            for p in class_.operators(allow_empty = True):
+                if p is not None:
+                    p = re.sub(r'operator', r'ope', str(p.name))
+                    #print(p)
+                    class_tokens[class_.name].append(p)
+            for p in class_.variables(allow_empty = True):
+                class_tokens[class_.name].append(str(p.decl_type))
+            for p in class_.member_functions(allow_empty = True):
+                if p is None:
+                    break
+                for a in p.argument_types:
+                    class_tokens[class_.name].append(str(a))
+
+            class_list.append(str(class_.name))
+
+    return func_list, func_start, class_list, class_tokens
 
 def tokenize(path, tokens1, func_tokens, class_all_list, func_all_list):
 
     global is_function
     var_list = []
-    class_list = []
     try:
         file = open(path)
         f = file.read()
@@ -261,7 +329,11 @@ def tokenize(path, tokens1, func_tokens, class_all_list, func_all_list):
                 file.write('\n')
         file.close()
 
-        func_list, func_start = remove_func_bodies(class_all_list, func_all_list)
+        func_list, func_start, class_list, class_tokens = remove_func_bodies(class_all_list, func_all_list)
+
+        #print(func_list, func_start)
+        #print(class_tokens)
+        #print(class_list)
         #file_token[len(lines)]
         count = -1
         for line in lines:
@@ -269,18 +341,30 @@ def tokenize(path, tokens1, func_tokens, class_all_list, func_all_list):
             if line is not None and line is not '':
                 count +=1
                 if count in func_start:
+                    #print(count)
                     is_function = func_list[func_start.index(count)]
+                    #print(is_function)
                     func_tokens[is_function] = []
                 tokens = delimiterCorrection(line)
                 #print(tokens)
                 #print("\n#LINE ", count)
                 #print("Tokens: ", tokens)
                 for token in tokens:
-                    funcCheck(token, func_tokens, func_list)
+                    funcCheck(token, func_tokens, func_list, class_list)
 
-        print(func_tokens)
+        #print(func_tokens)
         for token in func_tokens['main']:
-            basicCheck(token, tokens1, func_tokens)
+            basicCheck(token, tokens1, func_tokens, class_list)
+
+        for c in class_tokens.keys():
+            for token in class_tokens[str(c)]:
+                token = str(token)
+                #print(token[0:2])
+                if (token[0:3] == 'ope'):
+                    tokens1.append(token)
+                else:
+                    basicCheck(token, tokens1, func_tokens, class_list)
+
         #print(count)
         return True
     except FileNotFoundError:

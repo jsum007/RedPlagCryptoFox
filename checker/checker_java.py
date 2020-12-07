@@ -1,5 +1,4 @@
-import pygments.token
-import pygments.lexers
+import javalang
 import os, re
 
 #Python module pygments is used to tokenize the code files. This module supports most of the popular languages
@@ -48,7 +47,7 @@ def tokenize(filename):
         os.remove("work")
     work = open('work', 'a')
     func_text = {}
-    pat = '^def +\w*\(.*?\):'
+    pat = '(\w*\s*\w*\s*\w+\s+\w+\s*\([^\)]\))'
     line_no = 0
     func_pos = []
     in_func = -1
@@ -82,9 +81,7 @@ def tokenize(filename):
     file = open('work', 'r')
     text = file.read()
 
-    lexer = pygments.lexers.guess_lexer_for_filename(filename, text)
-    tokens = lexer.get_tokens(text)
-    tokens = list(tokens)
+    tokens = list(javalang.tokenizer.tokenize(text))
     result = []
     lenT = len(tokens)
     tokens1 = []

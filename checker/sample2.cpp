@@ -1,5 +1,10 @@
 #include <iostream>  
-using namespace std;  
+using namespace std; 
+
+class Point{
+
+	
+}; 
 void aa (int k) {
 	cout<<k<<endl;
 } 
