@@ -204,8 +204,6 @@ def delimiterCorrection(line):
                 pass
             elif delimiter in token:
                 #print('jjjjjjjjjjjjjjj', token)
-                
-
                 pos = token.find(delimiter)
                 tokens.remove(token)
                 token = token.replace(delimiter, " ")
@@ -263,9 +261,10 @@ def remove_func_bodies(class_all_list, func_all_list):
             pat2 = "\s*"+str(func.name)+"+\s*\(([\w+\s+\w+])*\)\s*\{"
             pos = re.search(pat2, txt)
             #print(txt[0:int(pos.start())])
-            line_no = len(re.findall('\n', txt[0:int(pos.start())]))
+            if pos != None:
+                line_no = len(re.findall('\n', txt[0:int(pos.start())]))
             #print("line no :\t", line_no)
-            func_start.append(line_no)
+                func_start.append(line_no)
             #print (res[0], 'jjj')
 
     class_list = []
