@@ -2,7 +2,7 @@ import pygments.token
 import pygments.lexers
 import os, re
 
-#Python module pygments is used to tokenize the code files. This module supports most of the popular languages
+#Python module pygments is used to tokenize_py the code files. This module supports most of the popular languages
 #http://pygments.org/languages/
 #Hence this program can be used to clean up codes written in most languages
 
@@ -61,7 +61,7 @@ def func_adder(filename, name, func_text, func_tokens, class_list):
 
 
 
-def tokenize(filename):
+def tokenize_py(filename):
     file = open(filename, "r")
     if os.path.exists("work"): 
         os.remove("work")
@@ -166,10 +166,10 @@ def tokenize(filename):
             #count2 += len(tokens[i][1])
         #count1 += len(tokens[i][1])
 
-    print(' '.join(tokens1))
+    print(''.join(tokens1))
     print(class_list)
 
     return result
 
 
-tokenize('samp2.py')
+tokenize_py('samp2.py')

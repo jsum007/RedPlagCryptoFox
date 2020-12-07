@@ -2,13 +2,13 @@ import tokens12 as tk
 import numpy as np
 import mysrc
 
-def check_cpp(file):
+def tokenize_cpp(file):
 	t1a, t1f = tk.run(file)
-	return ' '.join(t1a)
+	return ''.join(t1a)
 
 
-file2 = check_cpp('sample2.cpp')
-file1 = check_cpp('sample4.cpp')
+file2 = tokenize_cpp('sample2.cpp')
+file1 = tokenize_cpp('sample4.cpp')
 
 
 print(file1)
