@@ -14,7 +14,7 @@ from django.http import JsonResponse
 from django.conf import settings
 import mimetypes
 
-from os import listdir
+from os import listdir, remove
 from os.path import isfile, join, basename, exists , isdir
 from rest.checker_core.Final_Checker import *
 
@@ -48,21 +48,23 @@ class UploadView(APIView):
 
 class DeleteView(APIView):
     serializer_class=FileSerializer
-    permission_classes = (IsAuthenticated,)
+
+
 
     def update(self, request, *args, **kwargs):
         custom_data={}
         custom_data['file']=request.data['filename']
         custom_data['userid']=request.user.id
         print(custom_data['userid'])
-        file_serializer = self.serializer_class(data=custom_data)
 
-        if file_serializer.is_valid():
-            file_serializer.save()
-            filename_temp=basename(file_serializer.data['file'])
-            #print(filename_temp)
-            dir_pathh='/'.join([settings.MEDIA_ROOT,str(custom_data['userid']), filename_temp])
-            #print(dir_pathh)
+        file_del = File.objects.get(userid=custom_data['userid'],file=custom_data['file'])
+        file_del.delete()
+        filename_temp=basename(custom_data['file'])
+        print(filename_temp)
+        dir_pathh='/'.join([settings.MEDIA_ROOT,str(custom_data['userid']), filename_temp])
+        print(dir_pathh)
+        if exists(dir_pathh):
+            #os.remove(dir_pathh)
             #dir_path_t2=basename()
             #RunCheck(dir_pathh)
             return Response(file_serializer.data, status=status.HTTP_201_CREATED)
