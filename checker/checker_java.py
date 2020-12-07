@@ -140,7 +140,9 @@ def tokenize_jav(filename):
             #count2 += len(tokens[i][1])
         #count1 += len(tokens[i][1])
     #print(tok_ex)
+    if os.path.exists("work"):
+        os.remove("work")
     return ''.join(tokens1)
 
 
-print(tokenize_jav('javatests/07.java'))
+#print(tokenize_jav('javatests/07.java'))
