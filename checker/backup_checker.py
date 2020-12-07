@@ -89,7 +89,7 @@ def backup_tokenize(filename):
     if os.path.exists("work"):
         os.remove("work")
 
-    return ''.join(tokens1)
+    return str(''.join(tokens1))
 
 
 print(backup_tokenize('sample4.cpp'))

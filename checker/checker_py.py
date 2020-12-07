@@ -163,4 +163,4 @@ def tokenize_py(filename):
         #count1 += len(tokens[i][1])
     if os.path.exists("work"):
         os.remove("work")
-    return ''.join(tokens1)
+    return str(''.join(tokens1))

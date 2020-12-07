@@ -4,7 +4,7 @@ import mysrc
 
 def tokenize_cpp(file):
 	t1a, t1f = tk.run(file)
-	return ''.join(t1a)
+	return str(''.join(t1a))
 
 
 file2 = tokenize_cpp('sample2.cpp')
