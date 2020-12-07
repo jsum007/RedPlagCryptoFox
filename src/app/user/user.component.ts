@@ -15,6 +15,7 @@ export class UserComponent implements OnInit {
     imageToShow: any;
 
     isImageLoading : boolean;
+    isResLoading : boolean;
 
 
    list_of_files : string[];
@@ -34,6 +35,7 @@ export class UserComponent implements OnInit {
     this.listFiles();
     console.log(this.list_of_files);
     this.isImageLoading=false;
+    this.isResLoading=false;
     this.files = {
       filename : '' ,
       boilname : '' ,
@@ -90,6 +92,7 @@ export class UserComponent implements OnInit {
 
 
   compareFiles(){
+    this.isResLoading=true;
     this.userSer.compareFilesService(this.files).subscribe(
      ( response) => {
         //console.log(response)
@@ -100,12 +103,15 @@ export class UserComponent implements OnInit {
         this.downloadFile_func(response)
         this.selectedBoil = '';
         this.files.boilname = '';
+        this.isResLoading=false;
 
 
 
 
       },
       error => {console.log('error', error), alert('error')
+      this.isResLoading=false;
+
     }
     );
   }
