@@ -46,6 +46,30 @@ class UploadView(APIView):
 
 
 
+class DeleteView(APIView):
+    serializer_class=FileSerializer
+    permission_classes = (IsAuthenticated,)
+
+    def update(self, request, *args, **kwargs):
+        custom_data={}
+        custom_data['file']=request.data['filename']
+        custom_data['userid']=request.user.id
+        print(custom_data['userid'])
+        file_serializer = self.serializer_class(data=custom_data)
+
+        if file_serializer.is_valid():
+            file_serializer.save()
+            filename_temp=basename(file_serializer.data['file'])
+            #print(filename_temp)
+            dir_pathh='/'.join([settings.MEDIA_ROOT,str(custom_data['userid']), filename_temp])
+            #print(dir_pathh)
+            #dir_path_t2=basename()
+            #RunCheck(dir_pathh)
+            return Response(file_serializer.data, status=status.HTTP_201_CREATED)
+        else:
+            return Response(file_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
 
 
 class CompareNDownload(APIView):
@@ -54,14 +78,26 @@ class CompareNDownload(APIView):
         #print(my_view_id(request))
         useridd=request.user.id
         filename=request.data.get('filename')
+        boilname=request.data.get('boilname')
         print(filename)
         dir_path= '/'.join([settings.MEDIA_ROOT,str(useridd)])
         file_path= join(dir_path, filename)
+        if boilname.endswith(('.cpp','.py', '.java')):
+            boil_path= join(dir_path, boilname)
+
         formats=(".tar", ".tar.gz", ".zip")
 
 
         if exists(file_path) and file_path.endswith(formats):
-            out_stat , out_dir = RunCheck(file_path)
+            if boilname.endswith(('.cpp','.py', '.java')):
+                boil_path= join(dir_path, boilname)
+                if exists(boil_path):
+                    out_stat , out_dir = RunCheck(file_path, boil_path)
+                else:
+                    out_stat , out_dir = RunCheck(file_path)
+            else:
+                out_stat , out_dir = RunCheck(file_path)
+
             if out_stat=='success':
                 res_path=join(out_dir, 'Results.zip')
                 zipf = zipfile.ZipFile(res_path, 'w', zipfile.ZIP_DEFLATED)

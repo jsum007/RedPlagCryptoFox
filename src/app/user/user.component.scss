@@ -70,6 +70,47 @@ a {
   background-color: #BBD8DC;
   color: white;
 }
+
+
+
+
+/*BoilerPlate List*/
+
+.boillist {
+  margin: 0 0 2em 0;
+  list-style-type: none;
+  padding: 0;
+  padding: 10px 10px;
+  align-items: center;
+}
+.boillist li {
+  cursor: pointer;
+
+  left: 0;
+  background-color: rgba(168, 20, 20, 0.075);
+  margin: 3px;
+  padding-top: 5px;
+  padding-left: 5px;
+  padding-bottom: 5px;
+  padding-right: 5px;
+  align-items : center;
+  align-content: center;
+  text-align: center;
+  border-radius: 4px;
+}
+.boillist li:hover {
+  color: #607D8B;
+  background-color: #DDD;
+  left: .1em;
+}
+.boillist li.selected {
+  background-color: #CFD8DC;
+  color: white;
+}
+.boillist li.selected:hover {
+  background-color: #BBD8DC;
+  color: white;
+}
 /*.fileslist .badge {
   display: inline-block;
   font-size: small;

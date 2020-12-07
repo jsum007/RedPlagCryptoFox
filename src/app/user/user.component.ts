@@ -20,6 +20,9 @@ export class UserComponent implements OnInit {
    list_of_files : string[];
    selectedFile : string;
 
+   list_of_boils : string[];
+   selectedBoil : string;
+
 
 
 
@@ -27,12 +30,13 @@ export class UserComponent implements OnInit {
 
   log = this.userSer.loggedIn;
   ngOnInit(){
-    //this.list_of_files=[];
+    this.list_of_boils=[];
     this.listFiles();
     console.log(this.list_of_files);
     this.isImageLoading=false;
     this.files = {
       filename : '' ,
+      boilname : '' ,
         };
     //this.userSer.getUserClaims().subscribe((data: any) => {
      // this.userClaims = data;
@@ -94,6 +98,8 @@ export class UserComponent implements OnInit {
         this.resImage();
         alert('Downloading The Results...')
         this.downloadFile_func(response)
+        this.selectedBoil = '';
+        this.files.boilname = '';
 
 
 
@@ -125,7 +131,16 @@ export class UserComponent implements OnInit {
         //console.log(response)
         //console.log(response)
         this.list_of_files = response;
+        this.list_of_boils =[];
         console.log(this.list_of_files)
+
+
+        for(var i = 0; i < this.list_of_files.length; i++)
+{
+    if(this.list_of_files[i].endsWith('.cpp') || this.list_of_files[i].endsWith('.py') || this.list_of_files[i].endsWith('.java')){
+      this.list_of_boils.push(this.list_of_files[i])
+    }
+}
         //alert('Suckcess')
 
       },
@@ -137,13 +152,26 @@ export class UserComponent implements OnInit {
 
   onSelect(file : string){
 
-    console.log(this.selectedFile)
+    //console.log(this.selectedFile)
     this.selectedFile = file;
     this.files.filename = this.selectedFile;
 
     this.isImageLoading=false;
 
-    console.log(this.selectedFile)
+    //console.log(this.selectedFile)
+
+  }
+
+
+  onBoilSelect(file : string){
+
+    //console.log(this.selectedFile)
+    this.selectedBoil = file;
+    this.files.boilname = this.selectedBoil;
+
+    //this.isImageLoading=false;
+
+    console.log(this.selectedBoil)
 
   }
 

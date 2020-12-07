@@ -41,8 +41,8 @@ def basicCheck(token, tokens1, func_tokens, class_list):
     digitPtrn = re.compile(r'\d')
     floatPtrn = re.compile(r'\d+[.]\d+')
 
-    if token in delimiters():
-        description = delimiters()[token]
+    if token in mysrc.delimiters():
+        description = mysrc.delimiters()[token]
         if description == 'LCBRACE':
             scope_depth += 1
             #print(scope_depth)
@@ -53,22 +53,22 @@ def basicCheck(token, tokens1, func_tokens, class_list):
             #print(scope_depth)
         else:
             pass
-    elif token in keywords():
+    elif token in mysrc.keywords():
         #print(token + " KEYWORD")
         if is_function != -1:
             pass
         else:
             tokens1.append(token)
 
-    elif token in identifiers():
+    elif token in mysrc.identifiers():
         #print(token + " KEYWORD")
         if is_function != -1:
             pass
         else:
             tokens1.append(token)
 
-    elif token in operators().keys():
-        #print(token + " ", operators()[token])
+    elif token in mysrc.operators().keys():
+        #print(token + " ", mysrc.operators()[token])
         if is_function != -1:
             pass
         else:
@@ -124,8 +124,8 @@ def funcCheck(token, func_tokens, func_list, class_list):
     digitPtrn = re.compile(r'\d')
     floatPtrn = re.compile(r'\d+[.]\d+')
 
-    if token in delimiters():
-        description = delimiters()[token]
+    if token in mysrc.delimiters():
+        description = mysrc.delimiters()[token]
         if description == 'LCBRACE':
             scope_depth += 1
             #print(scope_depth)
@@ -136,21 +136,21 @@ def funcCheck(token, func_tokens, func_list, class_list):
             #print(scope_depth)
         else:
             pass
-    elif token in keywords():
+    elif token in mysrc.keywords():
         #print(token + " KEYWORD")
         if is_function != -1:
             func_tokens[is_function].append(token)
         else:
             pass
-    elif token in identifiers():
+    elif token in mysrc.identifiers():
         #print(token + " KEYWORD")
         if is_function != -1:
             func_tokens[is_function].append(token)
         else:
             pass
 
-    elif token in operators().keys():
-        #print(token + " ", operators()[token])
+    elif token in mysrc.operators().keys():
+        #print(token + " ", mysrc.operators()[token])
         if is_function != -1:
             func_tokens[is_function].append(token)
         else:
@@ -191,21 +191,19 @@ def funcCheck(token, func_tokens, func_list, class_list):
 
 def delimiterCorrection(line):
 
-    for delim in delimiters().keys():
+    for delim in mysrc.delimiters().keys():
         if delim in line:
             line = line.replace(delim, ' '+delim+' ') 
             #print(line)
     
     tokens = line.split(" ")
-    for delimiter in delimiters().keys():
+    for delimiter in mysrc.delimiters().keys():
         for token in tokens:
 
             if token == delimiter:
                 pass
             elif delimiter in token:
                 #print('jjjjjjjjjjjjjjj', token)
-                
-
                 pos = token.find(delimiter)
                 tokens.remove(token)
                 token = token.replace(delimiter, " ")
@@ -263,9 +261,10 @@ def remove_func_bodies(class_all_list, func_all_list):
             pat2 = "\s*"+str(func.name)+"+\s*\(([\w+\s+\w+])*\)\s*\{"
             pos = re.search(pat2, txt)
             #print(txt[0:int(pos.start())])
-            line_no = len(re.findall('\n', txt[0:int(pos.start())]))
+            if pos != None:
+                line_no = len(re.findall('\n', txt[0:int(pos.start())]))
             #print("line no :\t", line_no)
-            func_start.append(line_no)
+                func_start.append(line_no)
             #print (res[0], 'jjj')
 
     class_list = []

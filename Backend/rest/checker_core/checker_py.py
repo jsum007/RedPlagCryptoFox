@@ -118,7 +118,11 @@ def tokenize_py(filename):
 
     for i in range(lenT):
         #print(tokens[i])
-        if (tokens[i][0] == pygments.token.Name or tokens[i][0] in pygments.token.Name) and not i == lenT - 1 and not tokens[i + 1][1] == '(':
+        if tokens[i][0] == pygments.token.Name.Class:
+            class_list.append(str(tokens[i][1]))
+            tokens1.append('class')
+
+        elif (tokens[i][0] == pygments.token.Name or tokens[i][0] in pygments.token.Name) and not i == lenT - 1 and not tokens[i + 1][1] == '(':
             #result.append(('N', count1, count2))  #all variable names as 'N'
             if tokens[i][0] == pygments.token.Name.Class:
                 class_list.append(str(tokens[i][1]))
@@ -135,10 +139,6 @@ def tokenize_py(filename):
                 tokens1.append('v')
             #count2 += 1
 
-        elif tokens[i][0] == pygments.token.Name.Class:
-            class_list.append(str(tokens[i][1]))
-            tokens1.append('class')
-
         elif tokens[i][0] in pygments.token.Literal.String:
             pass
             #result.append(('S', count1, count2))  #all strings as 'S'
@@ -151,10 +151,6 @@ def tokenize_py(filename):
             func_tokens[str(tokens[i][1])] = func_adder(filename, str(tokens[i][1]), func_text, func_tokens, class_list)
             tokens1.extend(func_tokens[str(tokens[i][1])])
 
-
-        elif str(tokens[i][1]) in func_text.keys():
-            tokens1.extend(func_adder(filename, str(tokens[i][1]), func_text, func_tokens, class_list))
-
         elif tokens[i][0] == pygments.token.Text or tokens[i][0] in pygments.token.Comment or tokens[i][0] in pygments.token.Punctuation:
             pass   #whitespaces and comments ignored
         else:
@@ -165,9 +161,6 @@ def tokenize_py(filename):
             #tuples in result-(each element e.g 'def', its position in original code file, position in cleaned up code/text) 
             #count2 += len(tokens[i][1])
         #count1 += len(tokens[i][1])
-
+    if os.path.exists("work"):
+        os.remove("work")
     return ''.join(tokens1)
-   
-
-
-#tokenize_py('samp2.py')

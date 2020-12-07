@@ -13,55 +13,98 @@ import sys
 
 from .checker_cpp import tokenize_cpp
 from .checker_py import tokenize_py
+from .checker_java import tokenize_jav
+from .backup_checker import backup_tokenize
 
 
-def plagCheck(fp1,fp2):
+def plagCheck(fp1,fp2, boilfp=None):
 
-	comfpr=list(set(fp1) & set(fp2))
-	ratio= len(comfpr)/min(len(fp2),len(fp1))
+	if boilfp != None:
+		tempfp1=set(fp1).difference(boilfp)
+		tempfp2 = set(fp2).difference(boilfp)
+	else:
+		tempfp1 = set(fp1)
+		tempfp2 = set(fp2)
+	comfpr=list(tempfp1 & tempfp2)
+
+	deno = min(len(tempfp1),len(tempfp2))
+
+	if deno ==0:
+		ratio =1.0
+	else:
+		ratio= len(comfpr)/deno
 
 	#print(fpr_wopos2)
 
 	return ratio
 
-def folder_compare(dir_path):
-	kval=55
+def folder_compare(dir_path, boil_path=None):
+	kval=30
 	cppfiles=[]
 	filenames=[]
 	sim_mat=[]
 	files_fpr=[]
+	boil_fpr=[]
 	for path, subdirs, files in os.walk(dir_path):
 		for file in files:
-			if file.endswith((".cpp", ".py")):
+			if file.endswith((".cpp", ".py", ".java")) and not file.startswith('.'):
 				cppfiles.append(os.path.join(path, file))
 				filenames.append(file)
 
 	for file in cppfiles:
-		if file.endswith(".cpp"):
-			data1 = tokenize_cpp(file)
-		if file.endswith(".py"):
-			data1 = tokenize_py(file)
+		try:
+			if file.endswith(".cpp"):
+				data1 = tokenize_cpp(file)
+			if file.endswith(".py"):
+				data1 = tokenize_py(file)
+			if file.endswith(".java"):
+				data1= tokenize_jav(file)
+		except:
+			data1 = backup_tokenize(file)
 
 		fpr_wpos=[]
 		for fprs in winnow(data1, kval):
 			fpr_wpos.append(fprs[1])
 		files_fpr.append(fpr_wpos)
 
-	for fpr1 in files_fpr:
-		temp=[]
-		for fpr2 in files_fpr:
-			temp.append(plagCheck(fpr1,fpr2))
-		sim_mat.append(temp)
+	if boil_path != None:
+		try:
+			if boil_path.endswith(".cpp"):
+				data_b = tokenize_cpp(boil_path)
+			if boil_path.endswith(".py"):
+				data_b = tokenize_py(boil_path)
+			if boil_path.endswith(".java"):
+				data_b = tokenize_py(boil_path)
+		except:
+			data_b = backup_tokenize(boil_path)
+
+		for fprs in winnow(data1, kval):
+			boil_fpr.append(fprs[1])
+	if boil_fpr:
+		for fpr1 in files_fpr:
+			temp=[]
+			for fpr2 in files_fpr:
+				temp.append(plagCheck(fpr1,fpr2, boil_fpr))
+			sim_mat.append(temp)
+	else:
+		for fpr1 in files_fpr:
+			temp=[]
+			for fpr2 in files_fpr:
+				temp.append(plagCheck(fpr1,fpr2))
+			sim_mat.append(temp)
 
 	return sim_mat, filenames
 
 #print(folder_compare('./samples'))
 
 
-def saveres(inpath, outpath):
-	#folder_compare(inpath).to_csv(outpath)
+def saveres(inpath, outpath, boilpath=None):
 
-	matres, filenames=folder_compare(inpath)
+	if boilpath==None:
+		matres, filenames=folder_compare(inpath)
+	else:
+		matres, filenames=folder_compare(inpath, boilpath)
+
 	extentt=np.arange(len(filenames)) + 0.5
 
 	df = pd.DataFrame(matres, index= filenames, columns=filenames)
@@ -117,18 +160,19 @@ def extract_files(infile):
 
 
 
-def RunCheck(infile):
+def RunCheck(infile, boilfile=None):
 	formats=(".tar", ".tar.gz", ".zip")
 
 	if infile.endswith(formats):
-		try:
-			out_dir , files_dir = extract_files(infile)
-			res_dir= os.path.join(out_dir, 'results')
-			os.mkdir(res_dir)
+		out_dir , files_dir = extract_files(infile)
+		res_dir= os.path.join(out_dir, 'results')
+		os.mkdir(res_dir)
+		if boilfile==None:
 			saveres(files_dir, res_dir)
-			return 'success' , res_dir
-		except:
-			return 'fail' , ''
+		else:
+			saveres(files_dir, res_dir, boilfile)
+		return 'success' , res_dir
+		
 	return 'fail', ''
 
 

@@ -38,6 +38,16 @@
   </li>
 </ul>
 
+<h5> User Boilerplate Code Files On Server: </h5>
+
+<ul class="boillist">
+  <li *ngFor="let file of list_of_boils"
+    [class.selected]="file === selectedBoil"
+    (click)="onBoilSelect(file)">
+    {{file}}
+  </li>
+</ul>
+
 
 
 
