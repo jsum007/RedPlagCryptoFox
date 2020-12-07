@@ -18,11 +18,11 @@ export class UserComponent implements OnInit {
     isResLoading : boolean;
 
 
-   list_of_files : string[];
-   selectedFile : string;
+    list_of_files : string[];
+    selectedFile : string;
 
-   list_of_boils : string[];
-   selectedBoil : string;
+    list_of_boils : string[];
+    selectedBoil : string;
 
 
 
@@ -159,21 +159,36 @@ export class UserComponent implements OnInit {
   onSelect(file : string){
 
     //console.log(this.selectedFile)
-    this.selectedFile = file;
-    this.files.filename = this.selectedFile;
-
+    if(this.selectedFile == file){
+    	this.selectedFile = undefined;
+    	this.files.filename = '';
+    }
+    else{
+	    this.selectedFile = file;
+	    this.files.filename = this.selectedFile;
+	}
+	// this.selectedFile = file;
+	// this.files.filename = this.selectedFile;
     this.isImageLoading=false;
 
     //console.log(this.selectedFile)
 
   }
 
-
   onBoilSelect(file : string){
 
     //console.log(this.selectedFile)
-    this.selectedBoil = file;
-    this.files.boilname = this.selectedBoil;
+    if (this.selectedBoil == file ){
+    	this.selectedBoil = undefined;
+    	this.files.boilname = '';
+    }
+    else{
+	    this.selectedBoil = file;
+	    this.files.boilname = this.selectedBoil;
+	}
+	// this.selectedBoil = file;
+	// this.files.boilname = this.selectedBoil;
+
 
     //this.isImageLoading=false;
 
