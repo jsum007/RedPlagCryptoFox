@@ -16,7 +16,7 @@ def folder_compare(dir_path):
 	sim_mat=[]
 	for path, subdirs, files in os.walk(dir_path):
 		for file in files:
-			if file.endswith(".cpp"):
+			if file.endswith((".cpp", ".py")):
 				cppfiles.append(os.path.join(path, file))
 				filenames.append(file)
 	for file1 in cppfiles:

@@ -1,7 +1,8 @@
 from winnowing import winnow
 import sys
 
-from .tokenizer import *
+from .checker_cpp import tokenize_cpp
+from .checker_py import tokenize_py
 
 
 '''with open(sys.argv[1], 'r') as fh:
@@ -38,8 +39,14 @@ def plagRatio(data1,data2, kval=5):
 
 def plagCheck(file1,file2, kval=5):
 
-	data1 = tokenize(file1)
-	data2 = tokenize(file2)
+	if file1.endswith(".cpp") and file2.endswith(".cpp"):
+		data1 = tokenize_cpp(file1)
+		data2 = tokenize_cpp(file2)
+
+	if file1.endswith(".py") and file2.endswith(".py"):
+		data1 = tokenize_py(file1)
+		data2 = tokenize_py(file2)
+
 
 	result = plagRatio(data1, data2, kval)
 
