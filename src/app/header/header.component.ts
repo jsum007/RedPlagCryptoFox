@@ -17,8 +17,6 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
   }
   foo = 1;
-  log = localStorage.getItem('userToken') !== null;
-  //log2 = true;
 
   Logout() {
     //alert(this.userSer.loggedIn);
@@ -26,16 +24,12 @@ export class HeaderComponent implements OnInit {
     //alert(this.userSer.loggedIn);
   }
 
-  Disp(log : Boolean, page : String){
-  	if(log){
-  		if(page!="login"){
-  			return true;
-  		}
-  		else
-  			return false;
+  Disp(page : String){
+		if(page=="login"||page=="register"||page=="home"){
+			return true;
+		}
+		else
+			return false;
   	}
-  }
-
-
-
+    
 }
