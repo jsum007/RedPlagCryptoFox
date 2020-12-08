@@ -21,10 +21,13 @@ button[disabled=disabled] , button:disabled{
   border:none;
 }
 .op {
+  padding: 10pt;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
+
+
 }
 
 .lft {
@@ -55,8 +58,8 @@ button[disabled=disabled] , button:disabled{
 }
 
 .instructions {
-  color:rgb(97, 153, 216);
-  list-style-type:none;
+  color:rgb(67, 115, 170);
+
   font-size: 0.8pc;
   padding-top: 0.8em;
 }
