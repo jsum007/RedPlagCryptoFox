@@ -81,6 +81,11 @@
       <button (click)="downloadFiles()" [disabled]="!selectedFile" class= "btn btn-info btn-block my-4">Download File</button>
     </div>
 
+    <h5> Delete Selected File From Server:</h5>
+    <div class="px-lg-5 op">
+      <button (click)="deleteFiles()" [disabled]="!selectedFile" class= "btn btn-info btn-block my-4">Delete File</button>
+    </div>
+
     <div class="resIm"  *ngIf="isImageLoading">
     <h5> Results:</h5>
     <img [src]="imageToShow" alt="Results">

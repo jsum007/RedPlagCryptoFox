@@ -131,7 +131,7 @@ def saveres(inpath, outpath, boilpath=None):
 
 	fig, ax = plt.subplots(1,1)
 
-	img = ax.imshow(matres,cmap='Reds', extent=[0, len(filenames), 0, len(filenames)])
+	img = ax.imshow(matres,cmap='Reds', vmin=0, vmax=1, extent=[0, len(filenames), 0, len(filenames)] )
 
 	ax.set_xticks(extentt)
 	ax.set_yticks(extentt)	

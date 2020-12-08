@@ -44,6 +44,11 @@ downloadResImService() : Observable<any> {
   });
 }
 
+deleteFileService(userData) : Observable<any> {
+  return this.http.post('http://127.0.0.1:8000/files/delete/', userData);
+}
+
+
 
 changePass(userData) : Observable<any> {
 

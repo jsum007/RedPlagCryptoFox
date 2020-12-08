@@ -132,6 +132,19 @@ export class UserComponent implements OnInit {
   }
 
 
+  deleteFiles(){
+    this.userSer.deleteFileService(this.files).subscribe(
+      response => {
+        console.log(response)
+        alert('File Deleted')
+        this.listFiles();
+      },
+      error => {console.log('error', error), alert('error')
+    }
+    );
+  }
+
+
 
   listFiles(){
     this.userSer.listFilesService().subscribe(
@@ -169,11 +182,11 @@ export class UserComponent implements OnInit {
     this.selectedFile = file;
     this.files.filename = this.selectedFile;
 	}
-  if(this.files.filename.endsWith('.cpp')||this.files.filename.endsWith('.py')||this.files.filename.endsWith('.java')){
-    this.isSingleFile = true;
+  if(this.files.filename.endsWith('.zip')||this.files.filename.endsWith('.tar')||this.files.filename.endsWith('.tar.gz')){
+    this.isSingleFile = false;
   }
   else{
-    this.isSingleFile = false;
+    this.isSingleFile = true;
   }
 	// this.selectedFile = file;
 	// this.files.filename = this.selectedFile;
