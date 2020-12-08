@@ -10,4 +10,4 @@ class File(models.Model):
     def delete(self, *args, **kwargs):
         storage, path = self.file.storage, self.file.path
         super(File, self).delete(*args, **kwargs)
-        #storage.delete(path)
+        storage.delete(path)
