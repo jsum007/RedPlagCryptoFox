@@ -4,7 +4,7 @@ import os, re
 
 """Python module pygments is used to tokenize the code files. This module supports most of the popular languages
 http://pygments.org/languages/
-Hence this program can be used to clean up codes written in most languages
+Hence this program can be used to clean up source code
 This program generates tokenized version of python source code files using pygments to identify the token type"""
 
 def add_function_tokens(filename, name, func_text, func_tokens, class_list):
