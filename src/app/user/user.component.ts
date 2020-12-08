@@ -16,6 +16,7 @@ export class UserComponent implements OnInit {
 
     isImageLoading : boolean;
     isResLoading : boolean;
+    isSingleFile : boolean;
 
 
     list_of_files : string[];
@@ -31,6 +32,7 @@ export class UserComponent implements OnInit {
 
   log = this.userSer.loggedIn;
   ngOnInit(){
+    this.isSingleFile=true;
     this.list_of_boils=[];
     this.listFiles();
     console.log(this.list_of_files);
@@ -159,14 +161,20 @@ export class UserComponent implements OnInit {
   onSelect(file : string){
 
     //console.log(this.selectedFile)
-    if(this.selectedFile == file){
-    	this.selectedFile = undefined;
-    	this.files.filename = '';
-    }
-    else{
-	    this.selectedFile = file;
-	    this.files.filename = this.selectedFile;
+  if(this.selectedFile == file){
+  	this.selectedFile = undefined;
+  	this.files.filename = '';
+  }
+  else{
+    this.selectedFile = file;
+    this.files.filename = this.selectedFile;
 	}
+  if(this.files.filename.endsWith('.cpp')||this.files.filename.endsWith('.py')||this.files.filename.endsWith('.java')){
+    this.isSingleFile = true;
+  }
+  else{
+    this.isSingleFile = false;
+  }
 	// this.selectedFile = file;
 	// this.files.filename = this.selectedFile;
     this.isImageLoading=false;

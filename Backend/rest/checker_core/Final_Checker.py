@@ -27,6 +27,14 @@ def plagCheck(fp1,fp2, boilfp=None):
 		tempfp2 = set(fp2)
 	comfpr=list(tempfp1 & tempfp2)
 
+	#print(tempfp1)
+	#print('here')
+	#print(tempfp2)
+	#print(len(comfpr), len(tempfp1), len(tempfp2))
+
+	#print('\n\n')
+	
+
 	deno = min(len(tempfp1),len(tempfp2))
 
 	if deno ==0:
@@ -35,11 +43,11 @@ def plagCheck(fp1,fp2, boilfp=None):
 		ratio= len(comfpr)/deno
 
 	#print(fpr_wopos2)
-
+	#print('ans:\t', ratio)
 	return ratio
 
 def folder_compare(dir_path, boil_path=None):
-	kval=30
+	kval=10
 	cppfiles=[]
 	filenames=[]
 	sim_mat=[]
@@ -54,13 +62,18 @@ def folder_compare(dir_path, boil_path=None):
 	for file in cppfiles:
 		try:
 			if file.endswith(".cpp"):
+				kval = 15
 				data1 = tokenize_cpp(file)
 			if file.endswith(".py"):
+				kval = 10
 				data1 = tokenize_py(file)
 			if file.endswith(".java"):
+				kval = 15
 				data1= tokenize_jav(file)
 		except:
 			data1 = backup_tokenize(file)
+
+		#print(data1, end='\n\n')
 
 		fpr_wpos=[]
 		for fprs in winnow(data1, kval):
@@ -93,7 +106,8 @@ def folder_compare(dir_path, boil_path=None):
 				temp.append(plagCheck(fpr1,fpr2))
 			sim_mat.append(temp)
 
-	return sim_mat, filenames
+	res_mat = np.array(sim_mat)
+	return res_mat, filenames
 
 #print(folder_compare('./samples'))
 
@@ -113,7 +127,6 @@ def saveres(inpath, outpath, boilpath=None):
 
 	'''corr = df.corr()
 	corr.style.background_gradient(cmap='coolwarm')'''
-
 
 
 	fig, ax = plt.subplots(1,1)
@@ -179,5 +192,5 @@ def RunCheck(infile, boilfile=None):
 
 
 
-#print(RunCheck('./samples.tar.gz'))
+#print(RunCheck('./pythontests.tar.gz'))
 
