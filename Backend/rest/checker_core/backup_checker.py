@@ -1,93 +1,94 @@
+"""
+Python module pygments is used to tokenize the code files.
+This module supports most of the popular languages
+http://pygments.org/languages/
+Hence this program can be used to clean up codes written in most languages
+This program generates tokenized version of source code files 
+    using pygments to identify the token type
+This is a general checker with basic functionality for tokenization 
+It will be invoked in case files are of any type other than C++/Pyhton/JAVA
+    or the primary tokenizer for thses langugaes encounters an error
+"""
+
 import pygments.token
 import pygments.lexers
 import os, re
 
-#Python module pygments is used to tokenize_py the code files. This module supports most of the popular languages
-#http://pygments.org/languages/
-#Hence this program can be used to clean up codes written in most languages
-
-
 def backup_tokenize(filename):
+
+    """
+    This function takes filename as input and generates tokens based on the following rules - 
+    1) 'funct' keyword is used for functions - Functions calls will be represented by this token.
+    2) 'class' keyword is used for classes - Instances of classes/objects will be 
+        replaced by this token.
+    3) 'v' is the token used for variable declarations 
+    4) Keywords, operators, indentifiers, builtin methods, attributes and decorators are added 
+        as it is in string form
+    5) Whitespaces, comments, punctuation and literals are ignored
+    """
     file = open(filename, "r")
+
     if os.path.exists("work"): 
         os.remove("work")
-    work = open('work', 'a')
-    func_text = {}
-    #pat = '(\w*\s*\w*\s*\w+\s+\w+\s*\([^\)]\))'
-    line_no = 0
-    func_pos = []
-    in_func = -1
+
+    work = open('work', 'a')        #an auxillary file created to store the cource code tet with extra whitespace removed#
 
     for l in file:
-        if l == '' or l.isspace():
+        if l == '' or l.isspace():      #ignore whitespace#
             pass
         else:
             work.write(l.rstrip())
             work.write('\n')
-    line_no += 1
     
     file.close()
     work.close()
-    #print(len(func_text))
-    file = open('work', 'r')
+
+    file = open('work', 'r')    #read all text from auxillary file#
     text = file.read()
 
-    lexer = pygments.lexers.guess_lexer_for_filename(filename, text)
+    lexer = pygments.lexers.guess_lexer_for_filename(filename, text)        #obtain lexer from pygmnets #
     tokens = lexer.get_tokens(text)
     tokens = list(tokens)
     result = []
     lenT = len(tokens)
-    tokens1 = []
-    #tok_ex = []
+    file_tokens = []
     class_list = []
 
-    scope_depth = 0
 
-    #print(tokens)
-    #print('ggggggggggggggg')
-    #count1 = 0    #tag to store corresponding position of each element in original code file
-    #count2 = 0    #tag to store position of each element in cleaned up code text
-    # these tags are used to mark the plagiarized content in the original code files.
 
     for i in range(lenT):
-        #print(tokens[i])
 
         if tokens[i][0] == pygments.token.Name.Function:
-            #print(scope_depth)
-            tokens1.append('function')
+            file_tokens.append('funct')
 
-        elif tokens[i][0] == pygments.token.Name.Class or str(tokens[i][1]) in class_list:
-            class_list.append(str(tokens[i][1]))
-            tokens1.append('class')
+        elif tokens[i][0] == pygments.token.Name.Class or str(tokens[i][1]) in class_list:      #identify instances of classes and update class_list#
+            class_list.append(str(tokens[i][1]))                                                #identify objects/ instances of user defined classes and assign 'class' token to it#
+            file_tokens.append('class')
 
         elif (tokens[i][0] == pygments.token.Name or tokens[i][0] in pygments.token.Name) and not i == lenT - 1 and not tokens[i + 1][1] == '(':
-            #result.append(('N', count1, count2))  #all variable names as 'N'
             
-            if str(tokens[i][1]) in class_list:
-                tokens1.append('obj')
+            if str(tokens[i][1]) in class_list:                                                 #identify objects/ instances of user defined classes and assign 'class' token to it#
+                file_tokens.append('class')
 
-            elif tokens[i][0] in pygments.token.Name.Namespace:
-                tokens1.extend(str(tokens[i][0]).split())
+            elif tokens[i][0] in pygments.token.Name.Namespace:                                 #identify namespaces and add them#
+                file_tokens.extend(str(tokens[i][0]).split())
 
             elif tokens[i][0] in pygments.token.Name.Builtin or tokens[i][0] in pygments.token.Name.Attribute or tokens[i][0] in pygments.token.Name.Decorator :
-                tokens1.append(str(tokens[i][1]))
+                file_tokens.append(str(tokens[i][1]))                       #identify builtin methods, decorators and attributes and add the token as string form to the list of file tokens#
 
             else:
-                tokens1.append('v')
-            #count2 += 1
+                file_tokens.append('v')     #if the token does not satisfy any of the condition above, it is a variable name. So 'v' token is assigned to it#
 
         elif tokens[i][0] in pygments.token.Literal.String:
             pass
-            #result.append(('S', count1, count2))  #all strings as 'S'
-            #count2 += 1
+
         elif tokens[i][0] == pygments.token.Text or tokens[i][0] in pygments.token.Comment or tokens[i][0] in pygments.token.Punctuation:
             pass   #whitespaces and comments ignored
 
         else:
-            tokens1.append(str(tokens[i][1]))
+            file_tokens.append(str(tokens[i][1]))           #remaining tokens are identifiers, operators and keywords, so are appended to file_tokens#
 
     if os.path.exists("work"):
         os.remove("work")
 
-    return ''.join(tokens1)
-
+    return ''.join(file_tokens)
