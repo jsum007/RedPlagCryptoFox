@@ -38,7 +38,7 @@ def plagCheck(fp1,fp2, boilfp=None):
 	deno = min(len(tempfp1),len(tempfp2))
 
 	if deno ==0:
-		ratio =1.0
+		ratio =0.0
 	else:
 		ratio= len(comfpr)/deno
 
@@ -177,14 +177,17 @@ def RunCheck(infile, boilfile=None):
 	formats=(".tar", ".tar.gz", ".zip")
 
 	if infile.endswith(formats):
-		out_dir , files_dir = extract_files(infile)
-		res_dir= os.path.join(out_dir, 'results')
-		os.mkdir(res_dir)
-		if boilfile==None:
-			saveres(files_dir, res_dir)
-		else:
-			saveres(files_dir, res_dir, boilfile)
-		return 'success' , res_dir
+		try:
+			out_dir , files_dir = extract_files(infile)
+			res_dir= os.path.join(out_dir, 'results')
+			os.mkdir(res_dir)
+			if boilfile==None:
+				saveres(files_dir, res_dir)
+			else:
+				saveres(files_dir, res_dir, boilfile)
+			return 'success' , res_dir
+		except:
+			return 'fail' , ''
 		
 	return 'fail', ''
 
