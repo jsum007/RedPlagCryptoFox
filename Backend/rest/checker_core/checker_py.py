@@ -18,14 +18,17 @@ def func_adder(filename, name, func_text, func_tokens, class_list):
     tokens1 = []
 
     for i in range(lenT):
+        if tokens[i][0] == pygments.token.Name.Class:
+            class_list.append(str(tokens[i][1]))
+
+    for i in range(lenT):
         #print(tokens[i])
         if (tokens[i][0] == pygments.token.Name or tokens[i][0] in pygments.token.Name) and not i == lenT - 1 and not tokens[i + 1][1] == '(':
             #result.append(('N', count1, count2))  #all variable names as 'N'
-            if tokens[i][0] == pygments.token.Name.Class:
-                class_list.append(str(tokens[i][1]))
+            if tokens[i][0] == pygments.token.Name.Class or str(tokens[i][1]) in class_list:
+                #class_list.append(str(tokens[i][1]))
                 tokens1.append('class')
-            elif str(tokens[i][1]) in class_list:
-                tokens1.append('obj')
+
             elif tokens[i][0] in pygments.token.Name.Builtin or tokens[i][0] in pygments.token.Name.Function \
                     or tokens[i][0] in pygments.token.Name.Attribute or tokens[i][0] in pygments.token.Name.Decorator \
                     or tokens[i][0] in pygments.token.Name.Namespace:
@@ -67,7 +70,7 @@ def tokenize_py(filename):
         os.remove("work")
     work = open('work', 'a')
     func_text = {}
-    pat = '^def +\w*\(.*?\):'
+    pat = r'^def +(\w)*\(.*?\):'
     line_no = 0
     func_pos = []
     in_func = -1
@@ -117,6 +120,10 @@ def tokenize_py(filename):
     # these tags are used to mark the plagiarized content in the original code files.
 
     for i in range(lenT):
+        if tokens[i][0] == pygments.token.Name.Class:
+            class_list.append(str(tokens[i][1]))
+
+    for i in range(lenT):
         #print(tokens[i])
         if tokens[i][0] == pygments.token.Name.Class:
             class_list.append(str(tokens[i][1]))
@@ -124,17 +131,15 @@ def tokenize_py(filename):
 
         elif (tokens[i][0] == pygments.token.Name or tokens[i][0] in pygments.token.Name) and not i == lenT - 1 and not tokens[i + 1][1] == '(':
             #result.append(('N', count1, count2))  #all variable names as 'N'
-            if tokens[i][0] == pygments.token.Name.Class:
-                class_list.append(str(tokens[i][1]))
+            if tokens[i][0] == pygments.token.Name.Class or str(tokens[i][1]) in class_list:
+                #class_list.append(str(tokens[i][1]))
                 tokens1.append('class')
-            elif str(tokens[i][1]) in class_list:
-                tokens1.append('obj')
+
             elif tokens[i][0] in pygments.token.Name.Builtin or tokens[i][0] in pygments.token.Name.Function \
                     or tokens[i][0] in pygments.token.Name.Attribute or tokens[i][0] in pygments.token.Name.Decorator \
                     or tokens[i][0] in pygments.token.Name.Namespace:
                 tokens1.append(str(tokens[i][1]))
-                if tokens[i][0] in pygments.token.Name.Function:
-                    print(tokens[i][1])
+
             else:
                 tokens1.append('v')
             #count2 += 1
@@ -163,4 +168,7 @@ def tokenize_py(filename):
         #count1 += len(tokens[i][1])
     if os.path.exists("work"):
         os.remove("work")
-    return ''.join(tokens1)
+
+    print(str(' '.join(tokens1)))
+    print('\n')
+    return ' '.join(tokens1)

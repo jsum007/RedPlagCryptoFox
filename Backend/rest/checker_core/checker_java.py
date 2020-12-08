@@ -35,7 +35,7 @@ def tokenize_jav(filename):
     lexer = pygments.lexers.guess_lexer_for_filename(filename, text)
     tokens = lexer.get_tokens(text)
     tokens = list(tokens)
-    result = []
+    func_list = []
     lenT = len(tokens)
     tokens1 = []
     #tok_ex = []
@@ -48,7 +48,7 @@ def tokenize_jav(filename):
     'ClassNotFoundException': 'clasnoex', 'FileNotFoundException': 'filenoex', 'IOException': 'inpoutex', 'InterruptedException': 'intexex', 'NoSuchFieldException': 'nofileex', 
     'NoSuchMethodException': 'nomethex', 'NullPointerException': 'nulponex', 'NumberFormatException': 'numforex', 'RuntimeException': 'runtimex', 
     'StringIndexOutOfBoundsException': 'strioex', 'LocalDate': 'locdat', 'LocalTime': 'loctim', 'LocalDateTime': 'dattim', 'DateTimeFormatter': 'dtform',
-    'Thread': 'thread', 'Main': 'main', 'Runnable': 'runble', 'Consumer': 'consum',
+    'Thread': 'thread', 'Main': 'main', 'Runnable': 'runble', 'Consumer': 'consum', 'private': 'scp', 'public': 'scp', 'protected': 'scp',
     'FileReader': 'filred', 'FileInputStream': 'fileinpstr', 'FileWriter': 'filewrit', 'BufferedWriter': 'bufwrit', 'FileOutputStream': 'filoutstr'}
 
     file_methods = ['File', 'canRead', 'canWrite', 'createNewFile', 'delete', 'exists', 'getName', 'length', 'list', 'mkdir', 'getAbsolutePath', 'FileWriter', 'write', 'close']
@@ -71,6 +71,15 @@ def tokenize_jav(filename):
     # these tags are used to mark the plagiarized content in the original code files.
 
     for i in range(lenT):
+        if tokens[i][0] == pygments.token.Name.Function:
+            #print(scope_depth)
+            func_list.append('function')
+
+        elif tokens[i][0] == pygments.token.Name.Class:
+            class_list.append(str(tokens[i][1]))
+
+
+    for i in range(lenT):
         #print(tokens[i])
         if tokens[i][0] in pygments.token.Punctuation :
             if str(tokens[i][1]) == '{':
@@ -80,29 +89,37 @@ def tokenize_jav(filename):
             else:
                 pass
         
-
-        elif tokens[i][0] == pygments.token.Name.Function:
-            #print(scope_depth)
+        elif tokens[i][0] in func_list or tokens[i][0] == pygments.token.Name.Function:
             tokens1.append('function')
 
+        elif tokens[i][0] in class_list or tokens[i][0] == pygments.token.Name.Class:
+            tokens1.append('class')
+
+
         elif (tokens[i][0] == pygments.token.Name or tokens[i][0] in pygments.token.Name) and not i == lenT - 1 and not tokens[i + 1][1] == '(':
+
+            t = str(tokens[i][1])
+
             #result.append(('N', count1, count2))  #all variable names as 'N'
             if tokens[i][0] == pygments.token.Name.Class:
-                class_list.append(str(tokens[i][1]))
                 tokens1.append('class')
+
             elif str(tokens[i][1]) in class_list:
                 tokens1.append('obj')
 
             elif tokens[i][0] in pygments.token.Name.Namespace:
-                toks = str(tokens[i][1]).split('.')[-1]
-                tokens1.append(toks)
+                toks = t.split('.')[-1]
+                if toks in key_names.keys():
+                    tokens1.append(key_names[toks])
 
-            elif tokens[i][0] in pygments.token.Name.Builtin or tokens[i][0] in pygments.token.Name.Attribute or tokens[i][0] in pygments.token.Name.Decorator :
-                tokens1.append(str(tokens[i][1]))
+            elif tokens[i][0] in pygments.token.Name.Builtin or tokens[i][0] in pygments.token.Name.Decorator :
+                tokens1.append(t)
+
+            elif tokens[i][0] in pygments.token.Name.Attribute:
+                tokens1.append('fun')
 
             else:
                 #tok_ex.append(str(tokens[i][1]))
-                t = str(tokens[i][1])
                 if t in key_names.keys():
                     tokens1.append(key_names[t])
                 elif t in some_keys:
@@ -114,12 +131,14 @@ def tokenize_jav(filename):
                 elif t in math_methods:
                     tokens1.append(t)
                 else:
-                    tokens1.append('v')
+                    tokens1.append('var')
             #count2 += 1
 
         elif tokens[i][0] == pygments.token.Name.Class:
-            class_list.append(str(tokens[i][1]))
             tokens1.append('class')
+
+        elif tokens[i][0] == pygments.token.Name or tokens[i][0] in pygments.token.Name:
+            tokens1.append('var')
 
         elif tokens[i][0] in pygments.token.Literal.String:
             pass
@@ -131,11 +150,11 @@ def tokenize_jav(filename):
         elif str(tokens[i][1]) == 'import':
             pass
         else:
-            #result.append((tokens[i][1], count1, count2))  
-            #if str(tokens[i][1]) == 'Node':
-                #print(tokens[i][0] in pygments.token.Name)
-
-            tokens1.append(str(tokens[i][1]))
+            t = str(tokens[i][1])
+            if t in key_names.keys():
+                tokens1.append(key_names[t])
+            else:
+                tokens1.append(t)
             #tuples in result-(each element e.g 'def', its position in original code file, position in cleaned up code/text) 
             #count2 += len(tokens[i][1])
         #count1 += len(tokens[i][1])
