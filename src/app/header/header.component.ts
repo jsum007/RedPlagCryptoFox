@@ -25,11 +25,11 @@ export class HeaderComponent implements OnInit {
   }
 
   Disp(page : String){
-		if(page=="login"||page=="register"||page=="home"){
-			return true;
+		if(page=="user"||page=="change_pass"){
+			return false;
 		}
 		else
-			return false;
+			return true;
   	}
-    
+
 }
