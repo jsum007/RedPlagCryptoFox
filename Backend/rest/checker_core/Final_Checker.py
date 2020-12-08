@@ -48,6 +48,8 @@ def plagCheck(fp1,fp2, boilfp=None):
 
 def folder_compare(dir_path, boil_path=None):
 	kval=10
+	file_formats=(".cc",".cxx",".c++",".ii",".ixx",".ipp",".i++",".inl",".idl",".ddl",".odl",".hh",".hxx",".hpp",".h++",".cs",".d",".php",".php4",".php5", 
+	".phtml",".inc",".m",".markdown",".md",".mm",".dox",".pyw",".f90",".f95",".f03",".f08",".f18",".f",".for",".vhd",".vhdl",".ucf",".qsf",".ice")
 	cppfiles=[]
 	filenames=[]
 	sim_mat=[]
@@ -55,23 +57,33 @@ def folder_compare(dir_path, boil_path=None):
 	boil_fpr=[]
 	for path, subdirs, files in os.walk(dir_path):
 		for file in files:
-			if file.endswith((".cpp", ".py", ".java")) and not file.startswith('.'):
+			if file.endswith((".cpp", ".py", ".c", ".h" , ".java")) and not file.startswith('.'):
+				cppfiles.append(os.path.join(path, file))
+				filenames.append(file)
+			elif file.endswith(file_formats) and not file.startswith('.'):
 				cppfiles.append(os.path.join(path, file))
 				filenames.append(file)
 
+
 	for file in cppfiles:
 		try:
-			if file.endswith(".cpp"):
+			if file.endswith((".cpp", ".h", ".c")):
 				kval = 15
-				data1 = tokenize_cpp(file)
+				data1 = tokenize_cpp(file)		
+				
 			if file.endswith(".py"):
 				kval = 10
 				data1 = tokenize_py(file)
 			if file.endswith(".java"):
 				kval = 15
 				data1= tokenize_jav(file)
+			if file.endswith(file_formats):
+				kval = 10
+				data1 = backup_tokenize(file)
+
 		except:
 			data1 = backup_tokenize(file)
+			
 
 		#print(data1, end='\n\n')
 
