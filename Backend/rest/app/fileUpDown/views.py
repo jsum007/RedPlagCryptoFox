@@ -55,33 +55,19 @@ class DeleteView(APIView):
         custom_data['userid']=request.user.id
         print(custom_data['userid'])
 
-        filename_temp=basename(custom_data['file'])
-        print(filename_temp)
-        dir_pathh='/'.join([settings.MEDIA_ROOT,str(custom_data['userid']), filename_temp])
-        print(dir_pathh)
-
         user_files = File.objects.all().filter(userid=custom_data['userid'])
         print(user_files)
-        file_del=None;
-        del_obj=None;
-        filename_in='';
-        for obj1 in user_files:
-            try:
-                file_obj=getattr(obj1, 'file')
-                filename_in=basename(file_obj.path)
-            except:
-                file_obj.delete()
-            if filename_in==custom_data['file']:
-                file_del=filename_in
-                del_obj=file_obj
+        #user_files.delete()
 
-
-        if file_del!=None and exists(dir_pathh) and del_obj !=None:
-            del_obj.delete()
-            #os.remove(dir_pathh)
-            return Response( status=status.HTTP_201_CREATED)
-        else:
+        try:
+            File.objects.get(userid=custom_data['userid'],file='/'.join([str(custom_data['userid']), custom_data['file']])).delete()
+            return Response(status=status.HTTP_200_OK)
+        except:
             return Response(status=status.HTTP_400_BAD_REQUEST)
+
+
+
+
 
 
 
