@@ -25,15 +25,7 @@ def plagCheck(fp1,fp2, boilfp=None):
 	else:
 		tempfp1 = set(fp1)
 		tempfp2 = set(fp2)
-	comfpr=list(tempfp1 & tempfp2)
-
-	#print(tempfp1)
-	#print('here')
-	#print(tempfp2)
-	#print(len(comfpr), len(tempfp1), len(tempfp2))
-
-	#print('\n\n')
-	
+	comfpr=list(tempfp1 & tempfp2)	
 
 	deno = min(len(tempfp1),len(tempfp2))
 
@@ -42,12 +34,10 @@ def plagCheck(fp1,fp2, boilfp=None):
 	else:
 		ratio= len(comfpr)/deno
 
-	#print(fpr_wopos2)
-	#print('ans:\t', ratio)
 	return ratio
 
 def folder_compare(dir_path, boil_path=None):
-	kval=10
+	kval=0
 	cppfiles=[]
 	filenames=[]
 	sim_mat=[]
@@ -62,18 +52,21 @@ def folder_compare(dir_path, boil_path=None):
 	for file in cppfiles:
 		try:
 			if file.endswith(".cpp"):
-				kval = 15
 				data1 = tokenize_cpp(file)
 			if file.endswith(".py"):
-				kval = 10
 				data1 = tokenize_py(file)
 			if file.endswith(".java"):
-				kval = 15
 				data1= tokenize_jav(file)
 		except:
 			data1 = backup_tokenize(file)
 
-		#print(data1, end='\n\n')
+		if file.endswith(".cpp"):
+			kval = 20
+		if file.endswith(".py"):
+			kval = 10
+		if file.endswith(".java"):
+			kval = 15
+
 
 		fpr_wpos=[]
 		for fprs in winnow(data1, kval):
@@ -109,8 +102,6 @@ def folder_compare(dir_path, boil_path=None):
 	res_mat = np.array(sim_mat)
 	return res_mat, filenames
 
-#print(folder_compare('./samples'))
-
 
 def saveres(inpath, outpath, boilpath=None):
 
@@ -125,8 +116,6 @@ def saveres(inpath, outpath, boilpath=None):
 
 	df.to_csv(os.path.join(outpath, 'results.csv'))
 
-	'''corr = df.corr()
-	corr.style.background_gradient(cmap='coolwarm')'''
 
 
 	fig, ax = plt.subplots(1,1)
@@ -143,7 +132,6 @@ def saveres(inpath, outpath, boilpath=None):
 	plt.tight_layout()
 	plt.savefig(os.path.join(outpath, 'results.png'))
 
-#saveres('./samples','./sample/results/results.csv')
 
 def extract_files(infile):
 	if infile.endswith(".zip"):
@@ -158,8 +146,7 @@ def extract_files(infile):
 
 	if os.path.exists(out_dir) and os.path.isdir(out_dir):
 		shutil.rmtree(out_dir, ignore_errors = False)
-	#temp1=os.listdir(dirname1)
-	#print(out_dir)
+
 	if infile.endswith(".zip"):
 		with zipfile.ZipFile(infile, 'r') as zip_ref:
 			zip_ref.extractall(os.path.join(out_dir, 'input_files'))
@@ -187,10 +174,3 @@ def RunCheck(infile, boilfile=None):
 		return 'success' , res_dir
 		
 	return 'fail', ''
-
-
-
-
-
-#print(RunCheck('./pythontests.tar.gz'))
-

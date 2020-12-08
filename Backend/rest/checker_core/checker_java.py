@@ -13,7 +13,6 @@ def tokenize_jav(filename):
         os.remove("work")
     work = open('work', 'a')
     func_text = {}
-    #pat = '(\w*\s*\w*\s*\w+\s+\w+\s*\([^\)]\))'
     line_no = 0
     func_pos = []
     in_func = -1
@@ -28,7 +27,6 @@ def tokenize_jav(filename):
     
     file.close()
     work.close()
-    #print(len(func_text))
     file = open('work', 'r')
     text = file.read()
 
@@ -38,7 +36,6 @@ def tokenize_jav(filename):
     func_list = []
     lenT = len(tokens)
     tokens1 = []
-    #tok_ex = []
     class_list = []
 
     scope_depth = 0
@@ -64,15 +61,8 @@ def tokenize_jav(filename):
 
     some_keys = ['abstract', 'implements', 'enum', 'interface', 'final', 'extends', 'forEach']
 
-    #print(tokens)
-    #print('ggggggggggggggg')
-    #count1 = 0    #tag to store corresponding position of each element in original code file
-    #count2 = 0    #tag to store position of each element in cleaned up code text
-    # these tags are used to mark the plagiarized content in the original code files.
-
     for i in range(lenT):
         if tokens[i][0] == pygments.token.Name.Function:
-            #print(scope_depth)
             func_list.append('function')
 
         elif tokens[i][0] == pygments.token.Name.Class:
@@ -80,7 +70,6 @@ def tokenize_jav(filename):
 
 
     for i in range(lenT):
-        #print(tokens[i])
         if tokens[i][0] in pygments.token.Punctuation :
             if str(tokens[i][1]) == '{':
                 scope_depth+=1
@@ -100,7 +89,6 @@ def tokenize_jav(filename):
 
             t = str(tokens[i][1])
 
-            #result.append(('N', count1, count2))  #all variable names as 'N'
             if tokens[i][0] == pygments.token.Name.Class:
                 tokens1.append('class')
 
@@ -119,7 +107,6 @@ def tokenize_jav(filename):
                 tokens1.append('fun')
 
             else:
-                #tok_ex.append(str(tokens[i][1]))
                 if t in key_names.keys():
                     tokens1.append(key_names[t])
                 elif t in some_keys:
@@ -132,7 +119,6 @@ def tokenize_jav(filename):
                     tokens1.append(t)
                 else:
                     tokens1.append('var')
-            #count2 += 1
 
         elif tokens[i][0] == pygments.token.Name.Class:
             tokens1.append('class')
@@ -142,8 +128,7 @@ def tokenize_jav(filename):
 
         elif tokens[i][0] in pygments.token.Literal.String:
             pass
-            #result.append(('S', count1, count2))  #all strings as 'S'
-            #count2 += 1
+
         elif tokens[i][0] == pygments.token.Text or tokens[i][0] in pygments.token.Comment:
             pass   #whitespaces and comments ignored
 
@@ -155,10 +140,7 @@ def tokenize_jav(filename):
                 tokens1.append(key_names[t])
             else:
                 tokens1.append(t)
-            #tuples in result-(each element e.g 'def', its position in original code file, position in cleaned up code/text) 
-            #count2 += len(tokens[i][1])
-        #count1 += len(tokens[i][1])
-    #print(tok_ex)
+
     if os.path.exists("work"):
         os.remove("work")
     return ''.join(tokens1)
