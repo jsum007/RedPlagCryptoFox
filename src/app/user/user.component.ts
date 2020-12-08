@@ -142,6 +142,12 @@ export class UserComponent implements OnInit {
       error => {console.log('error', error), alert('error')
     }
     );
+    if(this.selectedBoil == this.selectedFile){
+      this.selectedBoil = undefined;
+      this.files.boilname = '';
+    }
+    this.selectedFile = undefined;
+    this.files.filename = '';
   }
 
 

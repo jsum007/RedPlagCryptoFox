@@ -4,20 +4,61 @@ button {
   width: fit-content;
   align-items : center;
   align-content: center;
+  // right:0;
   text-decoration: none;
-  padding-left: 100px;
-  padding-right: 100px;
+  border:none;
+  padding-left: 50px;
+  padding-right: 50px;
   &:hover { cursor: pointer;
     background-color: #111;
     color: #ffffff;
     text-decoration: none;
   }
 }
+button[disabled=disabled] , button:disabled{
+  background-color: rgb(143, 213, 226);
+  color: #000000;
+  border:none;
+}
 .op {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.lft {
+  align-items : left;
+  align-content: left;
+  text-align: start;
+}
+
+.btn2 {
+  background-color: rgba(22, 99, 187, 0.555);
+  color: #ffffff;
+  width: 160px;
+  height: 35px;
+  align-items : left;
+  align-content: left;
+  padding-left: 0;
+  padding-right: 0;
+  // right:0;
+  text-decoration: none;
+  border:none;
+  // padding-left: 100px;
+  // padding-right: 100px;
+  &:hover { cursor: pointer;
+    background-color: #111;
+    color: #ffffff;
+    text-decoration: none;
+  }
+}
+
+.instructions {
+  color:rgb(97, 153, 216);
+  list-style-type:none;
+  font-size: 0.8pc;
+  padding-top: 0.8em;
 }
 
 h5 {
@@ -29,6 +70,11 @@ a {
   text-decoration: none;
 }
 
+.ctr{
+  align-items: center;
+  align-content: center;
+  text-align: center;
+}
 
 
 
@@ -41,12 +87,16 @@ a {
   padding: 0;
   padding: 10px 10px;
   align-items: center;
+  align-content: center;
+  text-align: center;
+  // width:960px;
 }
 .fileslist li {
   cursor: pointer;
 
-  left: 0;
-  background-color: rgba(168, 20, 20, 0.075);
+  // left: 0;
+  color: rgb(0, 0, 0);
+  background-color: rgba(255, 124, 112, 0.274);
   margin: 3px;
   padding-top: 5px;
   padding-left: 5px;
@@ -58,18 +108,19 @@ a {
   border-radius: 4px;
 }
 .fileslist li:hover {
-  color: #607D8B;
-  background-color: #DDD;
+  color: white;
+  background-color: rgba(228, 111, 111, 0.774);
   left: .1em;
 }
 .fileslist li.selected {
-  background-color: #CFD8DC;
+  background-color: rgba(255, 75, 75, 0.815);
   color: white;
 }
 .fileslist li.selected:hover {
-  background-color: #BBD8DC;
+  background-color: #ad2d2dbd;
   color: white;
 }
+
 
 
 
@@ -86,29 +137,31 @@ a {
 .boillist li {
   cursor: pointer;
 
-  left: 0;
-  background-color: rgba(168, 20, 20, 0.075);
+  // left: 0;
+  color: rgb(0, 0, 0);
+  background-color: rgba(255, 124, 112, 0.274);
   margin: 3px;
   padding-top: 5px;
   padding-left: 5px;
   padding-bottom: 5px;
   padding-right: 5px;
+  // width:960px;
   align-items : center;
   align-content: center;
   text-align: center;
   border-radius: 4px;
 }
 .boillist li:hover {
-  color: #607D8B;
-  background-color: #DDD;
+  color: white;
+  background-color: rgba(228, 111, 111, 0.774);
   left: .1em;
 }
 .boillist li.selected {
-  background-color: #CFD8DC;
+  background-color:rgba(255, 75, 75, 0.815);
   color: white;
 }
 .boillist li.selected:hover {
-  background-color: #BBD8DC;
+  background-color: #ad2d2dbd;
   color: white;
 }
 /*.fileslist .badge {
