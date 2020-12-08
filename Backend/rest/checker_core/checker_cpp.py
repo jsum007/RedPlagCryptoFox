@@ -1,3 +1,30 @@
+"""
+Python library pygccxml is used.
+This package provides functionality to extract and inspect declarations 
+	from C/C++ header files. 
+This is accomplished by invoking an external tool like CastXML or GCC-XML, 
+	which parses a header 
+    file and dumps the declarations as a XML file. 
+This XML file is then read by pygccxml and the contents are made available as 
+	appropriate Python objects.
+
+To parse a set of C/C++ header files you use the parse function in the :mod:parser 
+	sub package which returns
+    a tree that contains all declarations found in the header files. 
+The root of the tree represents the main namespace :: and the children nodes represent 
+	the namespace contents 
+    such as other namespaces, classes, functions, etc. 
+Each node in the tree is an object of a type derived from the declaration_t class. 
+An inner node is always either a namespace declarations.namespace_t or a class 
+	declarations.class_t, which 
+    are both derived from declarations.scopedef_t class
+
+Thus, we can obtain - 
+1) a list of function and their arguments
+2) classes and their variables, constructors, operators and methods
+3) global variables
+"""
+
 import re
 import os
 
@@ -5,22 +32,6 @@ from pygccxml import utils
 from pygccxml import declarations
 from pygccxml import parser
 
-"""
-Python library pygccxml is used.
-This package provides functionality to extract and inspect declarations from C/C++ header files. 
-This is accomplished by invoking an external tool like CastXML or GCC-XML, which parses a header file and dumps the declarations as a XML file. 
-This XML file is then read by pygccxml and the contents are made available as appropriate Python objects.
-
-To parse a set of C/C++ header files you use the parse function in the :mod:parser sub package which returns a tree that contains all declarations found in the header files. 
-The root of the tree represents the main namespace :: and the children nodes represent the namespace contents such as other namespaces, classes, functions, etc. 
-Each node in the tree is an object of a type derived from the declaration_t class. 
-An inner node is always either a namespace declarations.namespace_t or a class declarations.class_t, which are both derived from declarations.scopedef_t class
-
-Thus, we can obtain - 
-1) a list of function and their arguments
-2) classes and their variables, constructors, operators and methods
-3) global variables
-"""
 
 scope_depth = 0 #global variable storing anintger value representing the scope
 is_function = -1 #global variable storing the current function being processed
@@ -68,7 +79,8 @@ def delimiters():
     return delimiters
 
 def add_func(token, func_tokens):
-    '''takes the dictionary of func_tokens and function name as argument and returns a list of tokens corresponding to the function
+    '''takes the dictionary of func_tokens and function name as argument and returns a 
+    	list of tokens corresponding to the function
     Invoked whnever a function is called and token is name of the function'''
     new_list = []
     for t in func_tokens[token]:
@@ -87,16 +99,19 @@ def basicCheck(token, file_tokens, func_tokens, class_list):
     '''
     token is single token to be processed now
     file_tokens is the list to which the token might be added
-    func_tokens is a dictionary with function names mapped to corresponding declarations and is used to add tokens corresponding to a function call
+    func_tokens is a dictionary with function names mapped to corresponding declarations and is 
+    	used to add tokens corresponding to a function call
     class_list is a list of classes to identify object instances
 
-    This fucntion examines the given token and determines whether it needs to be appended. Whitespaces, comments, delimiters/punctuation/literals are ignored.
+    This fucntion examines the given token and determines whether it needs to be appended. 
+    	Whitespaces, comments, delimiters/punctuation/literals are ignored.
     Tokens which are keywords/ identifiers/ operators are added as strings to the file_tokens list
     Variables names are assigned token with 'v' keyword
     Numbers of any type(int/ float) are assigned token with 'no' keyword
     Headers of any type are assigned token with 'he' keyword
     Objects/ instances of a class are assigned token woth 'obj' keyword
-    For function calls, add_func is passes the function name and tokens corresponding to the function are added to file_tokens
+    For function calls, add_func is passes the function name and tokens corresponding to the function 
+    	are added to file_tokens
     '''
     global scope_depth, is_function
     varPtrn = re.compile(r"[a-zA-Z_][a-zA-Z0-9_]")  # variables
@@ -176,10 +191,12 @@ def funcCheck(token, func_tokens, func_list, class_list):
     '''
     token is single token to be processed now
     file_tokens is the list to which the token might be added
-    func_tokens is a dictionary with function names mapped to corresponding declarations and is used to add tokens corresponding to a function call
+    func_tokens is a dictionary with function names mapped to corresponding declarations and is used 
+    	to add tokens corresponding to a function call
     class_list is a list of classes to identify object instances
 
-    Similar to basicChecker but works on processing tokens of a particular function. The name of current function being processed is stored in is_function var.
+    Similar to basicChecker but works on processing tokens of a particular function. The name of 
+    	current function being processed is stored in is_function var.
     It appends the generated token value to the dictionary func_tokens mapped to corresponding name
     '''
 
@@ -250,7 +267,8 @@ def funcCheck(token, func_tokens, func_list, class_list):
 def delimiterCorrection(line):
 
     '''Takes a line as input and splits it into tokens using whitespace as separator
-    To ensure that delimiters are taken into account poistion of delimeters are identified and replaced with padding of spaces around them for effective splitting
+    To ensure that delimiters are taken into account poistion of delimeters are identified and 
+    	replaced with padding of spaces around them for effective splitting
     Returned is list of tokens generated from the line excluding whitespaces
     The tokens generated now are just words in the source code file, they need to be processed further'''
 
@@ -320,8 +338,10 @@ def class_n_func_tokens(class_all_list, func_all_list):
     '''
     Takes as input list of all classes and functions in the file as identified by the pygccxml parser
     Generates new lists - func_list and class_list of user defined functions and classes
-    For functions - the line number where function definition begins is identified using regex matching and stored in func_start with the same order as func_list
-    For Classses - constructors, operators, variables and memeber functions corresponding to each user defined class are obtained from the parser and added to dictionary class_tokens mapped to class name
+    For functions - the line number where function definition begins is identified using regex 
+    	matching and stored in func_start with the same order as func_list
+    For Classses - constructors, operators, variables and memeber functions corresponding to each user 
+    defined class are obtained from the parser and added to dictionary class_tokens mapped to class name
     Returns the above generated lists/dictionaries
     '''
 
@@ -383,10 +403,13 @@ def tokenize(path, file_tokens, func_tokens, class_all_list, func_all_list):
     '''
     path is the path of file to be processed
     file_tokens is the list which will store all the tokens generated from the file
-    func_tokens is a dictionary with function names mapped to corresponding declarations and is used to add tokens corresponding to a function call
-    class_all_list and func_all_list are lists of all classes and functions in the file as identified by the pygccxml parser
+    func_tokens is a dictionary with function names mapped to corresponding declarations and is used 
+    	to add tokens corresponding to a function call
+    class_all_list and func_all_list are lists of all classes and functions in the file as identified 
+    	by the pygccxml parser
 
-    This function first invokes class_n_func_tokens to generate information about functions and tokens corresponding to classes
+    This function first invokes class_n_func_tokens to generate information about functions and tokens 
+        corresponding to classes
     It then invokes funcCheck to generate tokens corresponding to a fucntion and store in Func_tokens
     Subsequently, basicCheck is called to tokenize the entire file and store tokens in file_tokens
     '''
@@ -453,8 +476,10 @@ def run(path):
     '''
     Takes the path of file name as input 
     The parser and xml generator use the file to generate a list of declarations
-    The global namespace is obtained and the list of declarations in the global namespace is examined for functions and classes which are identified by the parser
-    This list slong woth the file path id passed to the tokenize function to produce tokens for the source code
+    The global namespace is obtained and the list of declarations in the global namespace is examined 
+        for functions and classes which are identified by the parser
+    This list slong woth the file path id passed to the tokenize function to produce tokens 
+        for the source code
     '''
 
     declarations = parser.parse([path], xml_generator_config)
@@ -479,7 +504,8 @@ def run(path):
 
     '''
     file_tokens is the list which will store all the tokens generated from the file
-    func_tokens is a dictionary with function names mapped to corresponding declarations and is used to add tokens corresponding to a function call
+    func_tokens is a dictionary with function names mapped to corresponding declarations and is 
+        used to add tokens corresponding to a function call
     '''
     tokenize(path, file_tokens, func_tokens, class_all_list, func_all_list)
     return file_tokens, func_tokens
@@ -487,7 +513,8 @@ def run(path):
 
 def tokenize_cpp(file):
     '''
-    Takes file as argument and invokes run function to obtain the list of tokens generated from the file
+    Takes file as argument and invokes run function to obtain the list of tokens 
+    	generated from the file
     It returns a single string of all tokens joined together
     '''
     t1a, t1f = run(file)

@@ -1,20 +1,26 @@
+"""
+Python module pygments is used to tokenize the code files. This module supports 
+	most of the popular languages
+http://pygments.org/languages/
+Hence this program can be used to clean up source code
+This program generates tokenized version of java source code files using pygments to identify 
+the token type
+"""
+
 import pygments.token
 import pygments.lexers
 import os, re
-
-"""Python module pygments is used to tokenize the code files. This module supports most of the popular languages
-http://pygments.org/languages/
-Hence this program can be used to clean up source code
-This program generates tokenized version of java source code files using pygments to identify the token type"""
 
 
 def tokenize_jav(filename):
 
     """
     This function takes filename as input and returns the tokenized version of source code as string.
-    It first removes all extra whitespaces. Then it identifies classes and functions and prepares a list of them
+    It first removes all extra whitespaces. Then it identifies classes and functions 
+        and prepares their list
     Subsequently the remaining files is tokenized and list of tokens stored in file_tokens
-    Whenever a fucntion call/ class instance/ variable name is encountered, specific keywords are used as tokens ('function'/ 'class'/ 'var')
+    Whenever a fucntion call/ class instance/ variable name is encountered, specific keywords are 
+        used as tokens ('function'/ 'class'/ 'var')
     Comments, punctutation, literals are ignored
     """
 

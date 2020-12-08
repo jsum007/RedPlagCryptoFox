@@ -1,0 +1,187 @@
+\hypertarget{namespacerest_1_1checker__core_1_1checker__java}{}\doxysection{rest.\+checker\+\_\+core.\+checker\+\_\+java Namespace Reference}
+\label{namespacerest_1_1checker__core_1_1checker__java}\index{rest.checker\_core.checker\_java@{rest.checker\_core.checker\_java}}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{namespacerest_1_1checker__core_1_1checker__java_a42bb7b4d698dc0e180527c1fff1e545a}{tokenize\+\_\+jav}} (filename)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Python module pygments is used to tokenize the code files. This module supports 
+    most of the popular languages
+http://pygments.org/languages/
+Hence this program can be used to clean up source code
+This program generates tokenized version of java source code files using pygments to identify 
+the token type
+\end{DoxyVerb}
+ 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{namespacerest_1_1checker__core_1_1checker__java_a42bb7b4d698dc0e180527c1fff1e545a}\label{namespacerest_1_1checker__core_1_1checker__java_a42bb7b4d698dc0e180527c1fff1e545a}} 
+\index{rest.checker\_core.checker\_java@{rest.checker\_core.checker\_java}!tokenize\_jav@{tokenize\_jav}}
+\index{tokenize\_jav@{tokenize\_jav}!rest.checker\_core.checker\_java@{rest.checker\_core.checker\_java}}
+\doxysubsubsection{\texorpdfstring{tokenize\_jav()}{tokenize\_jav()}}
+{\footnotesize\ttfamily def rest.\+checker\+\_\+core.\+checker\+\_\+java.\+tokenize\+\_\+jav (\begin{DoxyParamCaption}\item[{}]{filename }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}This function takes filename as input and returns the tokenized version of source code as string.
+It first removes all extra whitespaces. Then it identifies classes and functions 
+    and prepares their list
+Subsequently the remaining files is tokenized and list of tokens stored in file_tokens
+Whenever a fucntion call/ class instance/ variable name is encountered, specific keywords are 
+    used as tokens ('function'/ 'class'/ 'var')
+Comments, punctutation, literals are ignored
+\end{DoxyVerb}
+ 
+
+Definition at line 15 of file checker\+\_\+java.\+py.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{15 \textcolor{keyword}{def }tokenize\_jav(filename):}
+\DoxyCodeLine{16 }
+\DoxyCodeLine{17     \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{18 \textcolor{stringliteral}{    This function takes filename as input and returns the tokenized version of source code as string.}}
+\DoxyCodeLine{19 \textcolor{stringliteral}{    It first removes all extra whitespaces. Then it identifies classes and functions }}
+\DoxyCodeLine{20 \textcolor{stringliteral}{        and prepares their list}}
+\DoxyCodeLine{21 \textcolor{stringliteral}{    Subsequently the remaining files is tokenized and list of tokens stored in file\_tokens}}
+\DoxyCodeLine{22 \textcolor{stringliteral}{    Whenever a fucntion call/ class instance/ variable name is encountered, specific keywords are }}
+\DoxyCodeLine{23 \textcolor{stringliteral}{        used as tokens ('function'/ 'class'/ 'var')}}
+\DoxyCodeLine{24 \textcolor{stringliteral}{    Comments, punctutation, literals are ignored}}
+\DoxyCodeLine{25 \textcolor{stringliteral}{    "{}"{}"{}}}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{27     file = open(filename, \textcolor{stringliteral}{"{}r"{}})}
+\DoxyCodeLine{28     \textcolor{keywordflow}{if} os.path.exists(\textcolor{stringliteral}{"{}work"{}}): }
+\DoxyCodeLine{29         os.remove(\textcolor{stringliteral}{"{}work"{}})}
+\DoxyCodeLine{30 }
+\DoxyCodeLine{31     work = open(\textcolor{stringliteral}{'work'}, \textcolor{stringliteral}{'a'})        \textcolor{comment}{\#an auxillary file created to store the cource code tet with extra whitespace removed\#}}
+\DoxyCodeLine{32     in\_func = -\/1}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34     \textcolor{keywordflow}{for} l \textcolor{keywordflow}{in} file:}
+\DoxyCodeLine{35         \textcolor{keywordflow}{if} l == \textcolor{stringliteral}{''} \textcolor{keywordflow}{or} l.isspace():      \textcolor{comment}{\#ignore whitespace\#}}
+\DoxyCodeLine{36             \textcolor{keywordflow}{pass}}
+\DoxyCodeLine{37         \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{38             work.write(l.rstrip())      \textcolor{comment}{\#remove trailing space and write to auxillary file\#}}
+\DoxyCodeLine{39             work.write(\textcolor{stringliteral}{'\(\backslash\)n'})}
+\DoxyCodeLine{40     }
+\DoxyCodeLine{41     file.close()}
+\DoxyCodeLine{42     work.close()}
+\DoxyCodeLine{43 }
+\DoxyCodeLine{44     file = open(\textcolor{stringliteral}{'work'}, \textcolor{stringliteral}{'r'})}
+\DoxyCodeLine{45     text = file.read()      \textcolor{comment}{\#read all text from auxillary file\#}}
+\DoxyCodeLine{46 }
+\DoxyCodeLine{47     lexer = pygments.lexers.guess\_lexer\_for\_filename(filename, text)}
+\DoxyCodeLine{48     tokens = lexer.get\_tokens(text)}
+\DoxyCodeLine{49     tokens = list(tokens)}
+\DoxyCodeLine{50     func\_list = []      \textcolor{comment}{\#list to store all the function names\#}}
+\DoxyCodeLine{51     lenT = len(tokens)}
+\DoxyCodeLine{52     file\_tokens = []       \textcolor{comment}{\#list to store the tokens corresponding to the entire source code file\#}}
+\DoxyCodeLine{53     class\_list = []     \textcolor{comment}{\#list to store all the user defined classes\#}}
+\DoxyCodeLine{54 }
+\DoxyCodeLine{55 }
+\DoxyCodeLine{56     \textcolor{comment}{\#key\_names stores dictionary of keywords which are not identified by pygments. They are assigned a shorter value as code to keep track of their weightage in tokenized string\#}}
+\DoxyCodeLine{57     key\_names = \{\textcolor{stringliteral}{'String'} : \textcolor{stringliteral}{'str'}, \textcolor{stringliteral}{'ArrayList'} : \textcolor{stringliteral}{'array'}, \textcolor{stringliteral}{'List'}: \textcolor{stringliteral}{'list'}, \textcolor{stringliteral}{'LinkedList'}: \textcolor{stringliteral}{'linked'}, \textcolor{stringliteral}{'HashMap'}: \textcolor{stringliteral}{'hashma'}, \textcolor{stringliteral}{'HashSet'}:\textcolor{stringliteral}{' hashse'}, \textcolor{stringliteral}{'BufferedReader'}: \textcolor{stringliteral}{'buffer'}, }
+\DoxyCodeLine{58     \textcolor{stringliteral}{'ArithmeticException'} : \textcolor{stringliteral}{'arithmex'}, \textcolor{stringliteral}{'ArrayIndexOutOfBoundsException'} : \textcolor{stringliteral}{'arrinoex'}, \textcolor{stringliteral}{'Iterator'}: \textcolor{stringliteral}{'iterat'}, \textcolor{stringliteral}{'Pattern'}: \textcolor{stringliteral}{'pater'}, \textcolor{stringliteral}{'Matcher'}: \textcolor{stringliteral}{'match'}, \textcolor{stringliteral}{'PatternSyntaxException'}: \textcolor{stringliteral}{'patsynex'},}
+\DoxyCodeLine{59     \textcolor{stringliteral}{'ClassNotFoundException'}: \textcolor{stringliteral}{'clasnoex'}, \textcolor{stringliteral}{'FileNotFoundException'}: \textcolor{stringliteral}{'filenoex'}, \textcolor{stringliteral}{'IOException'}: \textcolor{stringliteral}{'inpoutex'}, \textcolor{stringliteral}{'InterruptedException'}: \textcolor{stringliteral}{'intexex'}, \textcolor{stringliteral}{'NoSuchFieldException'}: \textcolor{stringliteral}{'nofileex'}, }
+\DoxyCodeLine{60     \textcolor{stringliteral}{'NoSuchMethodException'}: \textcolor{stringliteral}{'nomethex'}, \textcolor{stringliteral}{'NullPointerException'}: \textcolor{stringliteral}{'nulponex'}, \textcolor{stringliteral}{'NumberFormatException'}: \textcolor{stringliteral}{'numforex'}, \textcolor{stringliteral}{'RuntimeException'}: \textcolor{stringliteral}{'runtimex'}, }
+\DoxyCodeLine{61     \textcolor{stringliteral}{'StringIndexOutOfBoundsException'}: \textcolor{stringliteral}{'strioex'}, \textcolor{stringliteral}{'LocalDate'}: \textcolor{stringliteral}{'locdat'}, \textcolor{stringliteral}{'LocalTime'}: \textcolor{stringliteral}{'loctim'}, \textcolor{stringliteral}{'LocalDateTime'}: \textcolor{stringliteral}{'dattim'}, \textcolor{stringliteral}{'DateTimeFormatter'}: \textcolor{stringliteral}{'dtform'},}
+\DoxyCodeLine{62     \textcolor{stringliteral}{'Thread'}: \textcolor{stringliteral}{'thread'}, \textcolor{stringliteral}{'Main'}: \textcolor{stringliteral}{'main'}, \textcolor{stringliteral}{'Runnable'}: \textcolor{stringliteral}{'runble'}, \textcolor{stringliteral}{'Consumer'}: \textcolor{stringliteral}{'consum'}, \textcolor{stringliteral}{'private'}: \textcolor{stringliteral}{'scp'}, \textcolor{stringliteral}{'public'}: \textcolor{stringliteral}{'scp'}, \textcolor{stringliteral}{'protected'}: \textcolor{stringliteral}{'scp'},}
+\DoxyCodeLine{63     \textcolor{stringliteral}{'FileReader'}: \textcolor{stringliteral}{'filred'}, \textcolor{stringliteral}{'FileInputStream'}: \textcolor{stringliteral}{'fileinpstr'}, \textcolor{stringliteral}{'FileWriter'}: \textcolor{stringliteral}{'filewrit'}, \textcolor{stringliteral}{'BufferedWriter'}: \textcolor{stringliteral}{'bufwrit'}, \textcolor{stringliteral}{'FileOutputStream'}: \textcolor{stringliteral}{'filoutstr'}, }
+\DoxyCodeLine{64     \textcolor{stringliteral}{'abstract'}: \textcolor{stringliteral}{'abstract'}, \textcolor{stringliteral}{'implements'}: \textcolor{stringliteral}{'implement'}, \textcolor{stringliteral}{'enum'}: \textcolor{stringliteral}{'enum'}, \textcolor{stringliteral}{'interface'}: \textcolor{stringliteral}{'interface'}, \textcolor{stringliteral}{'final'}: \textcolor{stringliteral}{'final'}, \textcolor{stringliteral}{'extends'}: \textcolor{stringliteral}{'extends'}, \textcolor{stringliteral}{'forEach'}: \textcolor{stringliteral}{'forEa'}\}}
+\DoxyCodeLine{65 }
+\DoxyCodeLine{66     \textcolor{comment}{\#list of java's inbuilt methods for files\#}}
+\DoxyCodeLine{67     file\_methods = [\textcolor{stringliteral}{'File'}, \textcolor{stringliteral}{'canRead'}, \textcolor{stringliteral}{'canWrite'}, \textcolor{stringliteral}{'createNewFile'}, \textcolor{stringliteral}{'delete'}, \textcolor{stringliteral}{'exists'}, \textcolor{stringliteral}{'getName'}, \textcolor{stringliteral}{'length'}, \textcolor{stringliteral}{'list'}, \textcolor{stringliteral}{'mkdir'}, \textcolor{stringliteral}{'getAbsolutePath'}, \textcolor{stringliteral}{'FileWriter'}, \textcolor{stringliteral}{'write'}, \textcolor{stringliteral}{'close'}]}
+\DoxyCodeLine{68     }
+\DoxyCodeLine{69 }
+\DoxyCodeLine{70     \textcolor{comment}{\#list of java's inbuilt methods for strings\#}}
+\DoxyCodeLine{71     string\_methods = [\textcolor{stringliteral}{'charAt'}, \textcolor{stringliteral}{'codePointAt'}, \textcolor{stringliteral}{'codePointBefore'}, \textcolor{stringliteral}{'codePointCount'}, \textcolor{stringliteral}{'compareTo'}, \textcolor{stringliteral}{'compareToIgnoreCase'}, \textcolor{stringliteral}{'concat'}, \textcolor{stringliteral}{'contains'}, \textcolor{stringliteral}{'contentEquals'}, \textcolor{stringliteral}{'copyValueOf'}, \textcolor{stringliteral}{'endsWith'}, \textcolor{stringliteral}{'equals'},}
+\DoxyCodeLine{72         \textcolor{stringliteral}{'equalsIgnoreCase'}, \textcolor{stringliteral}{'format'}, \textcolor{stringliteral}{'getBytes'}, \textcolor{stringliteral}{'getChars'}, \textcolor{stringliteral}{'hashCode'}, \textcolor{stringliteral}{'indexOf'}, \textcolor{stringliteral}{'intern'}, \textcolor{stringliteral}{'isEmpty'}, \textcolor{stringliteral}{'lastIndexOf'}, \textcolor{stringliteral}{'length'}, \textcolor{stringliteral}{'matches'}, \textcolor{stringliteral}{'offsetByCodePoints'}, \textcolor{stringliteral}{'regionMatches'}, \textcolor{stringliteral}{'replace'}, \textcolor{stringliteral}{'replaceFirst'},}
+\DoxyCodeLine{73         \textcolor{stringliteral}{'substring'}, \textcolor{stringliteral}{'toCharArray'}, \textcolor{stringliteral}{'toLowerCase'}, \textcolor{stringliteral}{'toString'}, \textcolor{stringliteral}{'toUpperCase'}, \textcolor{stringliteral}{'trim'}, \textcolor{stringliteral}{'valueOf'}]}
+\DoxyCodeLine{74     }
+\DoxyCodeLine{75 }
+\DoxyCodeLine{76     \textcolor{comment}{\#list of java's inbuilt methods for mathematical operations\#}}
+\DoxyCodeLine{77     math\_methods = [\textcolor{stringliteral}{'abs'}, \textcolor{stringliteral}{'acos'}, \textcolor{stringliteral}{'asin'}, \textcolor{stringliteral}{'atan'}, \textcolor{stringliteral}{'atan2'}, \textcolor{stringliteral}{'cbrt'}, \textcolor{stringliteral}{'ceil'}, \textcolor{stringliteral}{'copySign'}, \textcolor{stringliteral}{'cos'}, \textcolor{stringliteral}{'cosh'}, \textcolor{stringliteral}{'exp'}, \textcolor{stringliteral}{'expm1'}, \textcolor{stringliteral}{'floor'}, \textcolor{stringliteral}{'getExponent'}, \textcolor{stringliteral}{'hypot'}, \textcolor{stringliteral}{'log'}, \textcolor{stringliteral}{'log10'}, \textcolor{stringliteral}{'log1p'}, \textcolor{stringliteral}{'max'}, }
+\DoxyCodeLine{78     \textcolor{stringliteral}{'min'}, \textcolor{stringliteral}{'nextAfter'}, \textcolor{stringliteral}{'nextUp'}, \textcolor{stringliteral}{'pow'}, \textcolor{stringliteral}{'random'}, \textcolor{stringliteral}{'round'}, \textcolor{stringliteral}{'rint'}, \textcolor{stringliteral}{'signum'}, \textcolor{stringliteral}{'sin'}, \textcolor{stringliteral}{'sinh'}, \textcolor{stringliteral}{'sqrt'}, \textcolor{stringliteral}{'tan'}, \textcolor{stringliteral}{'tanh'}, \textcolor{stringliteral}{'toDegrees'}, \textcolor{stringliteral}{'toRadians'}, \textcolor{stringliteral}{'ulp'}]}
+\DoxyCodeLine{79 }
+\DoxyCodeLine{80     \textcolor{keywordflow}{for} i \textcolor{keywordflow}{in} range(lenT):}
+\DoxyCodeLine{81         \textcolor{keywordflow}{if} tokens[i][0] == pygments.token.Name.Function:    \textcolor{comment}{\#identify functions and update func\_list\#}}
+\DoxyCodeLine{82             func\_list.append(str(tokens[i][1]))}
+\DoxyCodeLine{83 }
+\DoxyCodeLine{84         \textcolor{keywordflow}{elif} tokens[i][0] == pygments.token.Name.Class:     \textcolor{comment}{\#identify classes and update class\_list\#}}
+\DoxyCodeLine{85             class\_list.append(str(tokens[i][1]))}
+\DoxyCodeLine{86 }
+\DoxyCodeLine{87 }
+\DoxyCodeLine{88     \textcolor{keywordflow}{for} i \textcolor{keywordflow}{in} range(lenT):}
+\DoxyCodeLine{89         \textcolor{keywordflow}{if} tokens[i][0] \textcolor{keywordflow}{in} pygments.token.Punctuation :  \textcolor{comment}{\#punctuautions (,.[]()\{\} etc) are ignored\#}}
+\DoxyCodeLine{90             \textcolor{keywordflow}{pass}}
+\DoxyCodeLine{91         }
+\DoxyCodeLine{92         \textcolor{keywordflow}{elif} str(tokens[i][1]) \textcolor{keywordflow}{in} func\_list \textcolor{keywordflow}{or} tokens[i][0] == pygments.token.Name.Function:    \textcolor{comment}{\#assign keyword 'function' to function calls and declarations and add to file\_tokens\#}}
+\DoxyCodeLine{93             file\_tokens.append(\textcolor{stringliteral}{'function'})}
+\DoxyCodeLine{94 }
+\DoxyCodeLine{95         \textcolor{keywordflow}{elif} tokens[i][0] \textcolor{keywordflow}{in} class\_list \textcolor{keywordflow}{or} tokens[i][0] == pygments.token.Name.Class:       \textcolor{comment}{\#assign keyword 'class' to class declarations and its object instances\#}}
+\DoxyCodeLine{96             file\_tokens.append(\textcolor{stringliteral}{'class'})}
+\DoxyCodeLine{97 }
+\DoxyCodeLine{98 }
+\DoxyCodeLine{99         \textcolor{keywordflow}{elif} (tokens[i][0] == pygments.token.Name \textcolor{keywordflow}{or} tokens[i][0] \textcolor{keywordflow}{in} pygments.token.Name) \textcolor{keywordflow}{and} \textcolor{keywordflow}{not} i == lenT -\/ 1 \textcolor{keywordflow}{and} \textcolor{keywordflow}{not} tokens[i + 1][1] == \textcolor{stringliteral}{'('}:    \textcolor{comment}{\#the token is of type name\#}}
+\DoxyCodeLine{100 }
+\DoxyCodeLine{101             t = str(tokens[i][1])}
+\DoxyCodeLine{102 }
+\DoxyCodeLine{103             \textcolor{keywordflow}{if} tokens[i][0] == pygments.token.Name.Class \textcolor{keywordflow}{or} str(tokens[i][1]) \textcolor{keywordflow}{in} class\_list:       \textcolor{comment}{\#identify objects/ instances of user defined classes and assign 'class' token to it\#}}
+\DoxyCodeLine{104                 file\_tokens.append(\textcolor{stringliteral}{'class'})}
+\DoxyCodeLine{105 }
+\DoxyCodeLine{106             \textcolor{keywordflow}{elif} tokens[i][0] \textcolor{keywordflow}{in} pygments.token.Name.Namespace:     \textcolor{comment}{\#identify imports and obtain a short keyword for their type\#}}
+\DoxyCodeLine{107                 toks = t.split(\textcolor{stringliteral}{'.'})[-\/1]}
+\DoxyCodeLine{108                 \textcolor{keywordflow}{if} toks \textcolor{keywordflow}{in} key\_names.keys():}
+\DoxyCodeLine{109                     file\_tokens.append(key\_names[toks])}
+\DoxyCodeLine{110 }
+\DoxyCodeLine{111             \textcolor{keywordflow}{elif} tokens[i][0] \textcolor{keywordflow}{in} pygments.token.Name.Builtin \textcolor{keywordflow}{or} tokens[i][0] \textcolor{keywordflow}{in} pygments.token.Name.Decorator :}
+\DoxyCodeLine{112                 file\_tokens.append(t)       \textcolor{comment}{\#identify builtin methods of java and decorators and add the token as string form to the list of file tokens\#}}
+\DoxyCodeLine{113 }
+\DoxyCodeLine{114             \textcolor{keywordflow}{elif} tokens[i][0] \textcolor{keywordflow}{in} pygments.token.Name.Attribute:}
+\DoxyCodeLine{115                 file\_tokens.append(\textcolor{stringliteral}{'fun'})}
+\DoxyCodeLine{116 }
+\DoxyCodeLine{117             \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{118                 \textcolor{comment}{\#check if the token is included in our defined vocabulary\#}}
+\DoxyCodeLine{119 }
+\DoxyCodeLine{120                 \textcolor{keywordflow}{if} t \textcolor{keywordflow}{in} key\_names.keys():}
+\DoxyCodeLine{121                     file\_tokens.append(key\_names[t])}
+\DoxyCodeLine{122 }
+\DoxyCodeLine{123                 \textcolor{keywordflow}{elif} t \textcolor{keywordflow}{in} file\_methods:}
+\DoxyCodeLine{124                     file\_tokens.append(t)}
+\DoxyCodeLine{125 }
+\DoxyCodeLine{126                 \textcolor{keywordflow}{elif} t \textcolor{keywordflow}{in} string\_methods:}
+\DoxyCodeLine{127                     file\_tokens.append(t)}
+\DoxyCodeLine{128 }
+\DoxyCodeLine{129                 \textcolor{keywordflow}{elif} t \textcolor{keywordflow}{in} math\_methods:}
+\DoxyCodeLine{130                     file\_tokens.append(t)}
+\DoxyCodeLine{131                 \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{132                     file\_tokens.append(\textcolor{stringliteral}{'var'})   \textcolor{comment}{\#if the token does not satisfy any of the condition above, it is a variable name. So 'var' token is assigned\#}}
+\DoxyCodeLine{133 }
+\DoxyCodeLine{134         \textcolor{keywordflow}{elif} tokens[i][0] == pygments.token.Name.Class:     \textcolor{comment}{\#assign keyword 'class' to class declarations and its object instances\#}}
+\DoxyCodeLine{135             file\_tokens.append(\textcolor{stringliteral}{'class'})}
+\DoxyCodeLine{136 }
+\DoxyCodeLine{137         \textcolor{keywordflow}{elif} tokens[i][0] == pygments.token.Name \textcolor{keywordflow}{or} tokens[i][0] \textcolor{keywordflow}{in} pygments.token.Name:}
+\DoxyCodeLine{138             file\_tokens.append(\textcolor{stringliteral}{'var'})}
+\DoxyCodeLine{139 }
+\DoxyCodeLine{140         \textcolor{keywordflow}{elif} tokens[i][0] \textcolor{keywordflow}{in} pygments.token.Literal.String:}
+\DoxyCodeLine{141             \textcolor{keywordflow}{pass}      \textcolor{comment}{\#ignore values of string type\#}}
+\DoxyCodeLine{142 }
+\DoxyCodeLine{143         \textcolor{keywordflow}{elif} tokens[i][0] == pygments.token.Text \textcolor{keywordflow}{or} tokens[i][0] \textcolor{keywordflow}{in} pygments.token.Comment:}
+\DoxyCodeLine{144             \textcolor{keywordflow}{pass}   \textcolor{comment}{\#ignore tabs, comments and other unnecessary text\#}}
+\DoxyCodeLine{145 }
+\DoxyCodeLine{146         \textcolor{keywordflow}{elif} str(tokens[i][1]) == \textcolor{stringliteral}{'import'}:     \textcolor{comment}{\#import keyword is ignored\#}}
+\DoxyCodeLine{147             \textcolor{keywordflow}{pass}}
+\DoxyCodeLine{148 }
+\DoxyCodeLine{149         \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{150             t = str(tokens[i][1])       \textcolor{comment}{\#remaining tokens are identifiers, operators and keywords, so are appended to file\_tokens\#}}
+\DoxyCodeLine{151             \textcolor{keywordflow}{if} t \textcolor{keywordflow}{in} key\_names.keys():}
+\DoxyCodeLine{152                 file\_tokens.append(key\_names[t])}
+\DoxyCodeLine{153             \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{154                 file\_tokens.append(t)}
+\DoxyCodeLine{155 }
+\DoxyCodeLine{156     \textcolor{keywordflow}{if} os.path.exists(\textcolor{stringliteral}{"{}work"{}}):}
+\DoxyCodeLine{157         os.remove(\textcolor{stringliteral}{"{}work"{}})}
+\DoxyCodeLine{158     \textcolor{keywordflow}{return} \textcolor{stringliteral}{''}.join(file\_tokens)}
+\DoxyCodeLine{159 }
+
+\end{DoxyCode}

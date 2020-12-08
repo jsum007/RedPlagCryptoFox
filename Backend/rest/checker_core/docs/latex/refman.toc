@@ -1,0 +1,44 @@
+\@ifundefined {etoctocstyle}{\let \etoc@startlocaltoc \@gobble \let \etoc@settocdepth \@gobble \let \etoc@depthtag \@gobble \let \etoc@setlocaltop \@gobble }{}
+\contentsline {chapter}{\numberline {1}Namespace Index}{1}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Packages}{1}{section.1.1}%
+\contentsline {chapter}{\numberline {2}Namespace Documentation}{3}{chapter.2}%
+\contentsline {section}{\numberline {2.1}rest.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}checker\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}core.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}backup\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}checker Namespace Reference}{3}{section.2.1}%
+\contentsline {subsection}{\numberline {2.1.1}Detailed Description}{3}{subsection.2.1.1}%
+\contentsline {subsection}{\numberline {2.1.2}Function Documentation}{3}{subsection.2.1.2}%
+\contentsline {subsubsection}{\numberline {2.1.2.1}backup\_tokenize()}{3}{subsubsection.2.1.2.1}%
+\contentsline {section}{\numberline {2.2}rest.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}checker\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}core.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}checker\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}cpp Namespace Reference}{5}{section.2.2}%
+\contentsline {subsection}{\numberline {2.2.1}Detailed Description}{5}{subsection.2.2.1}%
+\contentsline {subsection}{\numberline {2.2.2}Function Documentation}{6}{subsection.2.2.2}%
+\contentsline {subsubsection}{\numberline {2.2.2.1}add\_func()}{6}{subsubsection.2.2.2.1}%
+\contentsline {subsubsection}{\numberline {2.2.2.2}basicCheck()}{6}{subsubsection.2.2.2.2}%
+\contentsline {subsubsection}{\numberline {2.2.2.3}class\_n\_func\_tokens()}{8}{subsubsection.2.2.2.3}%
+\contentsline {subsubsection}{\numberline {2.2.2.4}delimiterCorrection()}{9}{subsubsection.2.2.2.4}%
+\contentsline {subsubsection}{\numberline {2.2.2.5}delimiters()}{10}{subsubsection.2.2.2.5}%
+\contentsline {subsubsection}{\numberline {2.2.2.6}funcCheck()}{10}{subsubsection.2.2.2.6}%
+\contentsline {subsubsection}{\numberline {2.2.2.7}hasWhiteSpace()}{11}{subsubsection.2.2.2.7}%
+\contentsline {subsubsection}{\numberline {2.2.2.8}identifiers()}{12}{subsubsection.2.2.2.8}%
+\contentsline {subsubsection}{\numberline {2.2.2.9}isWhiteSpace()}{12}{subsubsection.2.2.2.9}%
+\contentsline {subsubsection}{\numberline {2.2.2.10}keywords()}{12}{subsubsection.2.2.2.10}%
+\contentsline {subsubsection}{\numberline {2.2.2.11}operators()}{13}{subsubsection.2.2.2.11}%
+\contentsline {subsubsection}{\numberline {2.2.2.12}run()}{13}{subsubsection.2.2.2.12}%
+\contentsline {subsubsection}{\numberline {2.2.2.13}tokenize()}{14}{subsubsection.2.2.2.13}%
+\contentsline {subsubsection}{\numberline {2.2.2.14}tokenize\_cpp()}{15}{subsubsection.2.2.2.14}%
+\contentsline {subsection}{\numberline {2.2.3}Variable Documentation}{15}{subsection.2.2.3}%
+\contentsline {subsubsection}{\numberline {2.2.3.1}xml\_generator\_config}{15}{subsubsection.2.2.3.1}%
+\contentsline {section}{\numberline {2.3}rest.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}checker\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}core.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}checker\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}java Namespace Reference}{15}{section.2.3}%
+\contentsline {subsection}{\numberline {2.3.1}Detailed Description}{16}{subsection.2.3.1}%
+\contentsline {subsection}{\numberline {2.3.2}Function Documentation}{16}{subsection.2.3.2}%
+\contentsline {subsubsection}{\numberline {2.3.2.1}tokenize\_jav()}{16}{subsubsection.2.3.2.1}%
+\contentsline {section}{\numberline {2.4}rest.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}checker\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}core.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}checker\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}py Namespace Reference}{18}{section.2.4}%
+\contentsline {subsection}{\numberline {2.4.1}Detailed Description}{18}{subsection.2.4.1}%
+\contentsline {subsection}{\numberline {2.4.2}Function Documentation}{18}{subsection.2.4.2}%
+\contentsline {subsubsection}{\numberline {2.4.2.1}add\_function\_tokens()}{19}{subsubsection.2.4.2.1}%
+\contentsline {subsubsection}{\numberline {2.4.2.2}tokenize\_py()}{20}{subsubsection.2.4.2.2}%
+\contentsline {section}{\numberline {2.5}rest.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}checker\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}core.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Final\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Checker Namespace Reference}{22}{section.2.5}%
+\contentsline {subsection}{\numberline {2.5.1}Detailed Description}{22}{subsection.2.5.1}%
+\contentsline {subsection}{\numberline {2.5.2}Function Documentation}{22}{subsection.2.5.2}%
+\contentsline {subsubsection}{\numberline {2.5.2.1}extract\_files()}{22}{subsubsection.2.5.2.1}%
+\contentsline {subsubsection}{\numberline {2.5.2.2}folder\_compare()}{23}{subsubsection.2.5.2.2}%
+\contentsline {subsubsection}{\numberline {2.5.2.3}plagCheck()}{24}{subsubsection.2.5.2.3}%
+\contentsline {subsubsection}{\numberline {2.5.2.4}RunCheck()}{25}{subsubsection.2.5.2.4}%
+\contentsline {subsubsection}{\numberline {2.5.2.5}saveres()}{26}{subsubsection.2.5.2.5}%

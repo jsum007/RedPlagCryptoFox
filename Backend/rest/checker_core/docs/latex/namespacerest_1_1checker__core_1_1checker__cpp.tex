@@ -1,0 +1,853 @@
+\hypertarget{namespacerest_1_1checker__core_1_1checker__cpp}{}\doxysection{rest.\+checker\+\_\+core.\+checker\+\_\+cpp Namespace Reference}
+\label{namespacerest_1_1checker__core_1_1checker__cpp}\index{rest.checker\_core.checker\_cpp@{rest.checker\_core.checker\_cpp}}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{namespacerest_1_1checker__core_1_1checker__cpp_ac9489a2fcbc2ccfb3be76edab1a7177d}{keywords}} ()
+\item 
+def \mbox{\hyperlink{namespacerest_1_1checker__core_1_1checker__cpp_ae046ebda5828cad22e35b4320f52568f}{identifiers}} ()
+\item 
+def \mbox{\hyperlink{namespacerest_1_1checker__core_1_1checker__cpp_a7a6a818436e5de1b427e5934d5a9a5ce}{operators}} ()
+\item 
+def \mbox{\hyperlink{namespacerest_1_1checker__core_1_1checker__cpp_a27db095bf4ac009a22468f69adf5c243}{delimiters}} ()
+\item 
+def \mbox{\hyperlink{namespacerest_1_1checker__core_1_1checker__cpp_ac7d908598284fbe22bd872c117df3a1c}{add\+\_\+func}} (token, func\+\_\+tokens)
+\item 
+def \mbox{\hyperlink{namespacerest_1_1checker__core_1_1checker__cpp_a63344bdb1c11435bafaec00ab695dc11}{basic\+Check}} (token, file\+\_\+tokens, func\+\_\+tokens, class\+\_\+list)
+\item 
+def \mbox{\hyperlink{namespacerest_1_1checker__core_1_1checker__cpp_acb1ad6d6b89ba08211afbc9a5b8ee785}{func\+Check}} (token, func\+\_\+tokens, func\+\_\+list, class\+\_\+list)
+\item 
+def \mbox{\hyperlink{namespacerest_1_1checker__core_1_1checker__cpp_aefb546a57f62526b2fda7a62e638bf1b}{delimiter\+Correction}} (line)
+\item 
+def \mbox{\hyperlink{namespacerest_1_1checker__core_1_1checker__cpp_a0f009fd5db240695b1333b4ca2cda184}{is\+White\+Space}} (word)
+\item 
+def \mbox{\hyperlink{namespacerest_1_1checker__core_1_1checker__cpp_af2b654ea47b51eb31758b43e316c3011}{has\+White\+Space}} (token)
+\item 
+def \mbox{\hyperlink{namespacerest_1_1checker__core_1_1checker__cpp_ada50510b3cebf3d3009761a55953a456}{class\+\_\+n\+\_\+func\+\_\+tokens}} (class\+\_\+all\+\_\+list, func\+\_\+all\+\_\+list)
+\item 
+def \mbox{\hyperlink{namespacerest_1_1checker__core_1_1checker__cpp_a73f9c062f0235099884641a82d06c6d3}{tokenize}} (path, file\+\_\+tokens, func\+\_\+tokens, class\+\_\+all\+\_\+list, func\+\_\+all\+\_\+list)
+\item 
+def \mbox{\hyperlink{namespacerest_1_1checker__core_1_1checker__cpp_a612c135834306a9919256f7a29c703af}{run}} (path)
+\item 
+def \mbox{\hyperlink{namespacerest_1_1checker__core_1_1checker__cpp_a3c322f45e707edaefdc39bbfbc11669a}{tokenize\+\_\+cpp}} (file)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{namespacerest_1_1checker__core_1_1checker__cpp_aeeff8d9fb2b13dca5a7f9080fd172003}\label{namespacerest_1_1checker__core_1_1checker__cpp_aeeff8d9fb2b13dca5a7f9080fd172003}} 
+int {\bfseries scope\+\_\+depth} = 0
+\item 
+\mbox{\Hypertarget{namespacerest_1_1checker__core_1_1checker__cpp_a34191bd4e9588059e65155ed31967f1d}\label{namespacerest_1_1checker__core_1_1checker__cpp_a34191bd4e9588059e65155ed31967f1d}} 
+int {\bfseries is\+\_\+function} = -\/1
+\item 
+\mbox{\Hypertarget{namespacerest_1_1checker__core_1_1checker__cpp_a029b80184e496a37e9c77acd33bd75f1}\label{namespacerest_1_1checker__core_1_1checker__cpp_a029b80184e496a37e9c77acd33bd75f1}} 
+{\bfseries generator\+\_\+path}
+\item 
+\mbox{\Hypertarget{namespacerest_1_1checker__core_1_1checker__cpp_a3a278e7fc3dabc13fbb4df38fb663287}\label{namespacerest_1_1checker__core_1_1checker__cpp_a3a278e7fc3dabc13fbb4df38fb663287}} 
+{\bfseries generator\+\_\+name}
+\item 
+{\bfseries xml\+\_\+generator\+\_\+config}
+\item 
+\mbox{\Hypertarget{namespacerest_1_1checker__core_1_1checker__cpp_a465492bb75774097353767a5180226c9}\label{namespacerest_1_1checker__core_1_1checker__cpp_a465492bb75774097353767a5180226c9}} 
+{\bfseries declarations}
+\item 
+\mbox{\Hypertarget{namespacerest_1_1checker__core_1_1checker__cpp_abfb1dd9613d7980df6a54a4a5f7addf5}\label{namespacerest_1_1checker__core_1_1checker__cpp_abfb1dd9613d7980df6a54a4a5f7addf5}} 
+{\bfseries global\+\_\+namespace}
+\item 
+\mbox{\Hypertarget{namespacerest_1_1checker__core_1_1checker__cpp_ae11791bc683272ed28064c28c17a7f85}\label{namespacerest_1_1checker__core_1_1checker__cpp_ae11791bc683272ed28064c28c17a7f85}} 
+{\bfseries std}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Python library pygccxml is used.
+This package provides functionality to extract and inspect declarations 
+    from C/C++ header files. 
+This is accomplished by invoking an external tool like CastXML or GCC-XML, 
+    which parses a header 
+    file and dumps the declarations as a XML file. 
+This XML file is then read by pygccxml and the contents are made available as 
+    appropriate Python objects.
+
+To parse a set of C/C++ header files you use the parse function in the :mod:parser 
+    sub package which returns
+    a tree that contains all declarations found in the header files. 
+The root of the tree represents the main namespace :: and the children nodes represent 
+    the namespace contents 
+    such as other namespaces, classes, functions, etc. 
+Each node in the tree is an object of a type derived from the declaration_t class. 
+An inner node is always either a namespace declarations.namespace_t or a class 
+    declarations.class_t, which 
+    are both derived from declarations.scopedef_t class
+
+Thus, we can obtain - 
+1) a list of function and their arguments
+2) classes and their variables, constructors, operators and methods
+3) global variables
+\end{DoxyVerb}
+ 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{namespacerest_1_1checker__core_1_1checker__cpp_ac7d908598284fbe22bd872c117df3a1c}\label{namespacerest_1_1checker__core_1_1checker__cpp_ac7d908598284fbe22bd872c117df3a1c}} 
+\index{rest.checker\_core.checker\_cpp@{rest.checker\_core.checker\_cpp}!add\_func@{add\_func}}
+\index{add\_func@{add\_func}!rest.checker\_core.checker\_cpp@{rest.checker\_core.checker\_cpp}}
+\doxysubsubsection{\texorpdfstring{add\_func()}{add\_func()}}
+{\footnotesize\ttfamily def rest.\+checker\+\_\+core.\+checker\+\_\+cpp.\+add\+\_\+func (\begin{DoxyParamCaption}\item[{}]{token,  }\item[{}]{func\+\_\+tokens }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}takes the dictionary of func_tokens and function name as argument and returns a 
+    list of tokens corresponding to the function
+Invoked whnever a function is called and token is name of the function\end{DoxyVerb}
+ 
+
+Definition at line 81 of file checker\+\_\+cpp.\+py.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{81 \textcolor{keyword}{def }add\_func(token, func\_tokens):}
+\DoxyCodeLine{82     \textcolor{stringliteral}{'''takes the dictionary of func\_tokens and function name as argument and returns a }}
+\DoxyCodeLine{83 \textcolor{stringliteral}{        list of tokens corresponding to the function}}
+\DoxyCodeLine{84 \textcolor{stringliteral}{    Invoked whnever a function is called and token is name of the function'''}}
+\DoxyCodeLine{85     new\_list = []}
+\DoxyCodeLine{86     \textcolor{keywordflow}{for} t \textcolor{keywordflow}{in} func\_tokens[token]:}
+\DoxyCodeLine{87         \textcolor{keywordflow}{if} t != token:}
+\DoxyCodeLine{88             \textcolor{keywordflow}{if} t \textcolor{keywordflow}{in} func\_tokens:}
+\DoxyCodeLine{89                 new\_list = new\_list + add\_func(t, func\_tokens)}
+\DoxyCodeLine{90             \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{91                 new\_list.append(t)}
+\DoxyCodeLine{92 }
+\DoxyCodeLine{93     \textcolor{keywordflow}{return} new\_list}
+\DoxyCodeLine{94 }
+\DoxyCodeLine{95 }
+\DoxyCodeLine{96 }
+
+\end{DoxyCode}
+\mbox{\Hypertarget{namespacerest_1_1checker__core_1_1checker__cpp_a63344bdb1c11435bafaec00ab695dc11}\label{namespacerest_1_1checker__core_1_1checker__cpp_a63344bdb1c11435bafaec00ab695dc11}} 
+\index{rest.checker\_core.checker\_cpp@{rest.checker\_core.checker\_cpp}!basicCheck@{basicCheck}}
+\index{basicCheck@{basicCheck}!rest.checker\_core.checker\_cpp@{rest.checker\_core.checker\_cpp}}
+\doxysubsubsection{\texorpdfstring{basicCheck()}{basicCheck()}}
+{\footnotesize\ttfamily def rest.\+checker\+\_\+core.\+checker\+\_\+cpp.\+basic\+Check (\begin{DoxyParamCaption}\item[{}]{token,  }\item[{}]{file\+\_\+tokens,  }\item[{}]{func\+\_\+tokens,  }\item[{}]{class\+\_\+list }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}token is single token to be processed now
+file_tokens is the list to which the token might be added
+func_tokens is a dictionary with function names mapped to corresponding declarations and is 
+    used to add tokens corresponding to a function call
+class_list is a list of classes to identify object instances
+
+This fucntion examines the given token and determines whether it needs to be appended. 
+    Whitespaces, comments, delimiters/punctuation/literals are ignored.
+Tokens which are keywords/ identifiers/ operators are added as strings to the file_tokens list
+Variables names are assigned token with 'v' keyword
+Numbers of any type(int/ float) are assigned token with 'no' keyword
+Headers of any type are assigned token with 'he' keyword
+Objects/ instances of a class are assigned token woth 'obj' keyword
+For function calls, add_func is passes the function name and tokens corresponding to the function 
+    are added to file_tokens
+\end{DoxyVerb}
+ 
+
+Definition at line 97 of file checker\+\_\+cpp.\+py.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{97 \textcolor{keyword}{def }basicCheck(token, file\_tokens, func\_tokens, class\_list):}
+\DoxyCodeLine{98 }
+\DoxyCodeLine{99     \textcolor{stringliteral}{'''}}
+\DoxyCodeLine{100 \textcolor{stringliteral}{    token is single token to be processed now}}
+\DoxyCodeLine{101 \textcolor{stringliteral}{    file\_tokens is the list to which the token might be added}}
+\DoxyCodeLine{102 \textcolor{stringliteral}{    func\_tokens is a dictionary with function names mapped to corresponding declarations and is }}
+\DoxyCodeLine{103 \textcolor{stringliteral}{        used to add tokens corresponding to a function call}}
+\DoxyCodeLine{104 \textcolor{stringliteral}{    class\_list is a list of classes to identify object instances}}
+\DoxyCodeLine{105 \textcolor{stringliteral}{}}
+\DoxyCodeLine{106 \textcolor{stringliteral}{    This fucntion examines the given token and determines whether it needs to be appended. }}
+\DoxyCodeLine{107 \textcolor{stringliteral}{        Whitespaces, comments, delimiters/punctuation/literals are ignored.}}
+\DoxyCodeLine{108 \textcolor{stringliteral}{    Tokens which are keywords/ identifiers/ operators are added as strings to the file\_tokens list}}
+\DoxyCodeLine{109 \textcolor{stringliteral}{    Variables names are assigned token with 'v' keyword}}
+\DoxyCodeLine{110 \textcolor{stringliteral}{    Numbers of any type(int/ float) are assigned token with 'no' keyword}}
+\DoxyCodeLine{111 \textcolor{stringliteral}{    Headers of any type are assigned token with 'he' keyword}}
+\DoxyCodeLine{112 \textcolor{stringliteral}{    Objects/ instances of a class are assigned token woth 'obj' keyword}}
+\DoxyCodeLine{113 \textcolor{stringliteral}{    For function calls, add\_func is passes the function name and tokens corresponding to the function }}
+\DoxyCodeLine{114 \textcolor{stringliteral}{        are added to file\_tokens}}
+\DoxyCodeLine{115 \textcolor{stringliteral}{    '''}}
+\DoxyCodeLine{116     \textcolor{keyword}{global} scope\_depth, is\_function}
+\DoxyCodeLine{117     varPtrn = re.compile(\textcolor{stringliteral}{r"{}[a-\/zA-\/Z\_][a-\/zA-\/Z0-\/9\_]"{}})  \textcolor{comment}{\# variables}}
+\DoxyCodeLine{118     headerPtrn = re.compile(\textcolor{stringliteral}{r"{}\(\backslash\)w[a-\/zA-\/Z]+[.]h"{}})  \textcolor{comment}{\# header files}}
+\DoxyCodeLine{119     digitPtrn = re.compile(\textcolor{stringliteral}{r'\(\backslash\)d'})   \textcolor{comment}{\#digits}}
+\DoxyCodeLine{120     floatPtrn = re.compile(\textcolor{stringliteral}{r'\(\backslash\)d+[.]\(\backslash\)d+'})    \textcolor{comment}{\#decimals}}
+\DoxyCodeLine{121 }
+\DoxyCodeLine{122     \textcolor{keywordflow}{if} token \textcolor{keywordflow}{in} mysrc.delimiters():}
+\DoxyCodeLine{123         description = mysrc.delimiters()[token]}
+\DoxyCodeLine{124         \textcolor{keywordflow}{if} description == \textcolor{stringliteral}{'LCBRACE'}:}
+\DoxyCodeLine{125             scope\_depth += 1}
+\DoxyCodeLine{126             }
+\DoxyCodeLine{127         \textcolor{keywordflow}{elif} description == \textcolor{stringliteral}{'RCBRACE'}:}
+\DoxyCodeLine{128             scope\_depth -\/= 1}
+\DoxyCodeLine{129             \textcolor{keywordflow}{if} is\_function != -\/1 \textcolor{keywordflow}{and} scope\_depth == 0:}
+\DoxyCodeLine{130                 is\_function = -\/1}
+\DoxyCodeLine{131             }
+\DoxyCodeLine{132         \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{133             \textcolor{keywordflow}{pass}}
+\DoxyCodeLine{134     \textcolor{keywordflow}{elif} token \textcolor{keywordflow}{in} mysrc.keywords():}
+\DoxyCodeLine{135         }
+\DoxyCodeLine{136         \textcolor{keywordflow}{if} is\_function != -\/1:}
+\DoxyCodeLine{137             \textcolor{keywordflow}{pass}}
+\DoxyCodeLine{138         \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{139             file\_tokens.append(token)}
+\DoxyCodeLine{140 }
+\DoxyCodeLine{141     \textcolor{keywordflow}{elif} token \textcolor{keywordflow}{in} mysrc.identifiers():}
+\DoxyCodeLine{142         }
+\DoxyCodeLine{143         \textcolor{keywordflow}{if} is\_function != -\/1:}
+\DoxyCodeLine{144             \textcolor{keywordflow}{pass}}
+\DoxyCodeLine{145         \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{146             file\_tokens.append(token)}
+\DoxyCodeLine{147 }
+\DoxyCodeLine{148     \textcolor{keywordflow}{elif} token \textcolor{keywordflow}{in} mysrc.operators().keys():}
+\DoxyCodeLine{149         }
+\DoxyCodeLine{150         \textcolor{keywordflow}{if} is\_function != -\/1:}
+\DoxyCodeLine{151             \textcolor{keywordflow}{pass}}
+\DoxyCodeLine{152         \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{153             file\_tokens.append(token)}
+\DoxyCodeLine{154     }
+\DoxyCodeLine{155     \textcolor{keywordflow}{elif} re.search(headerPtrn, token):}
+\DoxyCodeLine{156         }
+\DoxyCodeLine{157         file\_tokens.append(\textcolor{stringliteral}{'head'})}
+\DoxyCodeLine{158 }
+\DoxyCodeLine{159     \textcolor{keywordflow}{elif} token \textcolor{keywordflow}{in} func\_tokens.keys() \textcolor{keywordflow}{and} token != \textcolor{stringliteral}{'main'}:}
+\DoxyCodeLine{160         file\_tokens.extend(add\_func(token, func\_tokens))}
+\DoxyCodeLine{161         }
+\DoxyCodeLine{162 }
+\DoxyCodeLine{163     \textcolor{keywordflow}{elif} token \textcolor{keywordflow}{in} class\_list:}
+\DoxyCodeLine{164         file\_tokens.append(\textcolor{stringliteral}{'obj'} )}
+\DoxyCodeLine{165 }
+\DoxyCodeLine{166     \textcolor{keywordflow}{elif} token == \textcolor{stringliteral}{'head'}:}
+\DoxyCodeLine{167         file\_tokens.append(\textcolor{stringliteral}{'he'})}
+\DoxyCodeLine{168 }
+\DoxyCodeLine{169     \textcolor{keywordflow}{elif} token == \textcolor{stringliteral}{'num'}:}
+\DoxyCodeLine{170         file\_tokens.append(\textcolor{stringliteral}{'no'})}
+\DoxyCodeLine{171 }
+\DoxyCodeLine{172     \textcolor{keywordflow}{elif} token == \textcolor{stringliteral}{'obj'}:}
+\DoxyCodeLine{173         file\_tokens.append(\textcolor{stringliteral}{'obj'})}
+\DoxyCodeLine{174 }
+\DoxyCodeLine{175     \textcolor{keywordflow}{elif} re.match(varPtrn, token) \textcolor{keywordflow}{or} \textcolor{stringliteral}{"{}'"{}} \textcolor{keywordflow}{in} token \textcolor{keywordflow}{or} \textcolor{stringliteral}{'"{}'} \textcolor{keywordflow}{in} token:}
+\DoxyCodeLine{176         \textcolor{keywordflow}{if} is\_function != -\/1:}
+\DoxyCodeLine{177             \textcolor{keywordflow}{pass}}
+\DoxyCodeLine{178         \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{179             file\_tokens.append(\textcolor{stringliteral}{'v'})}
+\DoxyCodeLine{180     \textcolor{keywordflow}{elif} re.match(digitPtrn, token):}
+\DoxyCodeLine{181 }
+\DoxyCodeLine{182         \textcolor{keywordflow}{if} is\_function != -\/1:}
+\DoxyCodeLine{183             \textcolor{keywordflow}{pass}}
+\DoxyCodeLine{184         \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{185             file\_tokens.append(\textcolor{stringliteral}{'no'})}
+\DoxyCodeLine{186 }
+\DoxyCodeLine{187     \textcolor{keywordflow}{return} \textcolor{keyword}{True}}
+\DoxyCodeLine{188 }
+
+\end{DoxyCode}
+\mbox{\Hypertarget{namespacerest_1_1checker__core_1_1checker__cpp_ada50510b3cebf3d3009761a55953a456}\label{namespacerest_1_1checker__core_1_1checker__cpp_ada50510b3cebf3d3009761a55953a456}} 
+\index{rest.checker\_core.checker\_cpp@{rest.checker\_core.checker\_cpp}!class\_n\_func\_tokens@{class\_n\_func\_tokens}}
+\index{class\_n\_func\_tokens@{class\_n\_func\_tokens}!rest.checker\_core.checker\_cpp@{rest.checker\_core.checker\_cpp}}
+\doxysubsubsection{\texorpdfstring{class\_n\_func\_tokens()}{class\_n\_func\_tokens()}}
+{\footnotesize\ttfamily def rest.\+checker\+\_\+core.\+checker\+\_\+cpp.\+class\+\_\+n\+\_\+func\+\_\+tokens (\begin{DoxyParamCaption}\item[{}]{class\+\_\+all\+\_\+list,  }\item[{}]{func\+\_\+all\+\_\+list }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Takes as input list of all classes and functions in the file as identified by the pygccxml parser
+Generates new lists - func_list and class_list of user defined functions and classes
+For functions - the line number where function definition begins is identified using regex 
+    matching and stored in func_start with the same order as func_list
+For Classses - constructors, operators, variables and memeber functions corresponding to each user 
+defined class are obtained from the parser and added to dictionary class_tokens mapped to class name
+Returns the above generated lists/dictionaries
+\end{DoxyVerb}
+ 
+
+Definition at line 336 of file checker\+\_\+cpp.\+py.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{336 \textcolor{keyword}{def }class\_n\_func\_tokens(class\_all\_list, func\_all\_list):}
+\DoxyCodeLine{337 }
+\DoxyCodeLine{338     \textcolor{stringliteral}{'''}}
+\DoxyCodeLine{339 \textcolor{stringliteral}{    Takes as input list of all classes and functions in the file as identified by the pygccxml parser}}
+\DoxyCodeLine{340 \textcolor{stringliteral}{    Generates new lists -\/ func\_list and class\_list of user defined functions and classes}}
+\DoxyCodeLine{341 \textcolor{stringliteral}{    For functions -\/ the line number where function definition begins is identified using regex }}
+\DoxyCodeLine{342 \textcolor{stringliteral}{        matching and stored in func\_start with the same order as func\_list}}
+\DoxyCodeLine{343 \textcolor{stringliteral}{    For Classses -\/ constructors, operators, variables and memeber functions corresponding to each user }}
+\DoxyCodeLine{344 \textcolor{stringliteral}{    defined class are obtained from the parser and added to dictionary class\_tokens mapped to class name}}
+\DoxyCodeLine{345 \textcolor{stringliteral}{    Returns the above generated lists/dictionaries}}
+\DoxyCodeLine{346 \textcolor{stringliteral}{    '''}}
+\DoxyCodeLine{347 }
+\DoxyCodeLine{348     func\_start = []}
+\DoxyCodeLine{349     func\_list = []}
+\DoxyCodeLine{350     func\_tokens = []}
+\DoxyCodeLine{351     class\_tokens = \{\}}
+\DoxyCodeLine{352     f = open(\textcolor{stringliteral}{'work'}, \textcolor{stringliteral}{'r'})}
+\DoxyCodeLine{353     txt = f.read()}
+\DoxyCodeLine{354     \textcolor{keywordflow}{for} func \textcolor{keywordflow}{in} func\_all\_list:}
+\DoxyCodeLine{355         pat = \textcolor{stringliteral}{r"{}\(\backslash\)s*"{}}+str(func.name)+\textcolor{stringliteral}{r"{}+\(\backslash\)s*\(\backslash\)("{}}}
+\DoxyCodeLine{356         res = re.findall(pat, txt)}
+\DoxyCodeLine{357         \textcolor{keywordflow}{if} (len(res)>0):}
+\DoxyCodeLine{358             func\_list.append(str(func.name))}
+\DoxyCodeLine{359             pat2 = \textcolor{stringliteral}{r"{}\(\backslash\)s*"{}}+str(func.name)+\textcolor{stringliteral}{r"{}+\(\backslash\)s*\(\backslash\)(([\(\backslash\)w+\(\backslash\)s+\(\backslash\)w+])*\(\backslash\))\(\backslash\)s*\(\backslash\)\{"{}}}
+\DoxyCodeLine{360             pos = re.search(pat2, txt)}
+\DoxyCodeLine{361             \textcolor{keywordflow}{if} pos != \textcolor{keywordtype}{None}:}
+\DoxyCodeLine{362                 line\_no = len(re.findall(\textcolor{stringliteral}{'\(\backslash\)n'}, txt[0:int(pos.start())]))}
+\DoxyCodeLine{363                 func\_start.append(line\_no)}
+\DoxyCodeLine{364 }
+\DoxyCodeLine{365     class\_list = []}
+\DoxyCodeLine{366     \textcolor{keywordflow}{for} class\_ \textcolor{keywordflow}{in} reversed(class\_all\_list):}
+\DoxyCodeLine{367         pat = \textcolor{stringliteral}{r"{}\(\backslash\)s*"{}}+str(class\_.name)+\textcolor{stringliteral}{r"{}+\(\backslash\)s*\(\backslash\)\{"{}}}
+\DoxyCodeLine{368         res = re.findall(pat, txt)}
+\DoxyCodeLine{369         \textcolor{keywordflow}{if} (len(res)>0):}
+\DoxyCodeLine{370             class\_tokens[class\_.name] = []}
+\DoxyCodeLine{371             \textcolor{keywordflow}{for} base \textcolor{keywordflow}{in} class\_.bases:}
+\DoxyCodeLine{372                 class\_tokens[class\_.name].extend(base.related\_class.name.split())}
+\DoxyCodeLine{373                 }
+\DoxyCodeLine{374             \textcolor{keywordflow}{for} derive \textcolor{keywordflow}{in} class\_.derived:}
+\DoxyCodeLine{375                 class\_tokens[class\_.name].extend(derive.related\_class.name.spilt())}
+\DoxyCodeLine{376 }
+\DoxyCodeLine{377             \textcolor{keywordflow}{for} p \textcolor{keywordflow}{in} class\_.constructors(allow\_empty = \textcolor{keyword}{True}):}
+\DoxyCodeLine{378                 \textcolor{keywordflow}{if} p \textcolor{keywordflow}{is} \textcolor{keywordtype}{None}:}
+\DoxyCodeLine{379                     \textcolor{keywordflow}{break}}
+\DoxyCodeLine{380                 \textcolor{keywordflow}{for} a \textcolor{keywordflow}{in} p.argument\_types:}
+\DoxyCodeLine{381                     class\_tokens[class\_.name].extend(str(a).split())}
+\DoxyCodeLine{382                 }
+\DoxyCodeLine{383             \textcolor{keywordflow}{for} p \textcolor{keywordflow}{in} class\_.operators(allow\_empty = \textcolor{keyword}{True}):}
+\DoxyCodeLine{384                 \textcolor{keywordflow}{if} p \textcolor{keywordflow}{is} \textcolor{keywordflow}{not} \textcolor{keywordtype}{None}:}
+\DoxyCodeLine{385                     p = re.sub(\textcolor{stringliteral}{r'operator'}, \textcolor{stringliteral}{r'ope'}, str(p.name))}
+\DoxyCodeLine{386                     class\_tokens[class\_.name].append(p)}
+\DoxyCodeLine{387 }
+\DoxyCodeLine{388             \textcolor{keywordflow}{for} p \textcolor{keywordflow}{in} class\_.variables(allow\_empty = \textcolor{keyword}{True}):}
+\DoxyCodeLine{389                 class\_tokens[class\_.name].append(str(p.decl\_type))}
+\DoxyCodeLine{390 }
+\DoxyCodeLine{391             \textcolor{keywordflow}{for} p \textcolor{keywordflow}{in} class\_.member\_functions(allow\_empty = \textcolor{keyword}{True}):}
+\DoxyCodeLine{392                 \textcolor{keywordflow}{if} p \textcolor{keywordflow}{is} \textcolor{keywordtype}{None}:}
+\DoxyCodeLine{393                     \textcolor{keywordflow}{break}}
+\DoxyCodeLine{394                 \textcolor{keywordflow}{for} a \textcolor{keywordflow}{in} p.argument\_types:}
+\DoxyCodeLine{395                     class\_tokens[class\_.name].append(str(a))}
+\DoxyCodeLine{396 }
+\DoxyCodeLine{397             class\_list.append(str(class\_.name))}
+\DoxyCodeLine{398 }
+\DoxyCodeLine{399     \textcolor{keywordflow}{return} func\_list, func\_start, class\_list, class\_tokens}
+\DoxyCodeLine{400 }
+
+\end{DoxyCode}
+\mbox{\Hypertarget{namespacerest_1_1checker__core_1_1checker__cpp_aefb546a57f62526b2fda7a62e638bf1b}\label{namespacerest_1_1checker__core_1_1checker__cpp_aefb546a57f62526b2fda7a62e638bf1b}} 
+\index{rest.checker\_core.checker\_cpp@{rest.checker\_core.checker\_cpp}!delimiterCorrection@{delimiterCorrection}}
+\index{delimiterCorrection@{delimiterCorrection}!rest.checker\_core.checker\_cpp@{rest.checker\_core.checker\_cpp}}
+\doxysubsubsection{\texorpdfstring{delimiterCorrection()}{delimiterCorrection()}}
+{\footnotesize\ttfamily def rest.\+checker\+\_\+core.\+checker\+\_\+cpp.\+delimiter\+Correction (\begin{DoxyParamCaption}\item[{}]{line }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Takes a line as input and splits it into tokens using whitespace as separator
+To ensure that delimiters are taken into account poistion of delimeters are identified and 
+    replaced with padding of spaces around them for effective splitting
+Returned is list of tokens generated from the line excluding whitespaces
+The tokens generated now are just words in the source code file, they need to be processed further\end{DoxyVerb}
+ 
+
+Definition at line 267 of file checker\+\_\+cpp.\+py.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{267 \textcolor{keyword}{def }delimiterCorrection(line):}
+\DoxyCodeLine{268 }
+\DoxyCodeLine{269     \textcolor{stringliteral}{'''Takes a line as input and splits it into tokens using whitespace as separator}}
+\DoxyCodeLine{270 \textcolor{stringliteral}{    To ensure that delimiters are taken into account poistion of delimeters are identified and }}
+\DoxyCodeLine{271 \textcolor{stringliteral}{        replaced with padding of spaces around them for effective splitting}}
+\DoxyCodeLine{272 \textcolor{stringliteral}{    Returned is list of tokens generated from the line excluding whitespaces}}
+\DoxyCodeLine{273 \textcolor{stringliteral}{    The tokens generated now are just words in the source code file, they need to be processed further'''}}
+\DoxyCodeLine{274 }
+\DoxyCodeLine{275     \textcolor{keywordflow}{for} delim \textcolor{keywordflow}{in} mysrc.delimiters().keys():}
+\DoxyCodeLine{276         \textcolor{keywordflow}{if} delim \textcolor{keywordflow}{in} line:}
+\DoxyCodeLine{277             line = line.replace(delim, \textcolor{stringliteral}{' '}+delim+\textcolor{stringliteral}{' '}) }
+\DoxyCodeLine{278     }
+\DoxyCodeLine{279     tokens = line.split(\textcolor{stringliteral}{"{} "{}})}
+\DoxyCodeLine{280     \textcolor{keywordflow}{for} delimiter \textcolor{keywordflow}{in} mysrc.delimiters().keys():}
+\DoxyCodeLine{281         \textcolor{keywordflow}{for} token \textcolor{keywordflow}{in} tokens:}
+\DoxyCodeLine{282 }
+\DoxyCodeLine{283             \textcolor{keywordflow}{if} token == delimiter:}
+\DoxyCodeLine{284                 \textcolor{keywordflow}{pass}}
+\DoxyCodeLine{285             \textcolor{keywordflow}{elif} delimiter \textcolor{keywordflow}{in} token:}
+\DoxyCodeLine{286 }
+\DoxyCodeLine{287                 pos = token.find(delimiter)}
+\DoxyCodeLine{288                 tokens.remove(token)}
+\DoxyCodeLine{289                 token = token.replace(delimiter, \textcolor{stringliteral}{"{} "{}})}
+\DoxyCodeLine{290                 extra = token[:pos]}
+\DoxyCodeLine{291                 token = token[pos + 1 :]}
+\DoxyCodeLine{292                 tokens.append(delimiter)}
+\DoxyCodeLine{293                 tokens.append(extra)}
+\DoxyCodeLine{294                 tokens.append(token)}
+\DoxyCodeLine{295             \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{296                 \textcolor{keywordflow}{pass}}
+\DoxyCodeLine{297     \textcolor{keywordflow}{for} token \textcolor{keywordflow}{in} tokens:}
+\DoxyCodeLine{298         \textcolor{keywordflow}{if} isWhiteSpace(token):}
+\DoxyCodeLine{299             tokens.remove(token)}
+\DoxyCodeLine{300         \textcolor{keywordflow}{elif} \textcolor{stringliteral}{' '} \textcolor{keywordflow}{in} token:}
+\DoxyCodeLine{301             tokens.remove(token)}
+\DoxyCodeLine{302             token = token.split(\textcolor{stringliteral}{' '})}
+\DoxyCodeLine{303             \textcolor{keywordflow}{for} d \textcolor{keywordflow}{in} token:}
+\DoxyCodeLine{304                 tokens.append(d)}
+\DoxyCodeLine{305     \textcolor{keywordflow}{return} tokens}
+\DoxyCodeLine{306 }
+
+\end{DoxyCode}
+\mbox{\Hypertarget{namespacerest_1_1checker__core_1_1checker__cpp_a27db095bf4ac009a22468f69adf5c243}\label{namespacerest_1_1checker__core_1_1checker__cpp_a27db095bf4ac009a22468f69adf5c243}} 
+\index{rest.checker\_core.checker\_cpp@{rest.checker\_core.checker\_cpp}!delimiters@{delimiters}}
+\index{delimiters@{delimiters}!rest.checker\_core.checker\_cpp@{rest.checker\_core.checker\_cpp}}
+\doxysubsubsection{\texorpdfstring{delimiters()}{delimiters()}}
+{\footnotesize\ttfamily def rest.\+checker\+\_\+core.\+checker\+\_\+cpp.\+delimiters (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}a dictionary of cpp delimiters\end{DoxyVerb}
+ 
+
+Definition at line 73 of file checker\+\_\+cpp.\+py.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{73 \textcolor{keyword}{def }delimiters():}
+\DoxyCodeLine{74     \textcolor{stringliteral}{'''a dictionary of cpp delimiters'''}}
+\DoxyCodeLine{75     delimiters = \{}
+\DoxyCodeLine{76     \textcolor{stringliteral}{"{}\(\backslash\)t"{}}: \textcolor{stringliteral}{"{}TAB"{}}, \textcolor{stringliteral}{"{}\(\backslash\)n"{}}: \textcolor{stringliteral}{"{}NEWLINE"{}},\textcolor{stringliteral}{"{}("{}}: \textcolor{stringliteral}{"{}LPAR"{}}, \textcolor{stringliteral}{"{})"{}}: \textcolor{stringliteral}{"{}RPAR"{}}, \textcolor{stringliteral}{"{}["{}}: \textcolor{stringliteral}{"{}LBRACE"{}}, \textcolor{stringliteral}{"{}]"{}}: \textcolor{stringliteral}{"{}RBRACE"{}}, \textcolor{stringliteral}{"{}\{"{}}: \textcolor{stringliteral}{"{}LCBRACE"{}}, \textcolor{stringliteral}{"{}\}"{}}: \textcolor{stringliteral}{"{}RCBRACE"{}}, \textcolor{stringliteral}{"{}="{}}: \textcolor{stringliteral}{"{}ASSIGN"{}},\textcolor{stringliteral}{"{}:"{}}: \textcolor{stringliteral}{"{}COLON"{}}, \textcolor{stringliteral}{"{},"{}}: \textcolor{stringliteral}{"{}COMMA"{}}, \textcolor{stringliteral}{"{};"{}}: \textcolor{stringliteral}{"{}SEMICOL"{}}, \textcolor{stringliteral}{"{}<<"{}}: \textcolor{stringliteral}{"{}OUT"{}}, \textcolor{stringliteral}{"{}>>"{}}: \textcolor{stringliteral}{"{}IN"{}},}
+\DoxyCodeLine{77     \}}
+\DoxyCodeLine{78     \textcolor{comment}{\#print(len(delimiters)) = 14}}
+\DoxyCodeLine{79     \textcolor{keywordflow}{return} delimiters}
+\DoxyCodeLine{80 }
+
+\end{DoxyCode}
+\mbox{\Hypertarget{namespacerest_1_1checker__core_1_1checker__cpp_acb1ad6d6b89ba08211afbc9a5b8ee785}\label{namespacerest_1_1checker__core_1_1checker__cpp_acb1ad6d6b89ba08211afbc9a5b8ee785}} 
+\index{rest.checker\_core.checker\_cpp@{rest.checker\_core.checker\_cpp}!funcCheck@{funcCheck}}
+\index{funcCheck@{funcCheck}!rest.checker\_core.checker\_cpp@{rest.checker\_core.checker\_cpp}}
+\doxysubsubsection{\texorpdfstring{funcCheck()}{funcCheck()}}
+{\footnotesize\ttfamily def rest.\+checker\+\_\+core.\+checker\+\_\+cpp.\+func\+Check (\begin{DoxyParamCaption}\item[{}]{token,  }\item[{}]{func\+\_\+tokens,  }\item[{}]{func\+\_\+list,  }\item[{}]{class\+\_\+list }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}token is single token to be processed now
+file_tokens is the list to which the token might be added
+func_tokens is a dictionary with function names mapped to corresponding declarations and is used 
+    to add tokens corresponding to a function call
+class_list is a list of classes to identify object instances
+
+Similar to basicChecker but works on processing tokens of a particular function. The name of 
+    current function being processed is stored in is_function var.
+It appends the generated token value to the dictionary func_tokens mapped to corresponding name
+\end{DoxyVerb}
+ 
+
+Definition at line 189 of file checker\+\_\+cpp.\+py.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{189 \textcolor{keyword}{def }funcCheck(token, func\_tokens, func\_list, class\_list):}
+\DoxyCodeLine{190 }
+\DoxyCodeLine{191     \textcolor{stringliteral}{'''}}
+\DoxyCodeLine{192 \textcolor{stringliteral}{    token is single token to be processed now}}
+\DoxyCodeLine{193 \textcolor{stringliteral}{    file\_tokens is the list to which the token might be added}}
+\DoxyCodeLine{194 \textcolor{stringliteral}{    func\_tokens is a dictionary with function names mapped to corresponding declarations and is used }}
+\DoxyCodeLine{195 \textcolor{stringliteral}{        to add tokens corresponding to a function call}}
+\DoxyCodeLine{196 \textcolor{stringliteral}{    class\_list is a list of classes to identify object instances}}
+\DoxyCodeLine{197 \textcolor{stringliteral}{}}
+\DoxyCodeLine{198 \textcolor{stringliteral}{    Similar to basicChecker but works on processing tokens of a particular function. The name of }}
+\DoxyCodeLine{199 \textcolor{stringliteral}{        current function being processed is stored in is\_function var.}}
+\DoxyCodeLine{200 \textcolor{stringliteral}{    It appends the generated token value to the dictionary func\_tokens mapped to corresponding name}}
+\DoxyCodeLine{201 \textcolor{stringliteral}{    '''}}
+\DoxyCodeLine{202 }
+\DoxyCodeLine{203     \textcolor{keyword}{global} scope\_depth, is\_function}
+\DoxyCodeLine{204     varPtrn = re.compile(\textcolor{stringliteral}{r"{}[a-\/zA-\/Z\_][a-\/zA-\/Z0-\/9\_]"{}})  \textcolor{comment}{\# variables}}
+\DoxyCodeLine{205     headerPtrn = re.compile(\textcolor{stringliteral}{r"{}\(\backslash\)w[a-\/zA-\/Z]+[.]h"{}})  \textcolor{comment}{\# header files}}
+\DoxyCodeLine{206     digitPtrn = re.compile(\textcolor{stringliteral}{r'\(\backslash\)d'}) \textcolor{comment}{\#digits}}
+\DoxyCodeLine{207     floatPtrn = re.compile(\textcolor{stringliteral}{r'\(\backslash\)d+[.]\(\backslash\)d+'}) \textcolor{comment}{\#decimals}}
+\DoxyCodeLine{208 }
+\DoxyCodeLine{209     \textcolor{keywordflow}{if} token \textcolor{keywordflow}{in} mysrc.delimiters():}
+\DoxyCodeLine{210         description = mysrc.delimiters()[token]}
+\DoxyCodeLine{211         \textcolor{keywordflow}{if} description == \textcolor{stringliteral}{'LCBRACE'}:}
+\DoxyCodeLine{212             scope\_depth += 1}
+\DoxyCodeLine{213 }
+\DoxyCodeLine{214         \textcolor{keywordflow}{elif} description == \textcolor{stringliteral}{'RCBRACE'}:}
+\DoxyCodeLine{215             scope\_depth -\/= 1}
+\DoxyCodeLine{216             \textcolor{keywordflow}{if} is\_function != -\/1 \textcolor{keywordflow}{and} scope\_depth == 0:}
+\DoxyCodeLine{217                 is\_function = -\/1}
+\DoxyCodeLine{218             }
+\DoxyCodeLine{219         \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{220             \textcolor{keywordflow}{pass}}
+\DoxyCodeLine{221     \textcolor{keywordflow}{elif} token \textcolor{keywordflow}{in} mysrc.keywords():}
+\DoxyCodeLine{222         }
+\DoxyCodeLine{223         \textcolor{keywordflow}{if} is\_function != -\/1:}
+\DoxyCodeLine{224             func\_tokens[is\_function].append(token)}
+\DoxyCodeLine{225         \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{226             \textcolor{keywordflow}{pass}}
+\DoxyCodeLine{227     \textcolor{keywordflow}{elif} token \textcolor{keywordflow}{in} mysrc.identifiers():}
+\DoxyCodeLine{228         }
+\DoxyCodeLine{229         \textcolor{keywordflow}{if} is\_function != -\/1:}
+\DoxyCodeLine{230             func\_tokens[is\_function].append(token)}
+\DoxyCodeLine{231         \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{232             \textcolor{keywordflow}{pass}}
+\DoxyCodeLine{233 }
+\DoxyCodeLine{234     \textcolor{keywordflow}{elif} token \textcolor{keywordflow}{in} mysrc.operators().keys():}
+\DoxyCodeLine{235         }
+\DoxyCodeLine{236         \textcolor{keywordflow}{if} is\_function != -\/1:}
+\DoxyCodeLine{237             func\_tokens[is\_function].append(token)}
+\DoxyCodeLine{238         \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{239             \textcolor{keywordflow}{pass}}
+\DoxyCodeLine{240     \textcolor{keywordflow}{elif} token \textcolor{keywordflow}{in} func\_list \textcolor{keywordflow}{and} token != is\_function \textcolor{keywordflow}{and} is\_function!= -\/1:}
+\DoxyCodeLine{241         func\_tokens[is\_function].append(token)}
+\DoxyCodeLine{242 }
+\DoxyCodeLine{243     \textcolor{keywordflow}{elif} token \textcolor{keywordflow}{in} class\_list \textcolor{keywordflow}{and} is\_function!= -\/1:}
+\DoxyCodeLine{244         func\_tokens[is\_function].append(\textcolor{stringliteral}{'obj'} )}
+\DoxyCodeLine{245 }
+\DoxyCodeLine{246     \textcolor{keywordflow}{elif} re.search(headerPtrn, token):}
+\DoxyCodeLine{247 }
+\DoxyCodeLine{248         \textcolor{keywordflow}{pass}}
+\DoxyCodeLine{249     \textcolor{keywordflow}{elif} re.match(varPtrn, token) \textcolor{keywordflow}{or} \textcolor{stringliteral}{"{}'"{}} \textcolor{keywordflow}{in} token \textcolor{keywordflow}{or} \textcolor{stringliteral}{'"{}'} \textcolor{keywordflow}{in} token:}
+\DoxyCodeLine{250 }
+\DoxyCodeLine{251         \textcolor{keywordflow}{if} is\_function != -\/1:}
+\DoxyCodeLine{252             func\_tokens[is\_function].append(\textcolor{stringliteral}{'v'})}
+\DoxyCodeLine{253         \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{254             \textcolor{keywordflow}{pass}}
+\DoxyCodeLine{255         }
+\DoxyCodeLine{256 }
+\DoxyCodeLine{257     \textcolor{keywordflow}{elif} re.match(digitPtrn, token):}
+\DoxyCodeLine{258 }
+\DoxyCodeLine{259         \textcolor{keywordflow}{if} is\_function != -\/1:}
+\DoxyCodeLine{260             func\_tokens[is\_function].append(\textcolor{stringliteral}{'no'})}
+\DoxyCodeLine{261             \textcolor{keywordflow}{pass}}
+\DoxyCodeLine{262         \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{263             \textcolor{keywordflow}{pass}}
+\DoxyCodeLine{264 }
+\DoxyCodeLine{265     \textcolor{keywordflow}{return} \textcolor{keyword}{True}}
+\DoxyCodeLine{266 }
+
+\end{DoxyCode}
+\mbox{\Hypertarget{namespacerest_1_1checker__core_1_1checker__cpp_af2b654ea47b51eb31758b43e316c3011}\label{namespacerest_1_1checker__core_1_1checker__cpp_af2b654ea47b51eb31758b43e316c3011}} 
+\index{rest.checker\_core.checker\_cpp@{rest.checker\_core.checker\_cpp}!hasWhiteSpace@{hasWhiteSpace}}
+\index{hasWhiteSpace@{hasWhiteSpace}!rest.checker\_core.checker\_cpp@{rest.checker\_core.checker\_cpp}}
+\doxysubsubsection{\texorpdfstring{hasWhiteSpace()}{hasWhiteSpace()}}
+{\footnotesize\ttfamily def rest.\+checker\+\_\+core.\+checker\+\_\+cpp.\+has\+White\+Space (\begin{DoxyParamCaption}\item[{}]{token }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Checks if a token has a whitespace in it
+If it is present, it is interpreted as aliteral and returned with single quotes added
+Else return false
+\end{DoxyVerb}
+ 
+
+Definition at line 318 of file checker\+\_\+cpp.\+py.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{318 \textcolor{keyword}{def }hasWhiteSpace(token):}
+\DoxyCodeLine{319 }
+\DoxyCodeLine{320     \textcolor{stringliteral}{'''}}
+\DoxyCodeLine{321 \textcolor{stringliteral}{    Checks if a token has a whitespace in it}}
+\DoxyCodeLine{322 \textcolor{stringliteral}{    If it is present, it is interpreted as aliteral and returned with single quotes added}}
+\DoxyCodeLine{323 \textcolor{stringliteral}{    Else return false}}
+\DoxyCodeLine{324 \textcolor{stringliteral}{    '''}}
+\DoxyCodeLine{325     ptrn = [\textcolor{stringliteral}{'\(\backslash\)t'}, \textcolor{stringliteral}{'\(\backslash\)n'}]}
+\DoxyCodeLine{326     \textcolor{keywordflow}{if} isWhiteSpace(token) == \textcolor{keyword}{False}:}
+\DoxyCodeLine{327         \textcolor{keywordflow}{for} item \textcolor{keywordflow}{in} ptrn:}
+\DoxyCodeLine{328             \textcolor{keywordflow}{if} item \textcolor{keywordflow}{in} token:}
+\DoxyCodeLine{329                 result = \textcolor{stringliteral}{"{}'"{}} + item + \textcolor{stringliteral}{"{}'"{}}}
+\DoxyCodeLine{330                 \textcolor{keywordflow}{return} result}
+\DoxyCodeLine{331             \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{332                 \textcolor{keywordflow}{pass}}
+\DoxyCodeLine{333     \textcolor{keywordflow}{return} \textcolor{keyword}{False}}
+\DoxyCodeLine{334 }
+\DoxyCodeLine{335 }
+
+\end{DoxyCode}
+\mbox{\Hypertarget{namespacerest_1_1checker__core_1_1checker__cpp_ae046ebda5828cad22e35b4320f52568f}\label{namespacerest_1_1checker__core_1_1checker__cpp_ae046ebda5828cad22e35b4320f52568f}} 
+\index{rest.checker\_core.checker\_cpp@{rest.checker\_core.checker\_cpp}!identifiers@{identifiers}}
+\index{identifiers@{identifiers}!rest.checker\_core.checker\_cpp@{rest.checker\_core.checker\_cpp}}
+\doxysubsubsection{\texorpdfstring{identifiers()}{identifiers()}}
+{\footnotesize\ttfamily def rest.\+checker\+\_\+core.\+checker\+\_\+cpp.\+identifiers (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}a list of cpp identifiers\end{DoxyVerb}
+ 
+
+Definition at line 59 of file checker\+\_\+cpp.\+py.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{59 \textcolor{keyword}{def }identifiers(): }
+\DoxyCodeLine{60     \textcolor{stringliteral}{'''a list of cpp identifiers'''}}
+\DoxyCodeLine{61     identifiers = [}
+\DoxyCodeLine{62     \textcolor{stringliteral}{"{}auto"{}}, \textcolor{stringliteral}{"{}bool"{}}, \textcolor{stringliteral}{"{}char"{}}, \textcolor{stringliteral}{"{}double"{}}, \textcolor{stringliteral}{"{}enum"{}}, \textcolor{stringliteral}{"{}float"{}}, \textcolor{stringliteral}{"{}int"{}}, \textcolor{stringliteral}{"{}long"{}}, \textcolor{stringliteral}{"{}short"{}}, \textcolor{stringliteral}{"{}string"{}} ]}
+\DoxyCodeLine{63     \textcolor{comment}{\#print(len(identifiers)) = 10}}
+\DoxyCodeLine{64     \textcolor{keywordflow}{return} identifiers}
+\DoxyCodeLine{65 }
+
+\end{DoxyCode}
+\mbox{\Hypertarget{namespacerest_1_1checker__core_1_1checker__cpp_a0f009fd5db240695b1333b4ca2cda184}\label{namespacerest_1_1checker__core_1_1checker__cpp_a0f009fd5db240695b1333b4ca2cda184}} 
+\index{rest.checker\_core.checker\_cpp@{rest.checker\_core.checker\_cpp}!isWhiteSpace@{isWhiteSpace}}
+\index{isWhiteSpace@{isWhiteSpace}!rest.checker\_core.checker\_cpp@{rest.checker\_core.checker\_cpp}}
+\doxysubsubsection{\texorpdfstring{isWhiteSpace()}{isWhiteSpace()}}
+{\footnotesize\ttfamily def rest.\+checker\+\_\+core.\+checker\+\_\+cpp.\+is\+White\+Space (\begin{DoxyParamCaption}\item[{}]{word }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}takes token as input and return true if it comes under whitespace else false
+\end{DoxyVerb}
+ 
+
+Definition at line 307 of file checker\+\_\+cpp.\+py.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{307 \textcolor{keyword}{def }isWhiteSpace(word):}
+\DoxyCodeLine{308     \textcolor{stringliteral}{'''}}
+\DoxyCodeLine{309 \textcolor{stringliteral}{    takes token as input and return true if it comes under whitespace else false}}
+\DoxyCodeLine{310 \textcolor{stringliteral}{    '''}}
+\DoxyCodeLine{311     ptrn = [ \textcolor{stringliteral}{"{} "{}}, \textcolor{stringliteral}{"{}\(\backslash\)t"{}}, \textcolor{stringliteral}{"{}\(\backslash\)n"{}}]}
+\DoxyCodeLine{312     \textcolor{keywordflow}{for} item \textcolor{keywordflow}{in} ptrn:}
+\DoxyCodeLine{313         \textcolor{keywordflow}{if} word == item:}
+\DoxyCodeLine{314             \textcolor{keywordflow}{return} \textcolor{keyword}{True}}
+\DoxyCodeLine{315         \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{316             \textcolor{keywordflow}{return} \textcolor{keyword}{False}}
+\DoxyCodeLine{317 }
+
+\end{DoxyCode}
+\mbox{\Hypertarget{namespacerest_1_1checker__core_1_1checker__cpp_ac9489a2fcbc2ccfb3be76edab1a7177d}\label{namespacerest_1_1checker__core_1_1checker__cpp_ac9489a2fcbc2ccfb3be76edab1a7177d}} 
+\index{rest.checker\_core.checker\_cpp@{rest.checker\_core.checker\_cpp}!keywords@{keywords}}
+\index{keywords@{keywords}!rest.checker\_core.checker\_cpp@{rest.checker\_core.checker\_cpp}}
+\doxysubsubsection{\texorpdfstring{keywords()}{keywords()}}
+{\footnotesize\ttfamily def rest.\+checker\+\_\+core.\+checker\+\_\+cpp.\+keywords (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}a list of cpp keywords\end{DoxyVerb}
+ 
+
+Definition at line 50 of file checker\+\_\+cpp.\+py.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{50 \textcolor{keyword}{def }keywords(): }
+\DoxyCodeLine{51     \textcolor{stringliteral}{'''a list of cpp keywords'''}}
+\DoxyCodeLine{52     keywords = [}
+\DoxyCodeLine{53     \textcolor{stringliteral}{"{}break"{}}, \textcolor{stringliteral}{"{}case"{}}, \textcolor{stringliteral}{"{}catch"{}}, \textcolor{stringliteral}{"{}word"{}}, \textcolor{stringliteral}{"{}class"{}}, \textcolor{stringliteral}{"{}const"{}}, \textcolor{stringliteral}{"{}continue"{}}, \textcolor{stringliteral}{"{}delete"{}}, \textcolor{stringliteral}{"{}do"{}}, \textcolor{stringliteral}{"{}else"{}}, \textcolor{stringliteral}{"{}false"{}}, \textcolor{stringliteral}{"{}for"{}}, \textcolor{stringliteral}{"{}goto"{}}, \textcolor{stringliteral}{"{}if"{}}, }
+\DoxyCodeLine{54     \textcolor{stringliteral}{"{}namespace"{}}, \textcolor{stringliteral}{"{}not"{}}, \textcolor{stringliteral}{"{}or"{}}, \textcolor{stringliteral}{"{}private"{}}, \textcolor{stringliteral}{"{}protected"{}}, \textcolor{stringliteral}{"{}public"{}}, \textcolor{stringliteral}{"{}return"{}}, \textcolor{stringliteral}{"{}signed"{}}, \textcolor{stringliteral}{"{}sizeof"{}}, \textcolor{stringliteral}{"{}static"{}}, \textcolor{stringliteral}{"{}struct"{}}, \textcolor{stringliteral}{"{}switch"{}}, \textcolor{stringliteral}{"{}true"{}}, \textcolor{stringliteral}{"{}try"{}}, \textcolor{stringliteral}{"{}unsigned"{}}, \textcolor{stringliteral}{"{}void"{}}, \textcolor{stringliteral}{"{}while"{}},}
+\DoxyCodeLine{55     \textcolor{stringliteral}{"{}endl"{}}, \textcolor{stringliteral}{"{}cout"{}}, \textcolor{stringliteral}{"{}cin"{}}, \textcolor{stringliteral}{'queue'}, \textcolor{stringliteral}{'stack'}, \textcolor{stringliteral}{'vector'}, \textcolor{stringliteral}{'array'}, \textcolor{stringliteral}{'list'}, \textcolor{stringliteral}{'forward\_list'}, \textcolor{stringliteral}{'set'} ,\textcolor{stringliteral}{'map'}, \textcolor{stringliteral}{'deque'}, \textcolor{stringliteral}{'priority\_queue'}, \textcolor{stringliteral}{'multiset'}, \textcolor{stringliteral}{'multimap'},}
+\DoxyCodeLine{56     ]}
+\DoxyCodeLine{57     \textcolor{keywordflow}{return} keywords}
+\DoxyCodeLine{58 }
+
+\end{DoxyCode}
+\mbox{\Hypertarget{namespacerest_1_1checker__core_1_1checker__cpp_a7a6a818436e5de1b427e5934d5a9a5ce}\label{namespacerest_1_1checker__core_1_1checker__cpp_a7a6a818436e5de1b427e5934d5a9a5ce}} 
+\index{rest.checker\_core.checker\_cpp@{rest.checker\_core.checker\_cpp}!operators@{operators}}
+\index{operators@{operators}!rest.checker\_core.checker\_cpp@{rest.checker\_core.checker\_cpp}}
+\doxysubsubsection{\texorpdfstring{operators()}{operators()}}
+{\footnotesize\ttfamily def rest.\+checker\+\_\+core.\+checker\+\_\+cpp.\+operators (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}a dictionary of cpp operators\end{DoxyVerb}
+ 
+
+Definition at line 66 of file checker\+\_\+cpp.\+py.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{66 \textcolor{keyword}{def }operators():}
+\DoxyCodeLine{67     \textcolor{stringliteral}{'''a dictionary of cpp operators'''}}
+\DoxyCodeLine{68     operators = \{}
+\DoxyCodeLine{69     \textcolor{stringliteral}{"{}+"{}}: \textcolor{stringliteral}{"{}PLUS"{}}, \textcolor{stringliteral}{"{}-\/"{}}: \textcolor{stringliteral}{"{}MINUS"{}}, \textcolor{stringliteral}{"{}*"{}}: \textcolor{stringliteral}{"{}MUL"{}}, \textcolor{stringliteral}{"{}/"{}}: \textcolor{stringliteral}{"{}DIV"{}}, \textcolor{stringliteral}{"{}\%"{}}: \textcolor{stringliteral}{"{}MOD"{}}, \textcolor{stringliteral}{"{}+="{}}: \textcolor{stringliteral}{"{}PLUSEQ"{}}, \textcolor{stringliteral}{"{}-\/="{}}: \textcolor{stringliteral}{"{}MINUSEQ"{}}, \textcolor{stringliteral}{"{}*="{}}: \textcolor{stringliteral}{"{}MULEQ"{}}, \textcolor{stringliteral}{"{}/="{}}: \textcolor{stringliteral}{"{}DIVEQ"{}}, \textcolor{stringliteral}{"{}++"{}}: \textcolor{stringliteral}{"{}INC"{}}, \textcolor{stringliteral}{"{}-\/-\/"{}}: \textcolor{stringliteral}{"{}DEC"{}}, \textcolor{stringliteral}{"{}|"{}}: \textcolor{stringliteral}{"{}OR"{}}, \textcolor{stringliteral}{"{}\&\&"{}}: \textcolor{stringliteral}{"{}AND"{}}, \textcolor{stringliteral}{"{}\&"{}}: \textcolor{stringliteral}{"{}REF"{}},}
+\DoxyCodeLine{70     \}}
+\DoxyCodeLine{71     \textcolor{keywordflow}{return} operators}
+\DoxyCodeLine{72 }
+
+\end{DoxyCode}
+\mbox{\Hypertarget{namespacerest_1_1checker__core_1_1checker__cpp_a612c135834306a9919256f7a29c703af}\label{namespacerest_1_1checker__core_1_1checker__cpp_a612c135834306a9919256f7a29c703af}} 
+\index{rest.checker\_core.checker\_cpp@{rest.checker\_core.checker\_cpp}!run@{run}}
+\index{run@{run}!rest.checker\_core.checker\_cpp@{rest.checker\_core.checker\_cpp}}
+\doxysubsubsection{\texorpdfstring{run()}{run()}}
+{\footnotesize\ttfamily def rest.\+checker\+\_\+core.\+checker\+\_\+cpp.\+run (\begin{DoxyParamCaption}\item[{}]{path }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Takes the path of file name as input 
+The parser and xml generator use the file to generate a list of declarations
+The global namespace is obtained and the list of declarations in the global namespace is examined 
+    for functions and classes which are identified by the parser
+This list slong woth the file path id passed to the tokenize function to produce tokens 
+    for the source code
+\end{DoxyVerb}
+ 
+
+Definition at line 474 of file checker\+\_\+cpp.\+py.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{474 \textcolor{keyword}{def }run(path):}
+\DoxyCodeLine{475 }
+\DoxyCodeLine{476     \textcolor{stringliteral}{'''}}
+\DoxyCodeLine{477 \textcolor{stringliteral}{    Takes the path of file name as input }}
+\DoxyCodeLine{478 \textcolor{stringliteral}{    The parser and xml generator use the file to generate a list of declarations}}
+\DoxyCodeLine{479 \textcolor{stringliteral}{    The global namespace is obtained and the list of declarations in the global namespace is examined }}
+\DoxyCodeLine{480 \textcolor{stringliteral}{        for functions and classes which are identified by the parser}}
+\DoxyCodeLine{481 \textcolor{stringliteral}{    This list slong woth the file path id passed to the tokenize function to produce tokens }}
+\DoxyCodeLine{482 \textcolor{stringliteral}{        for the source code}}
+\DoxyCodeLine{483 \textcolor{stringliteral}{    '''}}
+\DoxyCodeLine{484 }
+\DoxyCodeLine{485     declarations = parser.parse([path], xml\_generator\_config)}
+\DoxyCodeLine{486     global\_namespace = declarations.get\_global\_namespace(declarations)}
+\DoxyCodeLine{487     std = global\_namespace.namespace(\textcolor{stringliteral}{"{}std"{}})}
+\DoxyCodeLine{488 }
+\DoxyCodeLine{489     func\_all\_list = []}
+\DoxyCodeLine{490     class\_all\_list = []}
+\DoxyCodeLine{491 }
+\DoxyCodeLine{492     \textcolor{keywordflow}{for} d \textcolor{keywordflow}{in} global\_namespace.declarations:}
+\DoxyCodeLine{493         \textcolor{keywordflow}{if} isinstance(d, declarations.class\_declaration\_t):}
+\DoxyCodeLine{494             \textcolor{keywordflow}{pass}}
+\DoxyCodeLine{495 }
+\DoxyCodeLine{496         \textcolor{keywordflow}{if} isinstance(d, declarations.class\_t) \textcolor{keywordflow}{and} d.parent == global\_namespace:}
+\DoxyCodeLine{497             class\_all\_list.append(d)}
+\DoxyCodeLine{498 }
+\DoxyCodeLine{499         \textcolor{keywordflow}{if} isinstance(d, declarations.free\_function\_t):}
+\DoxyCodeLine{500             func\_all\_list.append(d)}
+\DoxyCodeLine{501     }
+\DoxyCodeLine{502     file\_tokens = []}
+\DoxyCodeLine{503     func\_tokens = \{\}}
+\DoxyCodeLine{504 }
+\DoxyCodeLine{505     \textcolor{stringliteral}{'''}}
+\DoxyCodeLine{506 \textcolor{stringliteral}{    file\_tokens is the list which will store all the tokens generated from the file}}
+\DoxyCodeLine{507 \textcolor{stringliteral}{    func\_tokens is a dictionary with function names mapped to corresponding declarations and is }}
+\DoxyCodeLine{508 \textcolor{stringliteral}{        used to add tokens corresponding to a function call}}
+\DoxyCodeLine{509 \textcolor{stringliteral}{    '''}}
+\DoxyCodeLine{510     tokenize(path, file\_tokens, func\_tokens, class\_all\_list, func\_all\_list)}
+\DoxyCodeLine{511     \textcolor{keywordflow}{return} file\_tokens, func\_tokens}
+\DoxyCodeLine{512 }
+\DoxyCodeLine{513 }
+
+\end{DoxyCode}
+\mbox{\Hypertarget{namespacerest_1_1checker__core_1_1checker__cpp_a73f9c062f0235099884641a82d06c6d3}\label{namespacerest_1_1checker__core_1_1checker__cpp_a73f9c062f0235099884641a82d06c6d3}} 
+\index{rest.checker\_core.checker\_cpp@{rest.checker\_core.checker\_cpp}!tokenize@{tokenize}}
+\index{tokenize@{tokenize}!rest.checker\_core.checker\_cpp@{rest.checker\_core.checker\_cpp}}
+\doxysubsubsection{\texorpdfstring{tokenize()}{tokenize()}}
+{\footnotesize\ttfamily def rest.\+checker\+\_\+core.\+checker\+\_\+cpp.\+tokenize (\begin{DoxyParamCaption}\item[{}]{path,  }\item[{}]{file\+\_\+tokens,  }\item[{}]{func\+\_\+tokens,  }\item[{}]{class\+\_\+all\+\_\+list,  }\item[{}]{func\+\_\+all\+\_\+list }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}path is the path of file to be processed
+file_tokens is the list which will store all the tokens generated from the file
+func_tokens is a dictionary with function names mapped to corresponding declarations and is used 
+    to add tokens corresponding to a function call
+class_all_list and func_all_list are lists of all classes and functions in the file as identified 
+    by the pygccxml parser
+
+This function first invokes class_n_func_tokens to generate information about functions and tokens 
+    corresponding to classes
+It then invokes funcCheck to generate tokens corresponding to a fucntion and store in Func_tokens
+Subsequently, basicCheck is called to tokenize the entire file and store tokens in file_tokens
+\end{DoxyVerb}
+ 
+
+Definition at line 401 of file checker\+\_\+cpp.\+py.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{401 \textcolor{keyword}{def }tokenize(path, file\_tokens, func\_tokens, class\_all\_list, func\_all\_list):}
+\DoxyCodeLine{402 }
+\DoxyCodeLine{403     \textcolor{stringliteral}{'''}}
+\DoxyCodeLine{404 \textcolor{stringliteral}{    path is the path of file to be processed}}
+\DoxyCodeLine{405 \textcolor{stringliteral}{    file\_tokens is the list which will store all the tokens generated from the file}}
+\DoxyCodeLine{406 \textcolor{stringliteral}{    func\_tokens is a dictionary with function names mapped to corresponding declarations and is used }}
+\DoxyCodeLine{407 \textcolor{stringliteral}{        to add tokens corresponding to a function call}}
+\DoxyCodeLine{408 \textcolor{stringliteral}{    class\_all\_list and func\_all\_list are lists of all classes and functions in the file as identified }}
+\DoxyCodeLine{409 \textcolor{stringliteral}{        by the pygccxml parser}}
+\DoxyCodeLine{410 \textcolor{stringliteral}{}}
+\DoxyCodeLine{411 \textcolor{stringliteral}{    This function first invokes class\_n\_func\_tokens to generate information about functions and tokens }}
+\DoxyCodeLine{412 \textcolor{stringliteral}{        corresponding to classes}}
+\DoxyCodeLine{413 \textcolor{stringliteral}{    It then invokes funcCheck to generate tokens corresponding to a fucntion and store in Func\_tokens}}
+\DoxyCodeLine{414 \textcolor{stringliteral}{    Subsequently, basicCheck is called to tokenize the entire file and store tokens in file\_tokens}}
+\DoxyCodeLine{415 \textcolor{stringliteral}{    '''}}
+\DoxyCodeLine{416 }
+\DoxyCodeLine{417     \textcolor{keyword}{global} is\_function}
+\DoxyCodeLine{418     var\_list = []}
+\DoxyCodeLine{419     \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{420         file = open(path)}
+\DoxyCodeLine{421         f = file.read()}
+\DoxyCodeLine{422         }
+\DoxyCodeLine{423 }
+\DoxyCodeLine{424         lines = f.split(\textcolor{stringliteral}{"{}\(\backslash\)n"{}})}
+\DoxyCodeLine{425         file.close()}
+\DoxyCodeLine{426 }
+\DoxyCodeLine{427   }
+\DoxyCodeLine{428         \textcolor{comment}{\# check if file exists }}
+\DoxyCodeLine{429         \textcolor{keywordflow}{if} os.path.exists(\textcolor{stringliteral}{"{}work"{}}): }
+\DoxyCodeLine{430             os.remove(\textcolor{stringliteral}{"{}work"{}})}
+\DoxyCodeLine{431         file = open(\textcolor{stringliteral}{'work'}, \textcolor{stringliteral}{'a'})}
+\DoxyCodeLine{432 }
+\DoxyCodeLine{433         \textcolor{keywordflow}{for} line \textcolor{keywordflow}{in} lines:}
+\DoxyCodeLine{434             line = line.strip()}
+\DoxyCodeLine{435             \textcolor{keywordflow}{if} line \textcolor{keywordflow}{is} \textcolor{keywordflow}{not} \textcolor{keywordtype}{None} \textcolor{keywordflow}{and} line \textcolor{keywordflow}{is} \textcolor{keywordflow}{not} \textcolor{stringliteral}{''}:}
+\DoxyCodeLine{436                 file.write(line)}
+\DoxyCodeLine{437                 file.write(\textcolor{stringliteral}{'\(\backslash\)n'})}
+\DoxyCodeLine{438         file.close()}
+\DoxyCodeLine{439 }
+\DoxyCodeLine{440         func\_list, func\_start, class\_list, class\_tokens = class\_n\_func\_tokens(class\_all\_list, func\_all\_list)}
+\DoxyCodeLine{441 }
+\DoxyCodeLine{442         count = -\/1}
+\DoxyCodeLine{443         \textcolor{keywordflow}{for} line \textcolor{keywordflow}{in} lines:}
+\DoxyCodeLine{444             line = line.strip()}
+\DoxyCodeLine{445             \textcolor{keywordflow}{if} line \textcolor{keywordflow}{is} \textcolor{keywordflow}{not} \textcolor{keywordtype}{None} \textcolor{keywordflow}{and} line \textcolor{keywordflow}{is} \textcolor{keywordflow}{not} \textcolor{stringliteral}{''}:}
+\DoxyCodeLine{446                 count +=1}
+\DoxyCodeLine{447                 \textcolor{keywordflow}{if} count \textcolor{keywordflow}{in} func\_start:}
+\DoxyCodeLine{448                     }
+\DoxyCodeLine{449                     is\_function = func\_list[func\_start.index(count)]}
+\DoxyCodeLine{450                     }
+\DoxyCodeLine{451                     func\_tokens[is\_function] = []}
+\DoxyCodeLine{452                 tokens = delimiterCorrection(line)}
+\DoxyCodeLine{453 }
+\DoxyCodeLine{454                 \textcolor{keywordflow}{for} token \textcolor{keywordflow}{in} tokens:}
+\DoxyCodeLine{455                     funcCheck(token, func\_tokens, func\_list, class\_list)}
+\DoxyCodeLine{456 }
+\DoxyCodeLine{457         \textcolor{keywordflow}{for} token \textcolor{keywordflow}{in} func\_tokens[\textcolor{stringliteral}{'main'}]:}
+\DoxyCodeLine{458             basicCheck(token, file\_tokens, func\_tokens, class\_list)}
+\DoxyCodeLine{459 }
+\DoxyCodeLine{460         \textcolor{keywordflow}{for} c \textcolor{keywordflow}{in} class\_tokens.keys():}
+\DoxyCodeLine{461             \textcolor{keywordflow}{for} token \textcolor{keywordflow}{in} class\_tokens[str(c)]:}
+\DoxyCodeLine{462                 token = str(token)}
+\DoxyCodeLine{463                 }
+\DoxyCodeLine{464                 \textcolor{keywordflow}{if} (token[0:3] == \textcolor{stringliteral}{'ope'}):}
+\DoxyCodeLine{465                     file\_tokens.append(token)}
+\DoxyCodeLine{466                 \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{467                     basicCheck(token, file\_tokens, func\_tokens, class\_list)}
+\DoxyCodeLine{468 }
+\DoxyCodeLine{469         \textcolor{keywordflow}{return} \textcolor{keyword}{True}}
+\DoxyCodeLine{470     \textcolor{keywordflow}{except} FileNotFoundError:}
+\DoxyCodeLine{471         print(\textcolor{stringliteral}{"{}\(\backslash\)nInvald Path. Retry"{}})}
+\DoxyCodeLine{472         run()}
+\DoxyCodeLine{473 }
+
+\end{DoxyCode}
+\mbox{\Hypertarget{namespacerest_1_1checker__core_1_1checker__cpp_a3c322f45e707edaefdc39bbfbc11669a}\label{namespacerest_1_1checker__core_1_1checker__cpp_a3c322f45e707edaefdc39bbfbc11669a}} 
+\index{rest.checker\_core.checker\_cpp@{rest.checker\_core.checker\_cpp}!tokenize\_cpp@{tokenize\_cpp}}
+\index{tokenize\_cpp@{tokenize\_cpp}!rest.checker\_core.checker\_cpp@{rest.checker\_core.checker\_cpp}}
+\doxysubsubsection{\texorpdfstring{tokenize\_cpp()}{tokenize\_cpp()}}
+{\footnotesize\ttfamily def rest.\+checker\+\_\+core.\+checker\+\_\+cpp.\+tokenize\+\_\+cpp (\begin{DoxyParamCaption}\item[{}]{file }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Takes file as argument and invokes run function to obtain the list of tokens 
+    generated from the file
+It returns a single string of all tokens joined together
+\end{DoxyVerb}
+ 
+
+Definition at line 514 of file checker\+\_\+cpp.\+py.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{514 \textcolor{keyword}{def }tokenize\_cpp(file):}
+\DoxyCodeLine{515     \textcolor{stringliteral}{'''}}
+\DoxyCodeLine{516 \textcolor{stringliteral}{    Takes file as argument and invokes run function to obtain the list of tokens }}
+\DoxyCodeLine{517 \textcolor{stringliteral}{        generated from the file}}
+\DoxyCodeLine{518 \textcolor{stringliteral}{    It returns a single string of all tokens joined together}}
+\DoxyCodeLine{519 \textcolor{stringliteral}{    '''}}
+\DoxyCodeLine{520     t1a, t1f = run(file)}
+\DoxyCodeLine{521     \textcolor{keywordflow}{return} \textcolor{stringliteral}{''}.join(t1a)}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{namespacerest_1_1checker__core_1_1checker__cpp_a20bb167eabf3ff33740a67eed0b50d37}\label{namespacerest_1_1checker__core_1_1checker__cpp_a20bb167eabf3ff33740a67eed0b50d37}} 
+\index{rest.checker\_core.checker\_cpp@{rest.checker\_core.checker\_cpp}!xml\_generator\_config@{xml\_generator\_config}}
+\index{xml\_generator\_config@{xml\_generator\_config}!rest.checker\_core.checker\_cpp@{rest.checker\_core.checker\_cpp}}
+\doxysubsubsection{\texorpdfstring{xml\_generator\_config}{xml\_generator\_config}}
+{\footnotesize\ttfamily rest.\+checker\+\_\+core.\+checker\+\_\+cpp.\+xml\+\_\+generator\+\_\+config}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 =  parser.xml\_generator\_configuration\_t(}
+\DoxyCodeLine{2     xml\_generator\_path=generator\_path,}
+\DoxyCodeLine{3     xml\_generator=generator\_name)}
+
+\end{DoxyCode}
+
+
+Definition at line 43 of file checker\+\_\+cpp.\+py.
+

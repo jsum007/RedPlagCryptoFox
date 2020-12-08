@@ -1,27 +1,33 @@
+"""Python module pygments is used to tokenize the code files. This module supports 
+    most of the popular languages
+http://pygments.org/languages/
+Hence this program can be used to clean up source code
+This program generates tokenized version of python source code files using pygments 
+    to identify the token type"""
+
 import pygments.token
 import pygments.lexers
 import os, re
 
-"""Python module pygments is used to tokenize the code files. This module supports most of the popular languages
-http://pygments.org/languages/
-Hence this program can be used to clean up source code
-This program generates tokenized version of python source code files using pygments to identify the token type"""
-
 def add_function_tokens(filename, name, func_text, func_tokens, class_list):
     """
     Tokens of a function are removed and stored separately in a dictionary func_tokens. 
-    Whenever a function call is encountered as a token this function is called and tokens corresponding to the function are inserted in the list of file_tokens.
+    Whenever a function call is encountered as a token this function is called and tokens corresponding 
+        to the function are inserted in the list of file_tokens.
 
     *filename is used while obtaining the lexer for python from pygments module
 
     *name is the name of the function for which tokens returned by this function
 
-    * func_text is a dictionary which maps the name of the function to the entire body of the function in textual form extracted from the source code file with unnecessary whitespaces and comments removed.
-    In case the function is encountered for the first time and its tokens have yet not been generated, func_text will be used to generate tokens and add to func_tokens dictionary
+    * func_text is a dictionary which maps the name of the function to the entire body of the function in 
+        textual form extracted from the source code file with unnecessary whitespaces and comments removed.
+    In case the function is encountered for the first time and its tokens have yet not been generated, 
+    	func_text will be used to generate tokens and add to func_tokens dictionary
 
     * func_tokens dictionary maps name of the function to tokens generated from the function
 
-    * class_list stores the list of class names and will be helpful while generating tokens to identify objects/ instances of classes defined by the user
+    * class_list stores the list of class names and will be helpful while generating tokens to 
+    	identify objects/ instances of classes defined by the user
     """
     text = func_text[name] #extract text of the required function#
     lexer = pygments.lexers.guess_lexer_for_filename(filename, text) #obtain lexer from pygmnets #
@@ -81,8 +87,10 @@ def tokenize_py(filename):
 
     """
     This function takes filename as input and returns the tokenized version of source code as string.
-    It first removes all extra whitespaces.Then all functions are identified and their text is code is removed and stored in a separate dictionary func_text
-    Tokens corresponding to the functions are generated and their list is mapped to the function name in another dictionary func_tokens
+    It first removes all extra whitespaces.Then all functions are identified and their text is code
+    	 is removed and stored in a separate dictionary func_text
+    Tokens corresponding to the functions are generated and their list is mapped to the function 
+    	name in another dictionary func_tokens
     Subsequently the remaining files is tokenized and list of tokens stored in file_tokens
     Whenever a fucntion call is encountered, tokens corresponding to the fucntion are appended 
     """

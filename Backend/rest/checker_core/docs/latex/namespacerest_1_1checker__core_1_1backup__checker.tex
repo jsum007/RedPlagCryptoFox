@@ -1,0 +1,125 @@
+\hypertarget{namespacerest_1_1checker__core_1_1backup__checker}{}\doxysection{rest.\+checker\+\_\+core.\+backup\+\_\+checker Namespace Reference}
+\label{namespacerest_1_1checker__core_1_1backup__checker}\index{rest.checker\_core.backup\_checker@{rest.checker\_core.backup\_checker}}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{namespacerest_1_1checker__core_1_1backup__checker_ad9f092b30b2e4f8432c1f7bd5b3c5d33}{backup\+\_\+tokenize}} (filename)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Python module pygments is used to tokenize the code files.
+This module supports most of the popular languages
+http://pygments.org/languages/
+Hence this program can be used to clean up codes written in most languages
+This program generates tokenized version of source code files 
+    using pygments to identify the token type
+This is a general checker with basic functionality for tokenization 
+It will be invoked in case files are of any type other than C++/Pyhton/JAVA
+    or the primary tokenizer for thses langugaes encounters an error
+\end{DoxyVerb}
+ 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{namespacerest_1_1checker__core_1_1backup__checker_ad9f092b30b2e4f8432c1f7bd5b3c5d33}\label{namespacerest_1_1checker__core_1_1backup__checker_ad9f092b30b2e4f8432c1f7bd5b3c5d33}} 
+\index{rest.checker\_core.backup\_checker@{rest.checker\_core.backup\_checker}!backup\_tokenize@{backup\_tokenize}}
+\index{backup\_tokenize@{backup\_tokenize}!rest.checker\_core.backup\_checker@{rest.checker\_core.backup\_checker}}
+\doxysubsubsection{\texorpdfstring{backup\_tokenize()}{backup\_tokenize()}}
+{\footnotesize\ttfamily def rest.\+checker\+\_\+core.\+backup\+\_\+checker.\+backup\+\_\+tokenize (\begin{DoxyParamCaption}\item[{}]{filename }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}This function takes filename as input and generates tokens based on the following rules - 
+1) 'funct' keyword is used for functions - Functions calls will be represented by this token.
+2) 'class' keyword is used for classes - Instances of classes/objects will be 
+    replaced by this token.
+3) 'v' is the token used for variable declarations 
+4) Keywords, operators, indentifiers, builtin methods, attributes and decorators are added 
+    as it is in string form
+5) Whitespaces, comments, punctuation and literals are ignored\end{DoxyVerb}
+ 
+
+Definition at line 17 of file backup\+\_\+checker.\+py.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{17 \textcolor{keyword}{def }backup\_tokenize(filename):}
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19     \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{20 \textcolor{stringliteral}{    This function takes filename as input and generates tokens based on the following rules -\/ }}
+\DoxyCodeLine{21 \textcolor{stringliteral}{    1) 'funct' keyword is used for functions -\/ Functions calls will be represented by this token.}}
+\DoxyCodeLine{22 \textcolor{stringliteral}{    2) 'class' keyword is used for classes -\/ Instances of classes/objects will be }}
+\DoxyCodeLine{23 \textcolor{stringliteral}{        replaced by this token.}}
+\DoxyCodeLine{24 \textcolor{stringliteral}{    3) 'v' is the token used for variable declarations }}
+\DoxyCodeLine{25 \textcolor{stringliteral}{    4) Keywords, operators, indentifiers, builtin methods, attributes and decorators are added }}
+\DoxyCodeLine{26 \textcolor{stringliteral}{        as it is in string form}}
+\DoxyCodeLine{27 \textcolor{stringliteral}{    5) Whitespaces, comments, punctuation and literals are ignored}}
+\DoxyCodeLine{28 \textcolor{stringliteral}{}}
+\DoxyCodeLine{29 \textcolor{stringliteral}{    "{}"{}"{}}}
+\DoxyCodeLine{30     file = open(filename, \textcolor{stringliteral}{"{}r"{}})}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{32     \textcolor{keywordflow}{if} os.path.exists(\textcolor{stringliteral}{"{}work"{}}): }
+\DoxyCodeLine{33         os.remove(\textcolor{stringliteral}{"{}work"{}})}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{35     work = open(\textcolor{stringliteral}{'work'}, \textcolor{stringliteral}{'a'})        \textcolor{comment}{\#an auxillary file created to store the cource code tet with extra whitespace removed\#}}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37     \textcolor{keywordflow}{for} l \textcolor{keywordflow}{in} file:}
+\DoxyCodeLine{38         \textcolor{keywordflow}{if} l == \textcolor{stringliteral}{''} \textcolor{keywordflow}{or} l.isspace():      \textcolor{comment}{\#ignore whitespace\#}}
+\DoxyCodeLine{39             \textcolor{keywordflow}{pass}}
+\DoxyCodeLine{40         \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{41             work.write(l.rstrip())}
+\DoxyCodeLine{42             work.write(\textcolor{stringliteral}{'\(\backslash\)n'})}
+\DoxyCodeLine{43     }
+\DoxyCodeLine{44     file.close()}
+\DoxyCodeLine{45     work.close()}
+\DoxyCodeLine{46 }
+\DoxyCodeLine{47     file = open(\textcolor{stringliteral}{'work'}, \textcolor{stringliteral}{'r'})    \textcolor{comment}{\#read all text from auxillary file\#}}
+\DoxyCodeLine{48     text = file.read()}
+\DoxyCodeLine{49 }
+\DoxyCodeLine{50     lexer = pygments.lexers.guess\_lexer\_for\_filename(filename, text)        \textcolor{comment}{\#obtain lexer from pygmnets \#}}
+\DoxyCodeLine{51     tokens = lexer.get\_tokens(text)}
+\DoxyCodeLine{52     tokens = list(tokens)}
+\DoxyCodeLine{53     result = []}
+\DoxyCodeLine{54     lenT = len(tokens)}
+\DoxyCodeLine{55     file\_tokens = []}
+\DoxyCodeLine{56     class\_list = []}
+\DoxyCodeLine{57 }
+\DoxyCodeLine{58 }
+\DoxyCodeLine{59 }
+\DoxyCodeLine{60     \textcolor{keywordflow}{for} i \textcolor{keywordflow}{in} range(lenT):}
+\DoxyCodeLine{61 }
+\DoxyCodeLine{62         \textcolor{keywordflow}{if} tokens[i][0] == pygments.token.Name.Function:}
+\DoxyCodeLine{63             file\_tokens.append(\textcolor{stringliteral}{'funct'})}
+\DoxyCodeLine{64 }
+\DoxyCodeLine{65         \textcolor{keywordflow}{elif} tokens[i][0] == pygments.token.Name.Class \textcolor{keywordflow}{or} str(tokens[i][1]) \textcolor{keywordflow}{in} class\_list:      \textcolor{comment}{\#identify instances of classes and update class\_list\#}}
+\DoxyCodeLine{66             class\_list.append(str(tokens[i][1]))                                                \textcolor{comment}{\#identify objects/ instances of user defined classes and assign 'class' token to it\#}}
+\DoxyCodeLine{67             file\_tokens.append(\textcolor{stringliteral}{'class'})}
+\DoxyCodeLine{68 }
+\DoxyCodeLine{69         \textcolor{keywordflow}{elif} (tokens[i][0] == pygments.token.Name \textcolor{keywordflow}{or} tokens[i][0] \textcolor{keywordflow}{in} pygments.token.Name) \textcolor{keywordflow}{and} \textcolor{keywordflow}{not} i == lenT -\/ 1 \textcolor{keywordflow}{and} \textcolor{keywordflow}{not} tokens[i + 1][1] == \textcolor{stringliteral}{'('}:}
+\DoxyCodeLine{70             }
+\DoxyCodeLine{71             \textcolor{keywordflow}{if} str(tokens[i][1]) \textcolor{keywordflow}{in} class\_list:                                                 \textcolor{comment}{\#identify objects/ instances of user defined classes and assign 'class' token to it\#}}
+\DoxyCodeLine{72                 file\_tokens.append(\textcolor{stringliteral}{'class'})}
+\DoxyCodeLine{73 }
+\DoxyCodeLine{74             \textcolor{keywordflow}{elif} tokens[i][0] \textcolor{keywordflow}{in} pygments.token.Name.Namespace:                                 \textcolor{comment}{\#identify namespaces and add them\#}}
+\DoxyCodeLine{75                 file\_tokens.extend(str(tokens[i][0]).split())}
+\DoxyCodeLine{76 }
+\DoxyCodeLine{77             \textcolor{keywordflow}{elif} tokens[i][0] \textcolor{keywordflow}{in} pygments.token.Name.Builtin \textcolor{keywordflow}{or} tokens[i][0] \textcolor{keywordflow}{in} pygments.token.Name.Attribute \textcolor{keywordflow}{or} tokens[i][0] \textcolor{keywordflow}{in} pygments.token.Name.Decorator :}
+\DoxyCodeLine{78                 file\_tokens.append(str(tokens[i][1]))                       \textcolor{comment}{\#identify builtin methods, decorators and attributes and add the token as string form to the list of file tokens\#}}
+\DoxyCodeLine{79 }
+\DoxyCodeLine{80             \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{81                 file\_tokens.append(\textcolor{stringliteral}{'v'})     \textcolor{comment}{\#if the token does not satisfy any of the condition above, it is a variable name. So 'v' token is assigned to it\#}}
+\DoxyCodeLine{82 }
+\DoxyCodeLine{83         \textcolor{keywordflow}{elif} tokens[i][0] \textcolor{keywordflow}{in} pygments.token.Literal.String:}
+\DoxyCodeLine{84             \textcolor{keywordflow}{pass}}
+\DoxyCodeLine{85 }
+\DoxyCodeLine{86         \textcolor{keywordflow}{elif} tokens[i][0] == pygments.token.Text \textcolor{keywordflow}{or} tokens[i][0] \textcolor{keywordflow}{in} pygments.token.Comment \textcolor{keywordflow}{or} tokens[i][0] \textcolor{keywordflow}{in} pygments.token.Punctuation:}
+\DoxyCodeLine{87             \textcolor{keywordflow}{pass}   \textcolor{comment}{\#whitespaces and comments ignored}}
+\DoxyCodeLine{88 }
+\DoxyCodeLine{89         \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{90             file\_tokens.append(str(tokens[i][1]))           \textcolor{comment}{\#remaining tokens are identifiers, operators and keywords, so are appended to file\_tokens\#}}
+\DoxyCodeLine{91 }
+\DoxyCodeLine{92     \textcolor{keywordflow}{if} os.path.exists(\textcolor{stringliteral}{"{}work"{}}):}
+\DoxyCodeLine{93         os.remove(\textcolor{stringliteral}{"{}work"{}})}
+\DoxyCodeLine{94 }
+\DoxyCodeLine{95     \textcolor{keywordflow}{return} \textcolor{stringliteral}{''}.join(file\_tokens)}
+\DoxyCodeLine{96 }
+
+\end{DoxyCode}

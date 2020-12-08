@@ -1,27 +1,32 @@
+"""
+Python module pygments is used to tokenize the code files.
+This module supports most of the popular languages
+http://pygments.org/languages/
+Hence this program can be used to clean up codes written in most languages
+This program generates tokenized version of source code files 
+	using pygments to identify the token type
+This is a general checker with basic functionality for tokenization 
+It will be invoked in case files are of any type other than C++/Pyhton/JAVA
+	or the primary tokenizer for thses langugaes encounters an error
+"""
+
 import pygments.token
 import pygments.lexers
 import os, re
 
-"""
-Python module pygments is used to tokenize the code files. This module supports most of the popular languages
-http://pygments.org/languages/
-Hence this program can be used to clean up codes written in most languages
-This program generates tokenized version of source code files using pygments to identify the token type
-This is a general checker with basic functionality for tokenization 
-It will be invoked in case files are of any type other than C++/Pyhton/JAVA or the primary tokenizer for thses langugaes encounters an error
-"""
-
 def backup_tokenize(filename):
 
-    '''
+    """
     This function takes filename as input and generates tokens based on the following rules - 
     1) 'funct' keyword is used for functions - Functions calls will be represented by this token.
-    2) 'class' keyword is used for classes - Instances of classes/objects will be replaced by this token.
+    2) 'class' keyword is used for classes - Instances of classes/objects will be 
+    	replaced by this token.
     3) 'v' is the token used for variable declarations 
-    4) Keywords, operators, indentifiers, builtin methods, attributes and decorators are added as it is in string form
+    4) Keywords, operators, indentifiers, builtin methods, attributes and decorators are added 
+    	as it is in string form
     5) Whitespaces, comments, punctuation and literals are ignored
 
-    '''
+    """
     file = open(filename, "r")
 
     if os.path.exists("work"): 

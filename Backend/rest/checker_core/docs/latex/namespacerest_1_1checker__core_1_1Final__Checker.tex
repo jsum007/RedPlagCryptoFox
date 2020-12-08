@@ -1,0 +1,330 @@
+\hypertarget{namespacerest_1_1checker__core_1_1Final__Checker}{}\doxysection{rest.\+checker\+\_\+core.\+Final\+\_\+\+Checker Namespace Reference}
+\label{namespacerest_1_1checker__core_1_1Final__Checker}\index{rest.checker\_core.Final\_Checker@{rest.checker\_core.Final\_Checker}}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{namespacerest_1_1checker__core_1_1Final__Checker_a83ad0d5ff2b6f934c95e9e21cdbb656f}{plag\+Check}} (fp1, fp2, boilfp=None)
+\item 
+def \mbox{\hyperlink{namespacerest_1_1checker__core_1_1Final__Checker_addab1448af79f80b839046c3edb6d21c}{folder\+\_\+compare}} (dir\+\_\+path, boil\+\_\+path=None)
+\item 
+def \mbox{\hyperlink{namespacerest_1_1checker__core_1_1Final__Checker_ab3da116d559f1adcdacb751349894f1d}{saveres}} (inpath, outpath, boilpath=None)
+\item 
+def \mbox{\hyperlink{namespacerest_1_1checker__core_1_1Final__Checker_a8530750db697faee60333b2a2630d7c5}{extract\+\_\+files}} (infile)
+\item 
+def \mbox{\hyperlink{namespacerest_1_1checker__core_1_1Final__Checker_addb9bf7957ff8a6841105d9252cf35cf}{Run\+Check}} (infile, boilfile=None)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}This code takes in a path to compressed file containing source code files, invokes tokenizers 
+    depending  the langauge of the input file, and passes the tokenized code to the winnow() 
+    function of the 'winnowing' module, to generate document fingerprints, which are matched 
+    to produce a percentage similarity for every pair of source codes.
+It saves the results in the form of a csv file and a pictorial representation of 
+    the similarity matrix
+\end{DoxyVerb}
+ 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{namespacerest_1_1checker__core_1_1Final__Checker_a8530750db697faee60333b2a2630d7c5}\label{namespacerest_1_1checker__core_1_1Final__Checker_a8530750db697faee60333b2a2630d7c5}} 
+\index{rest.checker\_core.Final\_Checker@{rest.checker\_core.Final\_Checker}!extract\_files@{extract\_files}}
+\index{extract\_files@{extract\_files}!rest.checker\_core.Final\_Checker@{rest.checker\_core.Final\_Checker}}
+\doxysubsubsection{\texorpdfstring{extract\_files()}{extract\_files()}}
+{\footnotesize\ttfamily def rest.\+checker\+\_\+core.\+Final\+\_\+\+Checker.\+extract\+\_\+files (\begin{DoxyParamCaption}\item[{}]{infile }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}infile is path to compressed file, this function extract files to 'comparisons/input_files' 
+        folder, into the same base directory as input file\end{DoxyVerb}
+ 
+
+Definition at line 176 of file Final\+\_\+\+Checker.\+py.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{176 \textcolor{keyword}{def }extract\_files(infile):}
+\DoxyCodeLine{177     \textcolor{stringliteral}{"{}"{}"{}infile is path to compressed file, this function extract files to 'comparisons/input\_files' }}
+\DoxyCodeLine{178 \textcolor{stringliteral}{        folder, into the same base directory as input file"{}"{}"{}}}
+\DoxyCodeLine{179     \textcolor{keywordflow}{if} infile.endswith(\textcolor{stringliteral}{"{}.zip"{}}):}
+\DoxyCodeLine{180         filename= os.path.splitext(os.path.basename(infile))[0]}
+\DoxyCodeLine{181     \textcolor{keywordflow}{if} infile.endswith(\textcolor{stringliteral}{"{}.tar"{}}):}
+\DoxyCodeLine{182         filename= os.path.splitext(os.path.basename(infile))[0]}
+\DoxyCodeLine{183     \textcolor{keywordflow}{if} infile.endswith(\textcolor{stringliteral}{"{}.tar.gz"{}}):}
+\DoxyCodeLine{184         filename= os.path.splitext(os.path.splitext(os.path.basename(infile))[0])[0]}
+\DoxyCodeLine{185 }
+\DoxyCodeLine{186     dirname1= os.path.dirname(infile)}
+\DoxyCodeLine{187     out\_dir= os.path.join(dirname1, \textcolor{stringliteral}{'comparisons'})}
+\DoxyCodeLine{188 }
+\DoxyCodeLine{189     \textcolor{keywordflow}{if} os.path.exists(out\_dir) \textcolor{keywordflow}{and} os.path.isdir(out\_dir):}
+\DoxyCodeLine{190         shutil.rmtree(out\_dir, ignore\_errors = \textcolor{keyword}{False})}
+\DoxyCodeLine{191     }
+\DoxyCodeLine{192     \textcolor{keywordflow}{if} infile.endswith(\textcolor{stringliteral}{"{}.zip"{}}):}
+\DoxyCodeLine{193         \textcolor{keyword}{with} zipfile.ZipFile(infile, \textcolor{stringliteral}{'r'}) \textcolor{keyword}{as} zip\_ref:}
+\DoxyCodeLine{194             zip\_ref.extractall(os.path.join(out\_dir, \textcolor{stringliteral}{'input\_files'}))}
+\DoxyCodeLine{195 }
+\DoxyCodeLine{196     \textcolor{keywordflow}{if} tarfile.is\_tarfile(infile):}
+\DoxyCodeLine{197         tf=tarfile.open(infile)}
+\DoxyCodeLine{198         tf.extractall(os.path.join(out\_dir, \textcolor{stringliteral}{'input\_files'}))}
+\DoxyCodeLine{199     temp=os.listdir(out\_dir)}
+\DoxyCodeLine{200     temp\_dir= temp[0]}
+\DoxyCodeLine{201     \textcolor{keywordflow}{return} out\_dir, os.path.join(out\_dir,temp\_dir)}
+\DoxyCodeLine{202 }
+\DoxyCodeLine{203 }
+\DoxyCodeLine{204 }
+
+\end{DoxyCode}
+\mbox{\Hypertarget{namespacerest_1_1checker__core_1_1Final__Checker_addab1448af79f80b839046c3edb6d21c}\label{namespacerest_1_1checker__core_1_1Final__Checker_addab1448af79f80b839046c3edb6d21c}} 
+\index{rest.checker\_core.Final\_Checker@{rest.checker\_core.Final\_Checker}!folder\_compare@{folder\_compare}}
+\index{folder\_compare@{folder\_compare}!rest.checker\_core.Final\_Checker@{rest.checker\_core.Final\_Checker}}
+\doxysubsubsection{\texorpdfstring{folder\_compare()}{folder\_compare()}}
+{\footnotesize\ttfamily def rest.\+checker\+\_\+core.\+Final\+\_\+\+Checker.\+folder\+\_\+compare (\begin{DoxyParamCaption}\item[{}]{dir\+\_\+path,  }\item[{}]{boil\+\_\+path = {\ttfamily None} }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}dir_path is the path of the directory containing all the code files to be compared, 
+        and boil_path is the path to boilerplate code file
+    This function invokes tokenizers on various code files and generates the tokenized code
+         which it passes to the wiinow() function, along with the 'kval'
+    which is actually the size of the kgram used to genrate hash values of the tokenized code. 
+    Now, these fingerprints are compared pair wise, along with the boilerplate 
+        fingerprint(if exists), by passing to plagCheck() fucntion
+    It returns a simialrity matrix alongwith a list of filenames as an output.\end{DoxyVerb}
+ 
+
+Definition at line 60 of file Final\+\_\+\+Checker.\+py.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{60 \textcolor{keyword}{def }folder\_compare(dir\_path, boil\_path=None):}
+\DoxyCodeLine{61 }
+\DoxyCodeLine{62     \textcolor{stringliteral}{"{}"{}"{}dir\_path is the path of the directory containing all the code files to be compared, }}
+\DoxyCodeLine{63 \textcolor{stringliteral}{        and boil\_path is the path to boilerplate code file}}
+\DoxyCodeLine{64 \textcolor{stringliteral}{    This function invokes tokenizers on various code files and generates the tokenized code}}
+\DoxyCodeLine{65 \textcolor{stringliteral}{         which it passes to the wiinow() function, along with the 'kval'}}
+\DoxyCodeLine{66 \textcolor{stringliteral}{    which is actually the size of the kgram used to genrate hash values of the tokenized code. }}
+\DoxyCodeLine{67 \textcolor{stringliteral}{    Now, these fingerprints are compared pair wise, along with the boilerplate }}
+\DoxyCodeLine{68 \textcolor{stringliteral}{        fingerprint(if exists), by passing to plagCheck() fucntion}}
+\DoxyCodeLine{69 \textcolor{stringliteral}{    It returns a simialrity matrix alongwith a list of filenames as an output.}}
+\DoxyCodeLine{70 \textcolor{stringliteral}{}}
+\DoxyCodeLine{71 \textcolor{stringliteral}{    "{}"{}"{}}}
+\DoxyCodeLine{72     kval=10}
+\DoxyCodeLine{73     cppfiles=[]}
+\DoxyCodeLine{74     filenames=[]}
+\DoxyCodeLine{75     sim\_mat=[]}
+\DoxyCodeLine{76     files\_fpr=[]}
+\DoxyCodeLine{77     boil\_fpr=[]}
+\DoxyCodeLine{78     \textcolor{keywordflow}{for} path, subdirs, files \textcolor{keywordflow}{in} os.walk(dir\_path):}
+\DoxyCodeLine{79         \textcolor{keywordflow}{for} file \textcolor{keywordflow}{in} files:}
+\DoxyCodeLine{80             \textcolor{keywordflow}{if} file.endswith((\textcolor{stringliteral}{"{}.cpp"{}}, \textcolor{stringliteral}{"{}.py"{}}, \textcolor{stringliteral}{"{}.java"{}})) \textcolor{keywordflow}{and} \textcolor{keywordflow}{not} file.startswith(\textcolor{stringliteral}{'.'}):}
+\DoxyCodeLine{81                 cppfiles.append(os.path.join(path, file))}
+\DoxyCodeLine{82                 filenames.append(file)}
+\DoxyCodeLine{83 }
+\DoxyCodeLine{84     \textcolor{keywordflow}{for} file \textcolor{keywordflow}{in} cppfiles:}
+\DoxyCodeLine{85         \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{86             \textcolor{keywordflow}{if} file.endswith(\textcolor{stringliteral}{"{}.cpp"{}}):}
+\DoxyCodeLine{87                 kval = 15}
+\DoxyCodeLine{88                 data1 = tokenize\_cpp(file)}
+\DoxyCodeLine{89             \textcolor{keywordflow}{if} file.endswith(\textcolor{stringliteral}{"{}.py"{}}):}
+\DoxyCodeLine{90                 kval = 10}
+\DoxyCodeLine{91                 data1 = tokenize\_py(file)}
+\DoxyCodeLine{92             \textcolor{keywordflow}{if} file.endswith(\textcolor{stringliteral}{"{}.java"{}}):}
+\DoxyCodeLine{93                 kval = 15}
+\DoxyCodeLine{94                 data1= tokenize\_jav(file)}
+\DoxyCodeLine{95         \textcolor{keywordflow}{except}:}
+\DoxyCodeLine{96             data1 = backup\_tokenize(file)}
+\DoxyCodeLine{97 }
+\DoxyCodeLine{98         }
+\DoxyCodeLine{99         fpr\_wpos=[]}
+\DoxyCodeLine{100         \textcolor{keywordflow}{for} fprs \textcolor{keywordflow}{in} winnow(data1, kval):}
+\DoxyCodeLine{101             fpr\_wpos.append(fprs[1])}
+\DoxyCodeLine{102         files\_fpr.append(fpr\_wpos)}
+\DoxyCodeLine{103 }
+\DoxyCodeLine{104     \textcolor{keywordflow}{if} boil\_path != \textcolor{keywordtype}{None}:}
+\DoxyCodeLine{105         \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{106             \textcolor{keywordflow}{if} boil\_path.endswith(\textcolor{stringliteral}{"{}.cpp"{}}):}
+\DoxyCodeLine{107                 data\_b = tokenize\_cpp(boil\_path)}
+\DoxyCodeLine{108             \textcolor{keywordflow}{if} boil\_path.endswith(\textcolor{stringliteral}{"{}.py"{}}):}
+\DoxyCodeLine{109                 data\_b = tokenize\_py(boil\_path)}
+\DoxyCodeLine{110             \textcolor{keywordflow}{if} boil\_path.endswith(\textcolor{stringliteral}{"{}.java"{}}):}
+\DoxyCodeLine{111                 data\_b = tokenize\_py(boil\_path)}
+\DoxyCodeLine{112         \textcolor{keywordflow}{except}:}
+\DoxyCodeLine{113             data\_b = backup\_tokenize(boil\_path)}
+\DoxyCodeLine{114 }
+\DoxyCodeLine{115         \textcolor{keywordflow}{for} fprs \textcolor{keywordflow}{in} winnow(data1, kval):}
+\DoxyCodeLine{116             boil\_fpr.append(fprs[1])}
+\DoxyCodeLine{117     \textcolor{keywordflow}{if} boil\_fpr:}
+\DoxyCodeLine{118         \textcolor{keywordflow}{for} fpr1 \textcolor{keywordflow}{in} files\_fpr:}
+\DoxyCodeLine{119             temp=[]}
+\DoxyCodeLine{120             \textcolor{keywordflow}{for} fpr2 \textcolor{keywordflow}{in} files\_fpr:}
+\DoxyCodeLine{121                 temp.append(plagCheck(fpr1,fpr2, boil\_fpr))}
+\DoxyCodeLine{122             sim\_mat.append(temp)}
+\DoxyCodeLine{123     \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{124         \textcolor{keywordflow}{for} fpr1 \textcolor{keywordflow}{in} files\_fpr:}
+\DoxyCodeLine{125             temp=[]}
+\DoxyCodeLine{126             \textcolor{keywordflow}{for} fpr2 \textcolor{keywordflow}{in} files\_fpr:}
+\DoxyCodeLine{127                 temp.append(plagCheck(fpr1,fpr2))}
+\DoxyCodeLine{128             sim\_mat.append(temp)}
+\DoxyCodeLine{129 }
+\DoxyCodeLine{130     res\_mat = np.array(sim\_mat)}
+\DoxyCodeLine{131     \textcolor{keywordflow}{return} res\_mat, filenames}
+\DoxyCodeLine{132 }
+\DoxyCodeLine{133 }
+\DoxyCodeLine{134 }
+\DoxyCodeLine{135 }
+
+\end{DoxyCode}
+\mbox{\Hypertarget{namespacerest_1_1checker__core_1_1Final__Checker_a83ad0d5ff2b6f934c95e9e21cdbb656f}\label{namespacerest_1_1checker__core_1_1Final__Checker_a83ad0d5ff2b6f934c95e9e21cdbb656f}} 
+\index{rest.checker\_core.Final\_Checker@{rest.checker\_core.Final\_Checker}!plagCheck@{plagCheck}}
+\index{plagCheck@{plagCheck}!rest.checker\_core.Final\_Checker@{rest.checker\_core.Final\_Checker}}
+\doxysubsubsection{\texorpdfstring{plagCheck()}{plagCheck()}}
+{\footnotesize\ttfamily def rest.\+checker\+\_\+core.\+Final\+\_\+\+Checker.\+plag\+Check (\begin{DoxyParamCaption}\item[{}]{fp1,  }\item[{}]{fp2,  }\item[{}]{boilfp = {\ttfamily None} }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}    fp1 and fp2 are the fingerprints of the two files to be compared. These fingerprints 
+        have been generated from winnowing, the method is explained below.
+    boilfp is the fingerprint of boilerplate code.
+    This function finds the common fingerprints of the two files and returns the ratio of
+         matched fingerprints and total fingerprints.
+    If boilerplate is given by the user, it removes all the common fingerprints for the 
+        two files with boilerplate\end{DoxyVerb}
+ 
+
+Definition at line 27 of file Final\+\_\+\+Checker.\+py.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{27 \textcolor{keyword}{def }plagCheck(fp1,fp2, boilfp=None):}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{29     \textcolor{stringliteral}{"{}"{}"{} }}
+\DoxyCodeLine{30 \textcolor{stringliteral}{    fp1 and fp2 are the fingerprints of the two files to be compared. These fingerprints }}
+\DoxyCodeLine{31 \textcolor{stringliteral}{        have been generated from winnowing, the method is explained below.}}
+\DoxyCodeLine{32 \textcolor{stringliteral}{    boilfp is the fingerprint of boilerplate code.}}
+\DoxyCodeLine{33 \textcolor{stringliteral}{    This function finds the common fingerprints of the two files and returns the ratio of}}
+\DoxyCodeLine{34 \textcolor{stringliteral}{         matched fingerprints and total fingerprints.}}
+\DoxyCodeLine{35 \textcolor{stringliteral}{    If boilerplate is given by the user, it removes all the common fingerprints for the }}
+\DoxyCodeLine{36 \textcolor{stringliteral}{        two files with boilerplate}}
+\DoxyCodeLine{37 \textcolor{stringliteral}{        "{}"{}"{}}}
+\DoxyCodeLine{38 }
+\DoxyCodeLine{39     \textcolor{keywordflow}{if} boilfp != \textcolor{keywordtype}{None}:}
+\DoxyCodeLine{40         tempfp1=set(fp1).difference(boilfp)}
+\DoxyCodeLine{41         tempfp2 = set(fp2).difference(boilfp)}
+\DoxyCodeLine{42     \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{43         tempfp1 = set(fp1)}
+\DoxyCodeLine{44         tempfp2 = set(fp2)}
+\DoxyCodeLine{45     \textcolor{stringliteral}{"{}"{}"{}A list of common fingerprints"{}"{}"{}}}
+\DoxyCodeLine{46     comfpr=list(tempfp1 \& tempfp2)}
+\DoxyCodeLine{47     }
+\DoxyCodeLine{48 }
+\DoxyCodeLine{49     deno = min(len(tempfp1),len(tempfp2))}
+\DoxyCodeLine{50 }
+\DoxyCodeLine{51     \textcolor{keywordflow}{if} deno ==0:}
+\DoxyCodeLine{52         ratio =0.0}
+\DoxyCodeLine{53     \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{54         ratio= len(comfpr)/deno}
+\DoxyCodeLine{55 }
+\DoxyCodeLine{56     \textcolor{stringliteral}{"{}"{}"{}returns the ratio of matches and toal fingerprints, we have used minimum of the number of fingerprints in the denominator i.e., for comparisons,}}
+\DoxyCodeLine{57 \textcolor{stringliteral}{    this is a fair assumption, based on tested results(makes it more sensitive to even small chunks of plagiarized snippets of codes"{}"{}"{}}}
+\DoxyCodeLine{58     \textcolor{keywordflow}{return} ratio}
+\DoxyCodeLine{59 }
+
+\end{DoxyCode}
+\mbox{\Hypertarget{namespacerest_1_1checker__core_1_1Final__Checker_addb9bf7957ff8a6841105d9252cf35cf}\label{namespacerest_1_1checker__core_1_1Final__Checker_addb9bf7957ff8a6841105d9252cf35cf}} 
+\index{rest.checker\_core.Final\_Checker@{rest.checker\_core.Final\_Checker}!RunCheck@{RunCheck}}
+\index{RunCheck@{RunCheck}!rest.checker\_core.Final\_Checker@{rest.checker\_core.Final\_Checker}}
+\doxysubsubsection{\texorpdfstring{RunCheck()}{RunCheck()}}
+{\footnotesize\ttfamily def rest.\+checker\+\_\+core.\+Final\+\_\+\+Checker.\+Run\+Check (\begin{DoxyParamCaption}\item[{}]{infile,  }\item[{}]{boilfile = {\ttfamily None} }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}This function takes in the path to input compressed files, and boilerplate code and invokes 
+        extract_files() function to extract the files and then savres() 
+    function to generate and save the results in the 'comparisons/results' folder \end{DoxyVerb}
+ 
+
+Definition at line 205 of file Final\+\_\+\+Checker.\+py.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{205 \textcolor{keyword}{def }RunCheck(infile, boilfile=None):}
+\DoxyCodeLine{206 }
+\DoxyCodeLine{207     \textcolor{stringliteral}{"{}"{}"{}This function takes in the path to input compressed files, and boilerplate code and invokes }}
+\DoxyCodeLine{208 \textcolor{stringliteral}{        extract\_files() function to extract the files and then savres() }}
+\DoxyCodeLine{209 \textcolor{stringliteral}{    function to generate and save the results in the 'comparisons/results' folder "{}"{}"{}}}
+\DoxyCodeLine{210 }
+\DoxyCodeLine{211     formats=(\textcolor{stringliteral}{"{}.tar"{}}, \textcolor{stringliteral}{"{}.tar.gz"{}}, \textcolor{stringliteral}{"{}.zip"{}})}
+\DoxyCodeLine{212     \textcolor{keywordflow}{if} infile.endswith(formats):}
+\DoxyCodeLine{213         \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{214             out\_dir , files\_dir = extract\_files(infile)}
+\DoxyCodeLine{215             res\_dir= os.path.join(out\_dir, \textcolor{stringliteral}{'results'})}
+\DoxyCodeLine{216             os.mkdir(res\_dir)}
+\DoxyCodeLine{217             \textcolor{keywordflow}{if} boilfile==\textcolor{keywordtype}{None}:}
+\DoxyCodeLine{218                 saveres(files\_dir, res\_dir)}
+\DoxyCodeLine{219             \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{220                 saveres(files\_dir, res\_dir, boilfile)}
+\DoxyCodeLine{221             \textcolor{stringliteral}{"{}"{}"{}returns 'success' and path to directory having generated results"{}"{}"{}}}
+\DoxyCodeLine{222             \textcolor{keywordflow}{return} \textcolor{stringliteral}{'success'} , res\_dir}
+\DoxyCodeLine{223         \textcolor{stringliteral}{"{}"{}"{} returns 'fail' in all other scenarios"{}"{}"{}}}
+\DoxyCodeLine{224         \textcolor{keywordflow}{except}:}
+\DoxyCodeLine{225             \textcolor{keywordflow}{return} \textcolor{stringliteral}{'fail'} , \textcolor{stringliteral}{''}}
+\DoxyCodeLine{226         }
+\DoxyCodeLine{227     \textcolor{keywordflow}{return} \textcolor{stringliteral}{'fail'}, \textcolor{stringliteral}{''}}
+\DoxyCodeLine{228 }
+\DoxyCodeLine{229 }
+\DoxyCodeLine{230 }
+\DoxyCodeLine{231 }
+\DoxyCodeLine{232 }
+\DoxyCodeLine{233 }
+
+\end{DoxyCode}
+\mbox{\Hypertarget{namespacerest_1_1checker__core_1_1Final__Checker_ab3da116d559f1adcdacb751349894f1d}\label{namespacerest_1_1checker__core_1_1Final__Checker_ab3da116d559f1adcdacb751349894f1d}} 
+\index{rest.checker\_core.Final\_Checker@{rest.checker\_core.Final\_Checker}!saveres@{saveres}}
+\index{saveres@{saveres}!rest.checker\_core.Final\_Checker@{rest.checker\_core.Final\_Checker}}
+\doxysubsubsection{\texorpdfstring{saveres()}{saveres()}}
+{\footnotesize\ttfamily def rest.\+checker\+\_\+core.\+Final\+\_\+\+Checker.\+saveres (\begin{DoxyParamCaption}\item[{}]{inpath,  }\item[{}]{outpath,  }\item[{}]{boilpath = {\ttfamily None} }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}inpath is path to directory containing code and boilpath is path to boilerplate code file.
+    This function basically calls folder_compare() function on the input directory and 
+        saves the result in the form of csv to the output path(outpath),
+    It also generates a graphical respresentation of the result and savs it in the 
+        outpath folder.\end{DoxyVerb}
+ 
+
+Definition at line 136 of file Final\+\_\+\+Checker.\+py.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{136 \textcolor{keyword}{def }saveres(inpath, outpath, boilpath=None):}
+\DoxyCodeLine{137     \textcolor{stringliteral}{"{}"{}"{}inpath is path to directory containing code and boilpath is path to boilerplate code file.}}
+\DoxyCodeLine{138 \textcolor{stringliteral}{    This function basically calls folder\_compare() function on the input directory and }}
+\DoxyCodeLine{139 \textcolor{stringliteral}{        saves the result in the form of csv to the output path(outpath),}}
+\DoxyCodeLine{140 \textcolor{stringliteral}{    It also generates a graphical respresentation of the result and savs it in the }}
+\DoxyCodeLine{141 \textcolor{stringliteral}{        outpath folder.}}
+\DoxyCodeLine{142 \textcolor{stringliteral}{    "{}"{}"{}}}
+\DoxyCodeLine{143 }
+\DoxyCodeLine{144     \textcolor{keywordflow}{if} boilpath==\textcolor{keywordtype}{None}:}
+\DoxyCodeLine{145         matres, filenames=folder\_compare(inpath)}
+\DoxyCodeLine{146     \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{147         matres, filenames=folder\_compare(inpath, boilpath)}
+\DoxyCodeLine{148 }
+\DoxyCodeLine{149     extentt=np.arange(len(filenames)) + 0.5}
+\DoxyCodeLine{150 }
+\DoxyCodeLine{151     \textcolor{stringliteral}{"{}"{}"{}using pandas to generate dataframe and save it as csv from the similarity matrix"{}"{}"{}}}
+\DoxyCodeLine{152 }
+\DoxyCodeLine{153     df = pd.DataFrame(matres, index= filenames, columns=filenames)}
+\DoxyCodeLine{154 }
+\DoxyCodeLine{155     df.to\_csv(os.path.join(outpath, \textcolor{stringliteral}{'results.csv'}))}
+\DoxyCodeLine{156 }
+\DoxyCodeLine{157     }
+\DoxyCodeLine{158     \textcolor{stringliteral}{"{}"{}"{}using matplotlib to generate an image shwoing degree of plagiarism in a pair of file"{}"{}"{}}}
+\DoxyCodeLine{159 }
+\DoxyCodeLine{160     fig, ax = plt.subplots(1,1)}
+\DoxyCodeLine{161 }
+\DoxyCodeLine{162     img = ax.imshow(matres,cmap=\textcolor{stringliteral}{'Reds'}, vmin=0, vmax=1, extent=[0, len(filenames), 0, len(filenames)] )}
+\DoxyCodeLine{163 }
+\DoxyCodeLine{164     ax.set\_xticks(extentt)}
+\DoxyCodeLine{165     ax.set\_yticks(extentt)  }
+\DoxyCodeLine{166 }
+\DoxyCodeLine{167     ax.set\_xticklabels(filenames, rotation= 60)}
+\DoxyCodeLine{168     ax.set\_yticklabels(filenames[::-\/1])}
+\DoxyCodeLine{169 }
+\DoxyCodeLine{170     fig.colorbar(img)}
+\DoxyCodeLine{171     plt.tight\_layout()}
+\DoxyCodeLine{172     plt.savefig(os.path.join(outpath, \textcolor{stringliteral}{'results.png'}))}
+\DoxyCodeLine{173 }
+\DoxyCodeLine{174 }
+\DoxyCodeLine{175 }
+
+\end{DoxyCode}
