@@ -28,8 +28,8 @@ python3 manage.py runserver
 ```
 
 ### PDFs of the Documentation generated have been also been added to the repository here -
-* [Full Documentation](./Final_Documentation_CryptoFox.pdf
-* [Documentation of Code of Core Logic] (./Code-Documentation.pdf)
+* [Full Documentation](./Final_Documentation_CryptoFox.pdf)
+* [Documentation of Code of Core Logic](./Code-Documentation.pdf)
 
 
 
