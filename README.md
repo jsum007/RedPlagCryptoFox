@@ -27,6 +27,13 @@ python3 manage.py makemigrations
 python3 manage.py runserver
 ```
 
+### PDFs of the Documentation generated have been also been added to the repository here -
+* [Full Documentation](./Final_Documentation_CryptoFox.pdf
+* [Documentation of Code of Core Logic] (./Code-Documentation.pdf)
+
+
+
+
 # Red Plag - Frontend <a name="front"></a>
 
 The frontend of the project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.1.6.
