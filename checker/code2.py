@@ -37,7 +37,9 @@ def basicCheck(token, tokens1, tokens2):
     return True
 
 def delimiterCorrection(line):
+
     tokens = line.split(" ")
+    print(tokens)
     for delimiter in mysrc.delimiters().keys():
         for token in tokens:
             if token == delimiter:
@@ -88,12 +90,13 @@ def tokenize(path, tokens1, tokens2):
         lines = f.split("\n")
         count = 0
         for line in lines:
-            count = count + 1
-            tokens = delimiterCorrection(line)
-            #print("\n#LINE ", count)
-            #print("Tokens: ", tokens)
-            for token in tokens:
-                basicCheck(token, tokens1, tokens2)
+            if line is not '':
+                count = count + 1
+                tokens = delimiterCorrection(line)
+                #print("\n#LINE ", count)
+                #print("Tokens: ", tokens)
+                for token in tokens:
+                    basicCheck(token, tokens1, tokens2)
         #print(count)
         return True
     except FileNotFoundError:

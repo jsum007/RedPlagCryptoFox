@@ -2,14 +2,14 @@ import code2
 import numpy as np
 import mysrc
 
-t1a, t1b = code2.run('190050119_2.cpp')
+t1a, t1b = code2.run('sample3.cpp')
 
 t2a, t2b = code2.run('sample2.cpp')
 
 word_to_onehot = {}
 num_to_word = {}
 
-vocab_list = mysrc.keywords() + list(mysrc.operators().keys())
+vocab_list = mysrc.keywords() + mysrc.identifiers() + list(mysrc.operators().keys())
 size_onehot = len(vocab_list)
 #print(vocab_list)
 

@@ -1,11 +1,17 @@
 def keywords():
     keywords = [
-    "auto", "bool", "break", "case", "catch", "char", "word", "class", "const", "continue", "delete", "do", "double", "else", "enum", "false", "float", "for", "goto", "if", "#include", 
-    "int", "long", "namespace", "not", "or", "private", "protected", "public", "return", "short", "signed", "sizeof", "static", "struct", "switch", "true", "try", "unsigned", "void", "while",
+    "auto", "break", "case", "catch", "word", "class", "const", "continue", "delete", "do", "else", "false", "for", "goto", "if", "#include", 
+    "namespace", "not", "or", "private", "protected", "public", "return", "signed", "sizeof", "static", "switch", "true", "try", "unsigned", "void", "while",
     "endl", "cout", "cin", "main"
     ]
-    #print(len(keywords)) = 45
+    #print(len(keywords)) = 36
     return keywords
+
+def identifiers():
+    identifiers = [
+    "bool", "char", "double", "enum", "float", "int", "long", "short", "struct", "string" ]
+    #print(len(identifiers)) = 10
+    return identifiers
 
 def operators():
     operators = {
